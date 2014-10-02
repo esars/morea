@@ -1,8 +1,8 @@
 <?php
 
-class Erabiltzaile {
-	public erroreak = array();
-	public mezuak = array();
+class Sartu {
+	public $erroreak = array();
+	public $mezuak = array();
 	
 	public function __construct() {
 		session_start();
@@ -40,7 +40,7 @@ class Erabiltzaile {
 	private function atera() {
 		session_destroy();
 	}
-	public function barruan() {
-			
+	public static function barruan() {
+		return true;
 	}
 }
