@@ -1,6 +1,8 @@
 <?php
 
 class Sartu {
+	private $db = null;
+	
 	public $erroreak = array();
 	public $mezuak = array();
 	
@@ -19,12 +21,15 @@ class Sartu {
 		} elseif(empty($_POST['pasahitza'])) {
 			$this->erroreak[] = "Ez duzu pasahitza jarri.";
 		} elseif(!empty($_POST['izena']) && !empty($_POST['pasahitza'])) {
-			$this->db = new mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+			$this->db = new mysqli_connect($config["host"], 
+																		 $config["user"],
+																		 $config["pass"],
+																		 $config["izen"]);
 			
 			if(!$this->db->connect_errno) {
 				$izena = $this->db->real_escape_string($_POST['izena']);
 				$sql = "SELECT user_name, user_email, user_password_hash
-						FROM erabiltzaileak
+						FROM erabiltzaile
 						WHERE user_name = '" . $izena . "' OR user_email = '" . $izena . "';";
 				$existitzenbada = $this->db->query($sql);
 				if($existitzenbada->num_rows == 1) {
