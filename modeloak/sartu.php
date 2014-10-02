@@ -27,8 +27,16 @@ class Sartu {
 						FROM erabiltzaileak
 						WHERE user_name = '" . $izena . "' OR user_email = '" . $izena . "';";
 				$existitzenbada = $this->db->query($sql);
-				if($existitzenbada) {
-					
+				if($existitzenbada->num_rows == 1) {
+					//Konsulta batetikan emaitza bat bueltatzen bada hau objektu dinamikoan ahal degu bihurtu funtzio honekin
+					$emaitza = $existitzenbada->fetch_object();
+					//Kontraseña enkriptatua deskodifikatzeko funtzioa
+					if(password_verify($_POST['pasahitza'], $emaitza->pasahitza_hash)) {
+						$_SESSION['emaila'] = $emaitza->email;
+						$_SESSION['izena'] = $emaitza->izena;
+					} else {
+						$this->erroreak = "Pasahitz okerra";
+					}
 				} else {
 					$this->erroreak[] = "Izen edo email hori ez da existitzen.";
 				}
@@ -41,6 +49,10 @@ class Sartu {
 		session_destroy();
 	}
 	public static function barruan() {
-		return true;
+		if(!empty($_SESSION['izena'])) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
