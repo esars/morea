@@ -10,7 +10,6 @@
 <body>
 	<header>
 		<img src="public/img/logoa.png" alt="Logoa" id="logoa">
-	</header>
 	<nav>
 		<ul>
 			<li>Produktuak</li>
@@ -18,3 +17,4 @@
 			<li>Kokapena</li>
 		</ul>
 	</nav>
+	</header>
