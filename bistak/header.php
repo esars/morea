@@ -5,16 +5,19 @@
 	<title>Morea Lorategia</title>
 	<link rel="stylesheet" type="text/css" href="public/style.css">
 	<link rel="stylesheet" type="text/css" href="public/pure.css">
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 	<script src="public/jquery.js"></script>
 </head>
 <body>
 	<header>
-		<img src="public/img/logoa.png" alt="Logoa" id="logoa">
+		<img src="public/img/logoa.png" alt="Logoa" id="logoa" class="pure-img">
 	<nav>
 		<ul>
-			<li>Produktuak</li>
-			<li>Gu</li>
-			<li>Kokapena</li>
+			<a href="#"><li>Produktuak</li></a>
+			<a href="#"><li>Gu</li></a>
+			<a href="#"><li>Kokapena</li></a>
+			<img src="public/img/erab.png" alt="Sartu edo erregistratu">
+			<img src="public/img/shopping.png" alt="Karritoan duzuna ikusi">
 		</ul>
 	</nav>
 	</header>
