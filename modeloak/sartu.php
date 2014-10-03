@@ -60,4 +60,11 @@ class Sartu {
 			return false;
 		}
 	}
+	public static function adminBarruan() {
+		if($_SESSION['izena'] == "admin") {
+				return true;
+		} else {
+				return false;
+		}
+	}
 }
