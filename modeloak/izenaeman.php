@@ -53,10 +53,12 @@ class IzenaEman {
 								$helbi = $this->db->real_escape_string(strip_tags($_POST['helbidea'], ENT_QUOTES));
 								$pass = $_POST['pasahitza'];
 								$telf = $_POST['telefonoa'];
-								
+		
 								//	password_hash PHP 5.3tik aurrera dabil	//
 								
 								$pass_hash = password_hash($pass, PASSWORD_DEFAULT);
+								
+								//	Hemen salt egitea falta da, ez nago guztiz ziur goiko funtzioa erabilita beharrezkoa den	//
 								
 								//	Emaila erabilpenean dagoen konprobatu	//
 								
@@ -64,11 +66,25 @@ class IzenaEman {
 								$emailaErabilpenean = $this->db->query($sql);
 								
 								if($emailaErabilpenean->num_rows == 1) {
-										$this->erroreak = "Emaila erabilpenean dago";
+										$this->erroreak[] = "Emaila erabilpenean dago";
 								} else {
 										$sql = "INSERT INTO erabiltzaile
-														(izena,)";
+														(izena, email, helbidea, pasahitza, telefonoa)
+														VALUES 
+														(".$izena.", ".$email.", ".$helbi.", ".$pass.", ".$telf.");";
+										$inserzioa = $this->db->query($sql);
+										
+										//	Datuak sartu diren ala ez konprobatu	//
+										
+										if($inserzioa) {
+											$this->mezuak[] = "Arrakastaz erregistratu zara.";
+										} else {
+											$this->erroreak[] = "Errorea izena ematean. Saia zaitez berriro"
+										}
+										
 								}
+						} else {
+								$this->erroreak[] = "Errorea datubasera konektatzean";
 						}
 				}
 		}
