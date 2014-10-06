@@ -24,7 +24,7 @@ class IzenaEman {
 						$this->erroreak = "Pasahitza hutsik zegoen";
 				} else if($_POST['pasahitza'] !== $_POST['pasahitza1']) {
 						$this->erroreak = "Pasahitzak desberdinak ziren";
-				} else if(strlen($_POST['izena']) > 50 || strlen($_POST['izena']) < 2 {
+				} else if(strlen($_POST['izena']) > 50 || strlen($_POST['izena']) < 2) {
 						$this->erroreak = "Izena luzeegia edo motzegia zen";
 				} else if(!preg_match('/^[a-z\d]{2,64}$/i', $_POST['izena'])) {
 						$this->erroreak = "Izenean bakarrik hizkiak eta zenbakiak";
@@ -78,11 +78,11 @@ class IzenaEman {
 										$inserzioa = $this->db->query($sql);
 
 										//	Datuak sartu diren ala ez konprobatu	//
-										
+
 										if($inserzioa) {
 											$this->mezuak[] = "Arrakastaz erregistratu zara.";
 										} else {
-											$this->erroreak[] = "Errorea izena ematean. Saia zaitez berriro"
+											$this->erroreak[] = "Errorea izena ematean. Saia zaitez berriro";
 										}
 
 								}
