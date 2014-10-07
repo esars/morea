@@ -39,12 +39,20 @@ body {
 	float:left;
 }
 #mylightbox{
-	width:500px;
+	width:600px;
 	height: 400px;
 }
-#mylightbox>form{
+#mylightbox>#regi>form{
 	float:left;
-	margin: 10px
+	margin-left: 30px;
+	margin-right: 30px;
+
+}
+#regi{
+	margin:auto;
+	width: 600px;
+	height:400px;
+	padding: auto
 }
 #ezkutatua{
 	display: none
