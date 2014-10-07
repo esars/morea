@@ -26,8 +26,5 @@
 	</fieldset>
 	<input type="submit" class='pure-button pure-input-1-6 pure-button-primary' id='registro1' value='Erregistratu'>
 </form>
-<<<<<<< HEAD
-</div></div>
-=======
 </div>
 </div></div>
