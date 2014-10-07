@@ -59,9 +59,9 @@ class IzenaEman {
 
 								//	password_hash PHP 5.3tik aurrera dabil	//
 
-								$pass_hash = password_hash($pass, PASSWORD_DEFAULT);
+								$salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647));
 
-								//	Hemen salt egitea falta da, ez nago guztiz ziur goiko funtzioa erabilita beharrezkoa den	//
+								$pass_hash = password_hash($pass.$salt, PASSWORD_DEFAULT);
 
 								//	Emaila erabilpenean dagoen konprobatu	//
 
@@ -72,9 +72,9 @@ class IzenaEman {
 										$this->erroreak[] = "Emaila erabilpenean dago";
 								} else {
 										$sql = "INSERT INTO erabiltzaile
-														(izena, email, helbidea, pasahitza, telefonoa)
+														(izena, email, helbidea, pasahitza, salt, telefonoa)
 														VALUES
-														(".$izena.", ".$email.", ".$helbi.", ".$pass.", ".$telf.");";
+														(".$izena.", ".$email.", ".$helbi.", ".$pass_hash.", ".$salt.", ".$telf.");";
 										$inserzioa = $this->db->query($sql);
 
 										//	Datuak sartu diren ala ez konprobatu	//
