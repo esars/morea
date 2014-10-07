@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="public/style.css">
 	<link rel="stylesheet" type="text/css" href="public/pure.css">
 	<link rel="stylesheet" type="text/css" href="public/featherlight.min.css">
-	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lobster|Cabin:400,500' rel='stylesheet' type='text/css'>
 	<script src="public/js/jquery.js"></script>
 	<script src="public/js/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 </head>

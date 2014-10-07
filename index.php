@@ -9,7 +9,8 @@ require_once "modeloak/sartu.php";
 require_once "modeloak/izenaeman.php";
 
 include("bistak/header.php");
-include("bistak/login_registro.php");
+
+$login = new Sartu();
 
 if(Sartu::barruan()) {
 	//include("bistak/kontua.php");

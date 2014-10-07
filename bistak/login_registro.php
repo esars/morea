@@ -6,7 +6,7 @@
 	<input class='pure-input-1-6' type="text" maxlength='40' required value='Emaila' name='email'>
 	<input class='pure-input-1-6' type="text" maxlength='70' required value='Pasahitza' name='pasahitza'>
 	</fieldset>
-	<input class='pure-button pure-input-1-6 pure-button-primary' type="submit" value='Sartu'>
+	<input class='pure-button pure-input-1-6 pure-button-primary formbotoi' type="submit" value='Sartu'>
 </form>
 <form id='registro' class='pure-form' action="" method='post'>
 	<h1>Registrarse</h1>
@@ -23,6 +23,6 @@
 	<input class='pure-input-1-6' type="password" maxlength='70' required value='Pasahitza' name='pasahitza1'>
 	<input class='pure-input-1-6' type="password" maxlength='70' required value='Errepikatu Pasahitza' name='pasahitza2'>
 	</fieldset>
-	<input type="submit" class='pure-button pure-input-1-6 pure-button-primary' id='registro1' value='Erregistratu'>
+	<input type="submit" class='pure-button pure-input-1-6 pure-button-primary formbotoi' id='registro1' value='Erregistratu'>
 </form>
 </div></div>
