@@ -12,6 +12,8 @@ include("bistak/header.php");
 
 $login = new Sartu();
 
+$reg = new IzenaEman();
+
 if(Sartu::barruan()) {
 	//include("bistak/kontua.php");
 } else {

@@ -16,7 +16,7 @@
 			}
 		}
 		if (isset($reg)) {
-			if ($reg->errors) {
+			if ($reg->erroreak) {
 				foreach ($reg->erroreak as $e) {
 					echo $e;
 				}
