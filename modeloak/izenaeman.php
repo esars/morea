@@ -7,7 +7,7 @@ class IzenaEman {
 		public $mezuak = array();
 
 		public function __construct() {
-				if(isset($_POST['izenaeman'])) {
+				if(isset($_POST['izena'])) {
 						$this->erregistratu();
 				} else {
 						$this->erroreak[] = "Errore ezezaguna";
@@ -20,9 +20,9 @@ class IzenaEman {
 
 				if(empty($_POST['izena'])) {
 						$this->erroreak = "Izena hutsik zegoen";
-				} else if(empty($_POST['pasahitza']) OR empty($_POST['pasahitza1'])) {
+				} else if(empty($_POST['pasahitza1']) OR empty($_POST['pasahitza2'])) {
 						$this->erroreak = "Pasahitza hutsik zegoen";
-				} else if($_POST['pasahitza'] !== $_POST['pasahitza1']) {
+				} else if($_POST['pasahitza1'] !== $_POST['pasahitza2']) {
 						$this->erroreak = "Pasahitzak desberdinak ziren";
 				} else if(strlen($_POST['izena']) > 50 || strlen($_POST['izena']) < 2) {
 						$this->erroreak = "Izena luzeegia edo motzegia zen";

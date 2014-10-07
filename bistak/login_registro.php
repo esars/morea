@@ -24,7 +24,7 @@
 	<input class='pure-input-1-6' type="password" maxlength='70' required value='Pasahitza' name='pasahitza1'>
 	<input class='pure-input-1-6' type="password" maxlength='70' required value='Errepikatu Pasahitza' name='pasahitza2'>
 	</fieldset>
-	<input type="submit" class='pure-button pure-input-1-6 pure-button-primary formbotoi' id='registro1' value='Erregistratu'>
+	<input type="submit" class='pure-button pure-input-1-6 pure-button-primary formbotoi' id='registro1' value='Erregistratu' name="izenaeman">
 </form>
 </div></div>
 </div>

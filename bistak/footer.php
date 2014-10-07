@@ -16,7 +16,9 @@
 			}
 		}
 		if (isset($reg)) {
-			if ($reg->erroreak) {
+			
+			if (count($reg->erroreak) > 0) {
+				echo var_dump($reg->erroreak);
 				foreach ($reg->erroreak as $e) {
 					echo $e;
 				}
