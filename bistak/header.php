@@ -5,9 +5,10 @@
 	<title>Morea Lorategia</title>
 	<link rel="stylesheet" type="text/css" href="public/style.css">
 	<link rel="stylesheet" type="text/css" href="public/pure.css">
+	<link rel="stylesheet" type="text/css" href="public/featherlight.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 	<script src="public/js/jquery.js"></script>
-	<script src="public/js/script.js"></script>
+	<script src="public/js/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<header>
@@ -17,7 +18,7 @@
 			<a href="#"><li>Produktuak</li></a>
 			<a href="#"><li>Gu</li></a>
 			<a href="#"><li>Kokapena</li></a>
-			<img src="public/img/erab.png" alt="Sartu edo erregistratu">
+			<a href="#" data-featherlight="#mylightbox"><img src="public/img/erab.png" alt="Sartu edo erregistratu"></a>
 			<img src="public/img/shopping.png" alt="Karritoan duzuna ikusi">
 		</ul>
 	</nav>
