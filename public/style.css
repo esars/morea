@@ -38,4 +38,14 @@ body {
 	width: 30%;
 	float:left;
 }
-
+#mylightbox{
+	width:500px;
+	height: 400px;
+}
+#mylightbox>form{
+	float:left;
+	margin: 10px
+}
+#ezkutatua{
+	display: none
+}
