@@ -52,9 +52,10 @@ class IzenaEman {
 								*/
 
 								$izena = $this->db->real_escape_string(strip_tags($_POST['izena'], ENT_QUOTES));
+								$abizena = $this->db->real_escape_string(strip_tags($_POST['abizena'], ENT_QUOTES));
 								$email = $this->db->real_escape_string(strip_tags($_POST['email'], ENT_QUOTES));
 								$helbi = $this->db->real_escape_string(strip_tags($_POST['helbidea'], ENT_QUOTES));
-								$pass = $_POST['pasahitza'];
+								$pass = $_POST['pasahitza1'];
 								$telf = $_POST['telefonoa'];
 
 								//	password_hash PHP 5.3tik aurrera dabil	//
@@ -74,7 +75,7 @@ class IzenaEman {
 										$sql = "INSERT INTO erabiltzaile
 														(izena, email, helbidea, pasahitza, salt, telefonoa)
 														VALUES
-														(".$izena.", ".$email.", ".$helbi.", ".$pass_hash.", ".$salt.", ".$telf.");";
+														(".$izena.", ".$abizena.", ".$email.", ".$helbi.", ".$pass_hash.", ".$salt.", ".$telf.");";
 										$inserzioa = $this->db->query($sql);
 
 										//	Datuak sartu diren ala ez konprobatu	//
