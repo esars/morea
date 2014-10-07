@@ -41,17 +41,11 @@ body {
 }
 #mylightbox{
 	width:600px;
-<<<<<<< HEAD
 	height: 500px;
-=======
-	height: 400px;
->>>>>>> cb0131681a8e05db9b550414ead02bc1d99e3ca2
 }
 #mylightbox>#regi>form{
 	float:left;
-<<<<<<< HEAD
 	margin: 10px;
-=======
 	margin-left: 30px;
 	margin-right: 30px;
 
@@ -59,9 +53,8 @@ body {
 #regi{
 	margin:auto;
 	width: 600px;
-	height:400px;
-	padding: auto
->>>>>>> cb0131681a8e05db9b550414ead02bc1d99e3ca2
+	height:500px;
+	padding: auto;
 }
 #ezkutatua{
 	display: none;
