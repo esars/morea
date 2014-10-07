@@ -6,7 +6,8 @@
 	<link rel="stylesheet" type="text/css" href="public/style.css">
 	<link rel="stylesheet" type="text/css" href="public/pure.css">
 	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-	<script src="public/jquery.js"></script>
+	<script src="public/js/jquery.js"></script>
+	<script src="public/js/script.js"></script>
 </head>
 <body>
 	<header>
