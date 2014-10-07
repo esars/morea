@@ -39,10 +39,10 @@ class IzenaEman {
 				else {
 						//	DATUAK SARTU	//
 
-						$this->db = new mysqli_connect($config["host"],
+						$this->db = mysqli_connect($config["host"],
 																					 $config["user"],
 																					 $config["pass"],
-																					 $config["izen"]);
+																					 $config["izen"]) or die("Error " . mysqli_error($this->db));
 						if(!$this->db->connect_errno) {
 
 								/*
