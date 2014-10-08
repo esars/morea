@@ -21,18 +21,19 @@ class Sartu {
 		} elseif(empty($_POST['pasahitza'])) {
 			$this->erroreak[] = "Ez duzu pasahitza jarri.";
 		} elseif(!empty($_POST['izena']) && !empty($_POST['pasahitza'])) {
-			$this->db = new mysqli_connect($config["host"], 
+			global $config;
+			$this->db = mysqli_connect($config["host"], 
 																		 $config["user"],
 																		 $config["pass"],
 																		 $config["izen"]);
 			
 			if(!$this->db->connect_errno) {
 				$izena = $this->db->real_escape_string($_POST['izena']);
-				$sql = "SELECT user_name, user_email, user_password_hash
+				$sql = "SELECT izena, email, pasahitza_hash, pasahitza_salt
 						FROM erabiltzaile
-						WHERE user_name = '" . $izena . "' OR user_email = '" . $izena . "';";
+						WHERE izena = '" . $izena . "' OR email = '" . $izena . "';";
 				$existitzenbada = $this->db->query($sql);
-				if($existitzenbada->num_rows == 1) {
+				if($existitzenbada->num_rows != 0) {
 					
 					//Konsulta batetikan emaitza bat bueltatzen bada hau objektu dinamikoan ahal degu bihurtu funtzio honekin
 					
@@ -43,8 +44,8 @@ class Sartu {
 					 * salta lortu, bata besteari gehitu, enkriptatu konbinazioa
 					 * eta datubasean dagoenarekin alderatu
 					*/ 
-					
-					if(password_verify($_POST['pasahitza'].$emaitza->salt, $emaitza->pasahitza)) {
+					echo $emaitza->pasahitza_hash;
+					if(password_verify($_POST['pasahitza'].$emaitza->pasahitza_salt, $emaitza->pasahitza_hash)) {
 						$_SESSION['emaila'] = $emaitza->email;
 						$_SESSION['izena'] = $emaitza->izena;
 					} else {

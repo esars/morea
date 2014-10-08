@@ -4,10 +4,10 @@
 <form class='pure-form' action="" method='post'>
 	<h1>Sartu</h1>
 	<fieldset class='pure-group'>
-	<input class='pure-input-1-6' type="text" maxlength='40' required value='Emaila' name='email'>
+	<input class='pure-input-1-6' type="text" maxlength='40' required value='Emaila' name='izena'>
 	<input class='pure-input-1-6' type="text" maxlength='70' required value='Pasahitza' name='pasahitza'>
 	</fieldset>
-	<input class='pure-button pure-input-1-6 pure-button-primary formbotoi' type="submit" value='Sartu'>
+	<input class='pure-button pure-input-1-6 pure-button-primary formbotoi' type="submit" name="login" value='Sartu'>
 </form>
 <form id='registro' class='pure-form' action="" method='post'>
 	<h1>Erregistratu</h1>

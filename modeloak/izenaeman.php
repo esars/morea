@@ -38,6 +38,7 @@ class IzenaEman {
 
 				else {
 						//	DATUAK SARTU	//
+						global $config;
 
 						$this->db = mysqli_connect($config["host"],
 																					 $config["user"],
@@ -56,7 +57,7 @@ class IzenaEman {
 								$email = $this->db->real_escape_string(strip_tags($_POST['email'], ENT_QUOTES));
 								$helbi = $this->db->real_escape_string(strip_tags($_POST['helbidea'], ENT_QUOTES));
 								$pass = $_POST['pasahitza1'];
-								$telf = $_POST['telefonoa'];
+								$telf = $_POST['telefono'];
 
 								//	password_hash PHP 5.3tik aurrera dabil	//
 
@@ -69,13 +70,13 @@ class IzenaEman {
 								$sql = "SELECT * FROM erabiltzaile WHERE email='".$email."';";
 								$emailaErabilpenean = $this->db->query($sql);
 
-								if($emailaErabilpenean->num_rows == 1) {
+								if($emailaErabilpenean->num_rows != 0) {
 										$this->erroreak[] = "Emaila erabilpenean dago";
 								} else {
 										$sql = "INSERT INTO erabiltzaile
-														(izena, email, helbidea, pasahitza, salt, telefonoa)
+														(izena, abizena, email, helbidea, pasahitza_hash, pasahitza_salt, telefonoa)
 														VALUES
-														(".$izena.", ".$abizena.", ".$email.", ".$helbi.", ".$pass_hash.", ".$salt.", ".$telf.");";
+														('".$izena."', '".$abizena."', '".$email."', '".$helbi."', '".$pass_hash."', '".$salt."', '".$telf."');";
 										$inserzioa = $this->db->query($sql);
 
 										//	Datuak sartu diren ala ez konprobatu	//
@@ -83,7 +84,7 @@ class IzenaEman {
 										if($inserzioa) {
 											$this->mezuak[] = "Arrakastaz erregistratu zara.";
 										} else {
-											$this->erroreak[] = "Errorea izena ematean. Saia zaitez berriro";
+											$this->erroreak[] = "Errorea izena ematean. Saia zaitez berriro".$salt;
 										}
 
 								}
