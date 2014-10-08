@@ -16,6 +16,7 @@ Irudiak gehitu produktuei
 -------------------------
 Irudiak png formatuan egon beharko dute, /public/argazkiak karpetan gordeko dira eta hurrengo nomenklatura jarraituko dute:
 >ProduktuarenId-[12345]
+
 Beraz, 5 argazki gehienez jarri ahal dira produktu bakoitzeko. Hona hemen adibide batzuk:
 3-1.png
 3-2.png
