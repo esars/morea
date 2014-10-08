@@ -9,9 +9,7 @@ class IzenaEman {
 		public function __construct() {
 				if(isset($_POST['izena'])) {
 						$this->erregistratu();
-				} else {
-						$this->erroreak[] = "Errore ezezaguna";
-				}
+				} 
 		}
 
 		private function erregistratu() {
@@ -19,19 +17,19 @@ class IzenaEman {
 				//	MINIMOAK ETA KARAKTERE BALIOZKOAK	//
 
 				if(empty($_POST['izena'])) {
-						$this->erroreak = "Izena hutsik zegoen";
+						$this->erroreak[] = "Izena hutsik zegoen";
 				} else if(empty($_POST['pasahitza1']) OR empty($_POST['pasahitza2'])) {
-						$this->erroreak = "Pasahitza hutsik zegoen";
+						$this->erroreak[] = "Pasahitza hutsik zegoen";
 				} else if($_POST['pasahitza1'] !== $_POST['pasahitza2']) {
-						$this->erroreak = "Pasahitzak desberdinak ziren";
+						$this->erroreak[] = "Pasahitzak desberdinak ziren";
 				} else if(strlen($_POST['izena']) > 50 || strlen($_POST['izena']) < 2) {
-						$this->erroreak = "Izena luzeegia edo motzegia zen";
+						$this->erroreak[] = "Izena luzeegia edo motzegia zen";
 				} else if(!preg_match('/^[a-z\d]{2,64}$/i', $_POST['izena'])) {
-						$this->erroreak = "Izenean bakarrik hizkiak eta zenbakiak";
+						$this->erroreak[] = "Izenean bakarrik hizkiak eta zenbakiak";
 				} else if(empty($_POST['email'])) {
-						$this->erroreak = "Emaila ezin da hutsik egon";
+						$this->erroreak[] = "Emaila ezin da hutsik egon";
 				} else if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-						$this->erroreak = "Emailaren sintaxia ez da egokia";
+						$this->erroreak[] = "Emailaren sintaxia ez da egokia";
 				}
 
 				//	Gauza gehio gehitu behar dira, helbidea, telefonoa... dena luzera minimo baten

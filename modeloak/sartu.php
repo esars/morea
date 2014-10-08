@@ -16,11 +16,11 @@ class Sartu {
 		}
 	}
 	private function sartu() {
-		if(empty($_POST['izena'])) {
+		if(empty($_POST['email'])) {
 			$this->erroreak[] = "Ez duzu erabiltzaile izena jarri.";
 		} elseif(empty($_POST['pasahitza'])) {
 			$this->erroreak[] = "Ez duzu pasahitza jarri.";
-		} elseif(!empty($_POST['izena']) && !empty($_POST['pasahitza'])) {
+		} elseif(!empty($_POST['email']) && !empty($_POST['pasahitza'])) {
 			global $config;
 			$this->db = mysqli_connect($config["host"], 
 																		 $config["user"],
@@ -28,7 +28,7 @@ class Sartu {
 																		 $config["izen"]);
 			
 			if(!$this->db->connect_errno) {
-				$izena = $this->db->real_escape_string($_POST['izena']);
+				$izena = $this->db->real_escape_string($_POST['email']);
 				$sql = "SELECT izena, email, pasahitza_hash, pasahitza_salt
 						FROM erabiltzaile
 						WHERE izena = '" . $izena . "' OR email = '" . $izena . "';";
@@ -48,7 +48,7 @@ class Sartu {
 						$_SESSION['emaila'] = $emaitza->email;
 						$_SESSION['izena'] = $emaitza->izena;
 					} else {
-						$this->erroreak = "Pasahitz okerra";
+						$this->erroreak[] = "Pasahitz okerra";
 					}
 				} else {
 					$this->erroreak[] = "Izen edo email hori ez da existitzen.";
