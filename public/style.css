@@ -17,12 +17,14 @@ nav>ul>*{
 	//color: #fed3aa;
 	//width: 15%;
 	text-align: center;
-	//text-shadow: 0px 0px 1px #fed3aa;
 	font-size: 2em;
 	margin-top: 5%;
 }
 nav>ul>a>li {
 	transition: all 200ms linear;
+}
+nav>ul>a>img {
+	height:25px;
 }
 nav>ul>a>li:hover {
 	text-shadow: 0px 0px 1px #4788A0,
@@ -65,8 +67,8 @@ body {
 }
 .formbotoi:hover {
 	background-color: #4788A0;
-	box-shadow: 0px 1px 0px #4788a0,
-							0px 2px 0px #3d6473,
+	box-shadow: 0px 1px 0px #235D72,
+							0px 2px 0px #184759,
 							0px 3px 0px #2a363b;
 	margin-top: -3px;
 }

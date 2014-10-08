@@ -15,9 +15,9 @@
 		<img src="public/img/logoa.png" alt="Logoa" id="logoa" class="pure-img">
 	<nav>
 		<ul>
-			<a href="#"><li>Produktuak</li></a>
-			<a href="#"><li>Gu</li></a>
-			<a href="#"><li>Kokapena</li></a>
+			<a href="index.php"><li>Produktuak</li></a>
+			<a href="gu.php"><li>Gu</li></a>
+			<a href="kokapena.php"><li>Kokapena</li></a>
 			<a href="#" data-featherlight="#mylightbox"><img src="public/img/erab.png" alt="Sartu edo erregistratu"></a>
 			<a href="#" data-featherlight="#saskia"><img src="public/img/shopping.png" alt="Karritoan duzuna ikusi"></a>
 		</ul>

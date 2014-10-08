@@ -45,8 +45,8 @@ class Sartu {
 					 * eta datubasean dagoenarekin alderatu
 					*/ 
 					if(password_verify($_POST['pasahitza'].$emaitza->pasahitza_salt, $emaitza->pasahitza_hash)) {
-						$_SESSION['emaila'] = $emaitza->email;
-						$_SESSION['izena'] = $emaitza->izena;
+						Session::set('email', $emaitza->email);
+						Session::set('izena', $emaitza->izena);
 					} else {
 						$this->erroreak[] = "Pasahitz okerra";
 					}
@@ -62,14 +62,14 @@ class Sartu {
 		session_destroy();
 	}
 	public static function barruan() {
-		if(isset($_SESSION['izena'])) {
+		if(Session::existitzenBada('izena')) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 	public static function adminBarruan() {
-		if($_SESSION['izena'] == "admin") {
+		if(Session::get('izena') == "admin") {
 				return true;
 		} else {
 				return false;
