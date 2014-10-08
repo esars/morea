@@ -7,8 +7,8 @@ class Sartu {
 	public $mezuak = array();
 	
 	public function __construct() {
-		session_start();
-		if (isset($_GET["logout"])) {
+		//session_start();
+		if (isset($_POST["logout"])) {
 			$this->atera();
 		}
 		elseif (isset($_POST["login"])) {
