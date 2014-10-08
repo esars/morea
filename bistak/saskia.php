@@ -7,23 +7,11 @@
             <th>Izena</th>
             <th>Kopurua</th>
             <th>Prezioa</th>
-            <th>Ezabatu</th>
+            <th style='background: rgb(202, 60, 60);cursor:pointer'>Ezabatu</th>
         </tr>
     </thead>
 
     <tbody>
-        <tr>
-            <td>Total</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Total</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
         <tr>
             <td>Total</td>
             <td></td>
