@@ -15,7 +15,7 @@ $login = new Sartu();
 $reg = new IzenaEman();
 
 if(Sartu::barruan()) {
-	echo "<br>Saioa hasita";
+	include("bistak/barruan.php");
 } else {
 	include("bistak/login_registro.php");
 }
