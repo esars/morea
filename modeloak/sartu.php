@@ -44,7 +44,6 @@ class Sartu {
 					 * salta lortu, bata besteari gehitu, enkriptatu konbinazioa
 					 * eta datubasean dagoenarekin alderatu
 					*/ 
-					echo $emaitza->pasahitza_hash;
 					if(password_verify($_POST['pasahitza'].$emaitza->pasahitza_salt, $emaitza->pasahitza_hash)) {
 						$_SESSION['emaila'] = $emaitza->email;
 						$_SESSION['izena'] = $emaitza->izena;
