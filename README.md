@@ -18,11 +18,11 @@ Irudiak png formatuan egon beharko dute, /public/argazkiak karpetan gordeko dira
 >ProduktuarenId-[12345]
 
 Beraz, 5 argazki gehienez jarri ahal dira produktu bakoitzeko. Hona hemen adibide batzuk:
-3-1.png
-3-2.png
-3-3.png
-3-4.png
-3-5.png
-23453-2.png
-443-1.png
-etab.
+* 3-1.png
+* 3-2.png
+* 3-3.png
+* 3-4.png
+* 3-5.png
+* 23453-2.png
+* 443-1.png
+* etab.
