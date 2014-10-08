@@ -19,7 +19,7 @@
 			<a href="#"><li>Gu</li></a>
 			<a href="#"><li>Kokapena</li></a>
 			<a href="#" data-featherlight="#mylightbox"><img src="public/img/erab.png" alt="Sartu edo erregistratu"></a>
-			<img src="public/img/shopping.png" alt="Karritoan duzuna ikusi">
+			<a href="#" data-featherlight="#saskia"><img src="public/img/shopping.png" alt="Karritoan duzuna ikusi"></a>
 		</ul>
 	</nav>
 	</header>

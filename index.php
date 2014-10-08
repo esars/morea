@@ -14,5 +14,6 @@ if(Sartu::barruan()) {
 } else {
 	include("bistak/login_registro.php");
 }
+include("bistak/saskia.php");
 include("bistak/nagusia.php");
 include("bistak/footer.php");
