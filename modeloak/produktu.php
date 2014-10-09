@@ -71,8 +71,8 @@ class Produktu {
 					
 					// MIMIMOAK KONPROBATU
 						
-					if(strlen($_POST['pizena']) < 5 || $_POST['pizena'])) {
-						$this->erroreak[] = "Izena motzegia da edo hutsik utzi duzu".
+					if(strlen($_POST['pizena']) < 5 || empty($_POST['pizena'])) {
+						$this->erroreak[] = "Izena motzegia da edo hutsik utzi duzu";
 					} else if(!preg_match('/^[a-z\d]{2,64}$/i', $_POST['pizena'])) {
 						$this->erroreak[] = "Izenean bakarrik hizkiak eta zenbakiak";
 					} else if(strlen($_POST['deskripzioa']) < 20 || empty($_POST['deskripzioa'])) {
