@@ -22,8 +22,9 @@ class Session {
 					return false;
 			}
 		}
-		public static function destroy() {
-			session_destroy();
+		public static function saioa_itxi() {
+			unset($_SESSION['izena']);
+			unset($_SESSION['email']);
 		}
 }
 class Mugitu {
@@ -31,6 +32,8 @@ class Mugitu {
 		//	REDIRECT BAT EGIN	//
 		
 		public static function nora($u) {
-			header("Location: ".$u);
+			//header("Location: ".$u);
+			echo "<script>window.location('".$u."')</script>";
 		}
 }
+?>
