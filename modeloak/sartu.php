@@ -59,7 +59,8 @@ class Sartu {
 		}
 	}
 	private function atera() {
-		Session::destroy();
+		Session::saioa_itxi();
+		Mugitu::nora('index.php');
 	}
 	public static function barruan() {
 		if(Session::existitzenBada('izena')) {
@@ -76,3 +77,4 @@ class Sartu {
 		}
 	}
 }
+?>
