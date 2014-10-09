@@ -12,7 +12,11 @@ class Session {
 		}
 		// SESSION ALDAGAI BAT LORTU
 		public static function get($a) {
-			return $_SESSION[$a];
+			if(isset($_SESSION[$a])) {
+				return $_SESSION[$a];
+			} else {
+				echo '$_SESSION '.$a.' aldagaia ez da existitzen.';
+			}
 		}
 		// EXISTITZEN BADA
 		public static function existitzenBada($a) {
@@ -28,9 +32,9 @@ class Session {
 		}
 }
 class Mugitu {
-		
+
 		//	REDIRECT BAT EGIN	//
-		
+
 		public static function nora($u) {
 			//header("Location: ".$u);
 			echo "<script>window.location('".$u."')</script>";
