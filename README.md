@@ -26,3 +26,10 @@ Beraz, 5 argazki gehienez jarri ahal dira produktu bakoitzeko. Hona hemen adibid
 * 23453-2.png
 * 443-1.png
 * etab.
+
+Administratzailea
+-----------------
+
+$_GET['ekintza'] erabiltzen da produktuak maneiatzeko. Hiru aukera ditu: gehitu, aldatu eta kendu. Azken bi hauek $_GET['id']
+ere beharko dute. Kendu konfirmazio orrialde hutsa izango da. Aurrerago interfaze grafiko bat programatuko dugu hauei guztiei
+estekak erabiliz.

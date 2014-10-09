@@ -50,14 +50,28 @@ class Produktu {
 
 			switch($ekintza) {
 				case "gehitu":
-					include("bistak/produktua_gehitu.php");
-					$this->produktuaGehitu();
+					if(Sartu::adminBarruan()) {
+						include("bistak/produktua_gehitu.php");
+						$this->produktuaGehitu();
+					} else {
+						$this->erroreak[] = "Ez zara kudeatzailea.";
+					}
 					break;
 				case "kendu":
-					$this->produktuaKendu();
+					if(Sartu::adminBarruan()) {
+						include("bistak/produktua_kendu.php");
+						$this->produktuaKendu();
+					} else {
+						$this->erroreak[] = "Ez zara kudeatzailea.";
+					}
 					break;
 				case "aldatu":
-					$this->produktuaAldatu();
+					if(Sartu::adminBarruan()) {
+						include("bistak/produktua_aldatu.php");
+						$this->produktuaAldatu();
+					} else {
+						$this->erroreak[] = "Ez zara kudeatzailea.";
+					}
 					break;
 				case null:
 					$this->produktuakErakutsi();
@@ -66,50 +80,44 @@ class Produktu {
 			}
 		}
 		private function produktuaGehitu() {
-			if(Sartu::adminBarruan()) {
-				if(isset($_POST["pgehitu"])) {
 
-					// MIMIMOAK KONPROBATU
+			if(isset($_POST["pgehitu"])) {
 
-					if(strlen($_POST['pizena']) < 5 || empty($_POST['pizena'])) {
-						$this->erroreak[] = "Izena motzegia da edo hutsik utzi duzu";
-					} else if(!preg_match('/^[a-z\d]{2,64}$/i', $_POST['pizena'])) {
-						$this->erroreak[] = "Izenean bakarrik hizkiak eta zenbakiak";
-					} else if(strlen($_POST['deskripzioa']) < 20 || empty($_POST['deskripzioa'])) {
-						$this->erroreak[] = "Deskripzioa motzegia da edo hutsik utzi duzu.";
-					} else if(gettype($_POST['prezioa']) != "double" || empty($_POST['prezioa'])) {
-						$this->erroreak[] = "Prezioa ez da zenbaki bat edo hutsa utzi duzu.";
-					} else if(gettype($_POST['stock']) != "double" || empty($_POST['prezioa'])) {
-						$this->erroreak[] = "Stocka ez da zenbaki bat edo hutsik utzi duzu.";
+				// MIMIMOAK KONPROBATU
+
+				if(strlen($_POST['pizena']) < 5 || empty($_POST['pizena'])) {
+					$this->erroreak[] = "Izena motzegia da edo hutsik utzi duzu";
+				} else if(!preg_match('/^[a-z\d]{2,64}$/i', $_POST['pizena'])) {
+					$this->erroreak[] = "Izenean bakarrik hizkiak eta zenbakiak";
+				} else if(strlen($_POST['deskripzioa']) < 20 || empty($_POST['deskripzioa'])) {
+					$this->erroreak[] = "Deskripzioa motzegia da edo hutsik utzi duzu.";
+				} else if(gettype($_POST['prezioa']) != "double" || gettype($_POST['prezioa']) != "integer" || empty($_POST['prezioa'])) {
+					$this->erroreak[] = "Prezioa ez da zenbaki bat edo hutsa utzi duzu.";
+				} else if(gettype($_POST['stock']) != "double" || empty($_POST['prezioa'])) {
+					$this->erroreak[] = "Stocka ez da zenbaki bat edo hutsik utzi duzu.";
+				} else {
+					$izena = $this->db->real_escape_string(strip_tags($_POST['pizena'], ENT_QUOTES));
+					$deskr = $this->db->real_escape_string(strip_tags($_POST['deskripzioa'], ENT_QUOTES));
+					$prezioa = $_POST['prezioa'];
+					$stock = $_POST['stock'];
+
+					$sql = "INSERT INTO produktu (izena,deskripzioa,prezioa,stock)
+									VALUES ('".$izena."', '".$deskripzioa."', '".$prezioa."', '".$stock."');";
+					$produktuaSartu = $this->db->query($sql);
+
+					if($produktuaSartu) {
+						$this->mezuak[] = "Produktua arrakastaz gehitua";
+
+						Mugitu::nora("produktua.php");
 					} else {
-						$izena = $this->db->real_escape_string(strip_tags($_POST['pizena'], ENT_QUOTES));
-						$deskr = $this->db->real_escape_string(strip_tags($_POST['deskripzioa'], ENT_QUOTES));
-						$prezioa = $_POST['prezioa'];
-						$stock = $_POST['stock'];
-
-						$sql = "INSERT INTO produktu (izena,deskripzioa,prezioa,stock)
-										VALUES ('".$izena."', '".$deskripzioa."', '".$prezioa."', '".$stock."');";
-						$produktuaSartu = $this->db->query($sql);
-
-						if($produktuaSartu) {
-							$this->mezuak[] = "Produktua arrakastaz gehitua";
-
-							Mugitu::nora("produktua.php");
-						} else {
-							$this->erroreak[] = "Errorea produktua gehitzean";
-						}
+						$this->erroreak[] = "Errorea produktua gehitzean";
 					}
 				}
-			} else {
-				$this->erroreak[] = "Ez zara kudeatzailea.";
 			}
+
 		}
 		private function produktuaKendu() {
-			if(Sartu::adminBarruan()) {
 
-			} else {
-				$this->erroreak[] = "Ez zara kudeatzailea.";
-			}
 		}
 		private function produktuaAldatu() {
 			if(Sartu::adminBarruan()) {

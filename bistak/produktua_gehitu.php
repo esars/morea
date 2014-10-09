@@ -1,5 +1,5 @@
 <div class="gehituform">
-  <form class="pure-form pure-form-aligned">
+  <form class="pure-form pure-form-aligned" method="post" action="">
       <fieldset>
           <div class="pure-control-group">
               <label for="pizena">Produktuaren izena</label>
@@ -8,7 +8,7 @@
 
           <div class="pure-control-group">
               <label for="deskripzioa">Deskripzioa</label>
-              <textarea id="deskripzioa" required placeholder="Deskripzio bat gehitu zure produktuari..."></textarea>
+              <textarea id="deskripzioa" name="deskripzioa" required placeholder="Deskripzio bat gehitu zure produktuari..."></textarea>
           </div>
 
           <div class="pure-control-group">
@@ -21,6 +21,6 @@
               <input id="foo" type="number" name="stock" placeholder="Sartu eskura dauden unitateak...">
           </div>
       </fieldset>
-      <input type="submit" class='pure-button pure-input-1-6 pure-button-primary formbotoi' id='registro1' value='Erregistratu' name="pgehitu">
+      <input type="submit" class='pure-button pure-input-1-6 pure-button-primary formbotoi' id='registro1' value='Produktua datubasera gehitu' name="pgehitu">
   </form>
 </div>
