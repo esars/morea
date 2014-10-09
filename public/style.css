@@ -23,14 +23,29 @@ nav>ul>*{
 nav>ul>a>li {
 	transition: all 200ms linear;
 }
-nav>ul>a>img {
+nav>ul>a>li>img {
 	height:25px;
+	transition: all 200ms linear;
 }
 nav>ul>a>li:hover {
 	text-shadow: 0px 0px 1px #4788A0,
 							 0px 0px 2px #3D6473,
 							 0px 0px 3px #2A363B;
 	color: #99B898;
+}
+nav>ul>a>li>img:hover {
+	-webkit-filter:drop-shadow(0px 0px 1px #4788A0);
+	-webkit-filter:drop-shadow(0px 0px 2px #3D6473);
+	-webkit-filter:drop-shadow(0px 0px 3px #2A363B);
+	-ms-filter:drop-shadow(0px 0px 1px #4788A0);
+	-ms-filter:drop-shadow(0px 0px 2px #3D6473);
+	-ms-filter:drop-shadow(0px 0px 3px #2A363B);
+	-o-filter:drop-shadow(0px 0px 1px #4788A0);
+	-o-filter:drop-shadow(0px 0px 2px #3D6473);
+	-o-filter:drop-shadow(0px 0px 3px #2A363B);
+	-moz-filter:drop-shadow(0px 0px 1px #4788A0);
+	-moz-filter:drop-shadow(0px 0px 2px #3D6473);
+	-moz-filter:drop-shadow(0px 0px 3px #2A363B);
 }
 body {
 	font-family: 'Cabin', sans-serif;

@@ -23,3 +23,4 @@ if(Sartu::barruan()) {
 include("bistak/saskia.php");
 include("bistak/nagusia.php");
 include("bistak/footer.php");
+?>

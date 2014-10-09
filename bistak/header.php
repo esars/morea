@@ -18,8 +18,8 @@
 			<a href="index.php"><li>Produktuak</li></a>
 			<a href="gu.php"><li>Gu</li></a>
 			<a href="kokapena.php"><li>Kokapena</li></a>
-			<a href="#" data-featherlight="#mylightbox"><img src="public/img/erab.png" alt="Sartu edo erregistratu"></a>
-			<a href="#" data-featherlight="#saskia"><img src="public/img/shopping.png" alt="Karritoan duzuna ikusi"></a>
+			<a href="#" data-featherlight="#mylightbox"><li><img id='erab' src="public/img/erab.png" alt="Sartu edo erregistratu"></li></a>
+			<a href="#" data-featherlight="#saskia"><li><img id='saski' src="public/img/shopping.png" alt="Karritoan duzuna ikusi"></li></a>
 		</ul>
 	</nav>
 	</header>

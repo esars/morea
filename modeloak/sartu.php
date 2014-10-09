@@ -59,7 +59,7 @@ class Sartu {
 		}
 	}
 	private function atera() {
-		session_destroy();
+		Session::destroy();
 	}
 	public static function barruan() {
 		if(Session::existitzenBada('izena')) {
