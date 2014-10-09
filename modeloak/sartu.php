@@ -2,10 +2,10 @@
 
 class Sartu {
 	private $db = null;
-	
+
 	public $erroreak = array();
 	public $mezuak = array();
-	
+
 	public function __construct() {
 		//session_start();
 		if (isset($_POST["logout"])) {
@@ -22,11 +22,11 @@ class Sartu {
 			$this->erroreak[] = "Ez duzu pasahitza jarri.";
 		} elseif(!empty($_POST['email']) && !empty($_POST['pasahitza'])) {
 			global $config;
-			$this->db = mysqli_connect($config["host"], 
+			$this->db = mysqli_connect($config["host"],
 																		 $config["user"],
 																		 $config["pass"],
 																		 $config["izen"]);
-			
+
 			if(!$this->db->connect_errno) {
 				$izena = $this->db->real_escape_string($_POST['email']);
 				$sql = "SELECT izena, email, pasahitza_hash, pasahitza_salt
@@ -34,16 +34,16 @@ class Sartu {
 						WHERE izena = '" . $izena . "' OR email = '" . $izena . "';";
 				$existitzenbada = $this->db->query($sql);
 				if($existitzenbada->num_rows != 0) {
-					
+
 					//Konsulta batetikan emaitza bat bueltatzen bada hau objektu dinamikoan ahal degu bihurtu funtzio honekin
-					
+
 					$emaitza = $existitzenbada->fetch_object();
-					
+
 					/*
 					 * Inputeko pasahitza hartu, datubasetik erabiltzailearen
 					 * salta lortu, bata besteari gehitu, enkriptatu konbinazioa
 					 * eta datubasean dagoenarekin alderatu
-					*/ 
+					*/
 					if(password_verify($_POST['pasahitza'].$emaitza->pasahitza_salt, $emaitza->pasahitza_hash)) {
 						Session::set('email', $emaitza->email);
 						Session::set('izena', $emaitza->izena);
@@ -54,8 +54,8 @@ class Sartu {
 					$this->erroreak[] = "Izen edo email hori ez da existitzen.";
 				}
 			}
-			
-			
+
+
 		}
 	}
 	private function atera() {
@@ -71,7 +71,7 @@ class Sartu {
 		}
 	}
 	public static function adminBarruan() {
-		if(Session::get('izena') == "admin") {
+		if(Session::existitzenBada('email') && Session::get('email') == "admin@gmail.com") {
 				return true;
 		} else {
 				return false;

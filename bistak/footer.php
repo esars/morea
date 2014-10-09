@@ -1,3 +1,4 @@
+</section>
 <footer>
 	<h6>enekosar@ikasle.aeg.es/xaxtian.amenabar@ikasle.aeg.es</h6>
 	<h6>All rights reserved</h6>
@@ -16,7 +17,7 @@
 			}
 		}
 		if (isset($reg)) {
-			
+
 			if (count($reg->erroreak) > 0) {
 				foreach ($reg->erroreak as $e) {
 					echo $e;
@@ -24,6 +25,18 @@
 			}
 			if ($reg->mezuak) {
 				foreach ($reg->mezuak as $m) {
+					echo $m;
+				}
+			}
+		}
+		if (isset($prod)) {
+			if ($prod->erroreak) {
+				foreach ($prod->erroreak as $e) {
+					echo $e;
+				}
+			}
+			if ($prod->mezuak) {
+				foreach ($prod->mezuak as $m) {
 					echo $m;
 				}
 			}

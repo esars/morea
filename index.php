@@ -9,7 +9,6 @@ include("bistak/header.php");
 
 $login = new Sartu();
 $reg = new IzenaEman();
-$prod = new Produktu();
 
 if(Sartu::barruan()) {
 	include("bistak/barruan.php");
@@ -19,5 +18,8 @@ if(Sartu::barruan()) {
 }
 include("bistak/saskia.php");
 include("bistak/nagusia.php");
+
+$prod = new Produktu();
+
 include("bistak/footer.php");
 ?>

@@ -87,6 +87,11 @@ input[type='submit']{
 							0px 3px 0px #2a363b;
 	margin-top: -3px;
 }
+section {
+	clear: both;
+}
+.gehituform {
+	width: 400px;
+	margin: 0 auto;
+}
 /*ezabatu botoiaren estiloa*/
-
-
