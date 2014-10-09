@@ -20,7 +20,7 @@ class Produktu {
 				/*
 				 * Produktu->handle() Kontrolatzailea abiarazi.
 				 * Web orrialdearen konplexutasuna haundituko balitz
-				 * bat baino gehiago inplementatu daiteke.
+				 * kontrolatzaile bat baino gehiago inplementatu daiteke.
 				*/
 				
 				if(isset($_GET['ekintza'])) {
@@ -50,6 +50,7 @@ class Produktu {
 			
 			switch($ekintza) {
 				case "gehitu":
+					include("bistak/produktua_gehitu.php");
 					$this->produktuaGehitu();
 					break;
 				case "kendu":
@@ -64,10 +65,44 @@ class Produktu {
 					
 			}
 		}
-		
 		private function produktuaGehitu() {
 			if(Sartu::adminBarruan()) {
-				
+				if(isset($_POST["pgehitu"])) {
+					
+					// MIMIMOAK KONPROBATU
+						
+					if(strlen($_POST['pizena']) < 5 || $_POST['pizena'])) {
+						$this->erroreak[] = "Izena motzegia da edo hutsik utzi duzu".
+					} else if(!preg_match('/^[a-z\d]{2,64}$/i', $_POST['pizena'])) {
+						$this->erroreak[] = "Izenean bakarrik hizkiak eta zenbakiak";
+					} else if(strlen($_POST['deskripzioa']) < 20 || empty($_POST['deskripzioa'])) {
+						$this->erroreak[] = "Deskripzioa motzegia da edo hutsik utzi duzu.";
+					} else if(gettype($_POST['prezioa']) != "double" || empty($_POST['prezioa'])) {
+						$this->erroreak[] = "Prezioa ez da zenbaki bat edo hutsa utzi duzu.";
+					} else if(gettype($_POST['stock']) != "double" || empty($_POST['prezioa'])) {
+						$this->erroreak[] = "Stocka ez da zenbaki bat edo hutsik utzi duzu.";
+					} else {
+						$izena = $this->db->real_escape_string(strip_tags($_POST['pizena'], ENT_QUOTES));
+						$deskr = $this->db->real_escape_string(strip_tags($_POST['deskripzioa'], ENT_QUOTES));
+						$prezioa = $_POST['prezioa'];
+						$stock = $_POST['stock'];
+
+						$sql = "INSERT INTO produktu (izena,deskripzioa,prezioa,stock)
+										VALUES ('".$izena."', '".$deskripzioa."', '".$prezioa."', '".$stock."');";
+						$produktuaSartu = $this->db->query($sql);
+						
+						if($produktuaSartu) {
+							$this->mezuak[] = "Produktua arrakastaz gehitua";
+							
+							Mugitu::nora("produktua.php");
+						} else {
+							$this->erroreak[] = "Errorea produktua gehitzean";
+						}
+					}
+					
+					
+					
+				}
 			} else {
 				$this->erroreak[] = "Ez zara kudeatzailea.";
 			}

@@ -9,7 +9,7 @@ class IzenaEman {
 		public function __construct() {
 				if(isset($_POST['izena'])) {
 						$this->erregistratu();
-				} 
+				}
 		}
 
 		private function erregistratu() {
@@ -58,6 +58,8 @@ class IzenaEman {
 								$telf = $_POST['telefono'];
 
 								//	password_hash PHP 5.3tik aurrera dabil	//
+
+								//	Ausazko salt bat sortzen dugu pasahitzari segurtasuna gehitzeko	//
 
 								$salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647));
 
