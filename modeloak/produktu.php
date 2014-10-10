@@ -60,7 +60,7 @@ class Produktu {
 				case "kendu":
 					if(Sartu::adminBarruan()) {
 						include("bistak/produktua_kendu.php");
-						$this->produktuaKendu();
+						$this->produktuaKendu($_GET['id']);
 					} else {
 						$this->erroreak[] = "Ez zara kudeatzailea.";
 					}
@@ -68,7 +68,7 @@ class Produktu {
 				case "aldatu":
 					if(Sartu::adminBarruan()) {
 						include("bistak/produktua_aldatu.php");
-						$this->produktuaAldatu();
+						$this->produktuaAldatu($_GET['id']);
 					} else {
 						$this->erroreak[] = "Ez zara kudeatzailea.";
 					}
@@ -116,10 +116,14 @@ class Produktu {
 			}
 
 		}
-		private function produktuaKendu() {
+		private function produktuaKendu($id) {
+			if(Sartu::adminBarruan()) {
 
+			} else {
+				$this->erroreak[] = "Ez zara kudeatzailea.";
+			}
 		}
-		private function produktuaAldatu() {
+		private function produktuaAldatu($id) {
 			if(Sartu::adminBarruan()) {
 
 			} else {
