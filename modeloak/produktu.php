@@ -119,16 +119,25 @@ class Produktu {
 		private function produktuaKendu($id) {
 			if(Sartu::adminBarruan()) {
 
+				// KONFIRMAZIOA PASA ONDOREN
+
+				if(isset($_POST['pborratu'])) {
+					$sql = "DELETE * FROM produktu WHERE id='".$id."';";
+
+					$borratu = $this->db->query($sql);
+
+					if($borratu) {
+						$this->mezuak[] = "Produktua arrakastaz ezabatu duzu";
+					} else {
+						$this->erroreak[] = "Errorea produktua ezabatzean";
+					}
+				}
 			} else {
 				$this->erroreak[] = "Ez zara kudeatzailea.";
 			}
 		}
 		private function produktuaAldatu($id) {
-			if(Sartu::adminBarruan()) {
-
-			} else {
-				$this->erroreak[] = "Ez zara kudeatzailea.";
-			}
+			
 		}
 		private function produktuakErakutsi($param = null) {
 			$sql = "SELECT * FROM produktu;";
@@ -154,6 +163,20 @@ class Produktu {
 
 		}
 		public static function produktuBatErakutsi($id) {
+
+			/*
+			 * Produktu guztiak erakusteko funtzioaren pixkat desberdina da
+			 * IDaren arabera abiaraziko dugu, beti emaitza bakarra lortuko
+			 * dugu eta beraz kontsultaren emaitza objektu bihurtu dezakegu
+			 * erosoago maneiatzeko haren propietateak
+			*/
+
+			$sql = "SELECT * FROM produktu WHERE id='".$id."';";
+			$query = $this->db->query($sql);
+
+			$produktua = $query->fetch_object();
+
+			// EGITEKE...
 
 		}
 }
