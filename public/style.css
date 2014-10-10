@@ -94,4 +94,7 @@ section {
 	width: 400px;
 	margin: 0 auto;
 }
-/*ezabatu botoiaren estiloa*/
+/*Produktuak gehitu text area input bezela*/
+form textarea{
+	width:230px;
+}
