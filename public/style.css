@@ -78,7 +78,7 @@ body {
 }
 input[type='submit']{
 	background-color: #E84A5F;
-	transition: 200ms all ease-in-out;
+	transition: 200ms all linear;
 }
 .formbotoi:hover {
 	background-color: #99B898;
