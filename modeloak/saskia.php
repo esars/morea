@@ -70,8 +70,11 @@ class Saskia{
 		}
 		private function saskitikKendu() {
 				if(isset($_POST["ezabatzekoak"])) {
-			//Ezabatzekoak postak ezabatzeko produktuen id-ak zerrenda moduan ekarriko ditu ',' banatuak
+			//Ezabatzekoak postak ezabatzeko produktuen id zerrenda ekartzen du ',' banatuak
+			//beraz, explode funtzioarekin array bihurtzen dugu "$ezabatzeko_array" izenarekin 
+			//ondoren for batekin banan banan ezabatzeko
 					$ezabatzeko_array=explode(',',$_POST["ezabatzekoak"]);
+			//$max bariableak  arrayaren luzeera esaten digu "sizeOf()" funtzioaren bitartez
 					$max=sizeOf($ezabatzeko_array);
 					for($i=0;$i<$max;$i++){
 						$kendu=$ezabatzeko_array[$i];

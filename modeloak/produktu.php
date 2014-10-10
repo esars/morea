@@ -84,16 +84,16 @@ class Produktu {
 			if(isset($_POST["pgehitu"])) {
 
 				// MIMIMOAK KONPROBATU
-
+				//$izena = str_replace(' ', '', $_POST['pizena']);
 				if(strlen($_POST['pizena']) < 5 || empty($_POST['pizena'])) {
 					$this->erroreak[] = "Izena motzegia da edo hutsik utzi duzu";
-				} else if(!preg_match('/^[a-z\d]{2,64}$/i', $_POST['pizena'])) {
+				} else if(!preg_match('/^[a-z\d]{2,64}$/i', str_replace(' ', '', $_POST['pizena']))) {
 					$this->erroreak[] = "Izenean bakarrik hizkiak eta zenbakiak";
 				} else if(strlen($_POST['deskripzioa']) < 20 || empty($_POST['deskripzioa'])) {
 					$this->erroreak[] = "Deskripzioa motzegia da edo hutsik utzi duzu.";
-				} else if(gettype($_POST['prezioa']) != "double" || gettype($_POST['prezioa']) != "integer" || empty($_POST['prezioa'])) {
+				} else if(!ctype_digit($_POST['prezioa']) || empty($_POST['prezioa'])) {
 					$this->erroreak[] = "Prezioa ez da zenbaki bat edo hutsa utzi duzu.";
-				} else if(gettype($_POST['stock']) != "double" || empty($_POST['prezioa'])) {
+				} else if(!ctype_digit($_POST['stock']) || empty($_POST['prezioa'])) {
 					$this->erroreak[] = "Stocka ez da zenbaki bat edo hutsik utzi duzu.";
 				} else {
 					$izena = $this->db->real_escape_string(strip_tags($_POST['pizena'], ENT_QUOTES));
@@ -102,7 +102,7 @@ class Produktu {
 					$stock = $_POST['stock'];
 
 					$sql = "INSERT INTO produktu (izena,deskripzioa,prezioa,stock)
-									VALUES ('".$izena."', '".$deskripzioa."', '".$prezioa."', '".$stock."');";
+									VALUES ('".$izena."', '".$deskr."', '".$prezioa."', '".$stock."');";
 					$produktuaSartu = $this->db->query($sql);
 
 					if($produktuaSartu) {
