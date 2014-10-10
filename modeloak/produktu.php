@@ -42,11 +42,11 @@ class Produktu {
 
 			global $config;
 
-			$this->db = mysqli_connect($config["host"],
-															 $config["user"],
-															 $config["pass"],
-															 $config["izen"])
-									or die("Error " . mysqli_error($this->db));
+			$this->db = mysqli_connect(	$config["host"],
+									   	$config["user"],
+									   	$config["pass"],
+										$config["izen"])
+										or die("Error " . mysqli_error($this->db));
 
 			switch($ekintza) {
 				case "gehitu":
@@ -60,7 +60,7 @@ class Produktu {
 				case "kendu":
 					if(Sartu::adminBarruan()) {
 						include("bistak/produktua_kendu.php");
-						$this->produktuaKendu();
+						$this->produktuaKendu($_GET['id']);
 					} else {
 						$this->erroreak[] = "Ez zara kudeatzailea.";
 					}
@@ -68,7 +68,7 @@ class Produktu {
 				case "aldatu":
 					if(Sartu::adminBarruan()) {
 						include("bistak/produktua_aldatu.php");
-						$this->produktuaAldatu();
+						$this->produktuaAldatu($_GET['id']);
 					} else {
 						$this->erroreak[] = "Ez zara kudeatzailea.";
 					}
@@ -116,10 +116,14 @@ class Produktu {
 			}
 
 		}
-		private function produktuaKendu() {
+		private function produktuaKendu($id) {
+			if(Sartu::adminBarruan()) {
 
+			} else {
+				$this->erroreak[] = "Ez zara kudeatzailea.";
+			}
 		}
-		private function produktuaAldatu() {
+		private function produktuaAldatu($id) {
 			if(Sartu::adminBarruan()) {
 
 			} else {
@@ -127,6 +131,29 @@ class Produktu {
 			}
 		}
 		private function produktuakErakutsi($param = null) {
+			$sql = "SELECT * FROM produktu;";
+			$produktuak = $this->db->query($sql);
+
+			/*
+			 * Hasierako orrialdea beteko duen funtzioa
+			 * Kasu hontan soilik produktu bakoitzaren
+			 * argazki bakar bat erakutsiko dugu
+			*/
+
+			while($lerroa = $produktuak->fetch_assoc()) {
+
+				// Kontsulta array asoziatibo baten bihurtzen dugu
+				// goiko metodoaren bidez
+
+				echo "<div class='produktubat'>";
+				echo $lerroa['izena'].'<br>';
+				echo "<img src='public/argazkiak/".$lerroa['id']."-1.png' alt='".$lerroa['izena']."'";
+				echo "</div>";
+
+			}
+
+		}
+		public static function produktuBatErakutsi($id) {
 
 		}
 }
