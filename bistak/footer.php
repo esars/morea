@@ -7,12 +7,12 @@
 		if (isset($login)) {
 			if ($login->erroreak) {
 				foreach ($login->erroreak as $e) {
-					echo $e;
+					echo "<div class='notif error'>".$e."</div>";
 				}
 			}
 			if ($login->mezuak) {
 				foreach ($login->mezuak as $m) {
-					echo $m;
+					echo "<div class='notif mezu'>".$m."</div>";
 				}
 			}
 		}
@@ -20,24 +20,24 @@
 
 			if (count($reg->erroreak) > 0) {
 				foreach ($reg->erroreak as $e) {
-					echo $e;
+					echo "<div class='notif error'>".$e."</div>";
 				}
 			}
 			if ($reg->mezuak) {
 				foreach ($reg->mezuak as $m) {
-					echo $m;
+					echo "<div class='notif mezu'>".$m."</div>";
 				}
 			}
 		}
 		if (isset($prod)) {
 			if ($prod->erroreak) {
 				foreach ($prod->erroreak as $e) {
-					echo $e;
+					echo "<div class='notif error'>".$e."</div>";
 				}
 			}
 			if ($prod->mezuak) {
 				foreach ($prod->mezuak as $m) {
-					echo $m;
+					echo "<div class='notif mezu'>".$m."</div>";
 				}
 			}
 		}

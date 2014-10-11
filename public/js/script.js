@@ -16,3 +16,9 @@ function aldatu_saski () {
 function ber_aldatu_saski () {
 	$('#saski').attr('src','public/img/shopping.png');
 }
+$(document).ready(function() {
+	$(".notif").fadeIn("slow");
+	setTimeout(function() {
+		$(".notif").fadeOut("slow");
+	},4500);
+});

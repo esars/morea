@@ -16,7 +16,6 @@ $prod = new Produktu();
 
 if(Sartu::barruan()) {
 	include("bistak/barruan.php");
-	echo 'Egunon '.Session::get('izena');
 } else {
 	include("bistak/login_registro.php");
 }
