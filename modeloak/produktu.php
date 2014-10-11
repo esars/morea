@@ -97,7 +97,10 @@ class Produktu {
 					$produktuaSartu = $this->db->query($sql);
 
 					if($produktuaSartu) {
-						$this->mezuak[] = "Produktua arrakastaz gehitua";
+
+						$azkenProduktua = $this->db->query("SELECT * FROM produktu WHERE izena='".$izena."';")->fetch_object();
+
+						$this->mezuak[] = "Produktua gehitua, gehituizkiozu argazkiak ".$azkenProduktua->id."-*.png formatuan";
 
 						Mugitu::nora("produktua.php");
 					} else {
@@ -164,7 +167,7 @@ class Produktu {
 			if($query) {
 				$produktua = $query->fetch_object();
 
-				echo "<h1>".$produktua->izena."</h1>";				
+				echo "<h1>".$produktua->izena."</h1>";
 			} else {
 				$this->erroreak[] = "Landare hau ez da existitzen";
 				Mugitu::nora('index.php');

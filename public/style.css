@@ -100,8 +100,8 @@ form textarea{
 }
 .produktubat {
 	display: inline-block;
-	width: 30%;
-	height: 30%;
+	width: 200px;
+	height: 250px;
 	margin: auto;
 }
 .produktubat > img {
@@ -120,7 +120,7 @@ form textarea{
 	display: none;
 	position: absolute;
 	z-index: 999;
-	text-shadow: 0px 2px 0px rgba(0,0,0,.25);
+	text-shadow: 0px 1px 0px rgba(0,0,0,.25);
 	text-align: center;
 	line-height: 60px;
 }
