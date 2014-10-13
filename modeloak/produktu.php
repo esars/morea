@@ -83,19 +83,10 @@ class Produktu {
 
 			if(isset($_POST["pgehitu"])) {
 
-				// MIMIMOAK KONPROBATU
-				//$izena = str_replace(' ', '', $_POST['pizena']);
-				if(strlen($_POST['pizena']) < 5 || empty($_POST['pizena'])) {
-					$this->erroreak[] = "Izena motzegia da edo hutsik utzi duzu";
-				} else if(!preg_match('/^[a-z\d]{2,64}$/i', str_replace(' ', '', $_POST['pizena']))) {
-					$this->erroreak[] = "Izenean bakarrik hizkiak eta zenbakiak";
-				} else if(strlen($_POST['deskripzioa']) < 20 || empty($_POST['deskripzioa'])) {
-					$this->erroreak[] = "Deskripzioa motzegia da edo hutsik utzi duzu.";
-				} else if(!ctype_digit($_POST['prezioa']) || empty($_POST['prezioa'])) {
-					$this->erroreak[] = "Prezioa ez da zenbaki bat edo hutsa utzi duzu.";
-				} else if(!ctype_digit($_POST['stock']) || empty($_POST['prezioa'])) {
-					$this->erroreak[] = "Stocka ez da zenbaki bat edo hutsik utzi duzu.";
-				} else {
+				if($this->produktuaBalidatu()) {
+
+					//	HTMLa eta JavaScripta sartu bada, testu normalean bihurtu	//
+
 					$izena = $this->db->real_escape_string(strip_tags($_POST['pizena'], ENT_QUOTES));
 					$deskr = $this->db->real_escape_string(strip_tags($_POST['deskripzioa'], ENT_QUOTES));
 					$prezioa = $_POST['prezioa'];
@@ -106,7 +97,10 @@ class Produktu {
 					$produktuaSartu = $this->db->query($sql);
 
 					if($produktuaSartu) {
-						$this->mezuak[] = "Produktua arrakastaz gehitua";
+
+						$azkenProduktua = $this->db->query("SELECT * FROM produktu WHERE izena='".$izena."';")->fetch_object();
+
+						$this->mezuak[] = "Produktua gehitua, gehituizkiozu argazkiak ".$azkenProduktua->id."-*.png formatuan";
 
 						Mugitu::nora("produktua.php");
 					} else {
@@ -117,27 +111,23 @@ class Produktu {
 
 		}
 		private function produktuaKendu($id) {
-			if(Sartu::adminBarruan()) {
 
-				// KONFIRMAZIOA PASA ONDOREN
+			// KONFIRMAZIOA PASA ONDOREN
 
-				if(isset($_POST['pborratu'])) {
-					$sql = "DELETE * FROM produktu WHERE id='".$id."';";
+			if(isset($_POST['pborratu'])) {
+				$sql = "DELETE * FROM produktu WHERE id='".$id."';";
 
-					$borratu = $this->db->query($sql);
+				$borratu = $this->db->query($sql);
 
-					if($borratu) {
-						$this->mezuak[] = "Produktua arrakastaz ezabatu duzu";
-					} else {
-						$this->erroreak[] = "Errorea produktua ezabatzean";
-					}
+				if($borratu) {
+					$this->mezuak[] = "Produktua arrakastaz ezabatu duzu";
+				} else {
+					$this->erroreak[] = "Errorea produktua ezabatzean";
 				}
-			} else {
-				$this->erroreak[] = "Ez zara kudeatzailea.";
 			}
 		}
 		private function produktuaAldatu($id) {
-			
+
 		}
 		private function produktuakErakutsi($param = null) {
 			$sql = "SELECT * FROM produktu;";
@@ -159,7 +149,6 @@ class Produktu {
 				echo "<img src='public/argazkiak/".$lerroa['id']."-1.png' alt='".$lerroa['izena']."'>";
 				echo "<form action='' method='post'><input type='hidden' name='produktua' value='".$lerroa['id']."'>";
 				echo "<input id='".$lerroa['id']."' type='submit' value='gehitu' name='ekintzak'></form>";
-				echo "</div>";
 
 			}
 
@@ -176,9 +165,33 @@ class Produktu {
 			$sql = "SELECT * FROM produktu WHERE id='".$id."';";
 			$query = $this->db->query($sql);
 
-			$produktua = $query->fetch_object();
+			if($query) {
+				$produktua = $query->fetch_object();
 
-			// EGITEKE...
-
+				echo "<h1>".$produktua->izena."</h1>";
+			} else {
+				$this->erroreak[] = "Landare hau ez da existitzen";
+				Mugitu::nora('index.php');
+			}
+		}
+		private function produktuaBalidatu() {
+			if(strlen($_POST['pizena']) < 5 || empty($_POST['pizena'])) {
+				$this->erroreak[] = "Izena motzegia da edo hutsik utzi duzu";
+				return false;
+			} else if(!preg_match('/^[a-z\d]{2,64}$/i', str_replace(' ', '', $_POST['pizena']))) {
+				$this->erroreak[] = "Izenean bakarrik hizkiak eta zenbakiak";
+				return false;
+			} else if(strlen($_POST['deskripzioa']) < 20 || empty($_POST['deskripzioa'])) {
+				$this->erroreak[] = "Deskripzioa motzegia da edo hutsik utzi duzu.";
+				return false;
+			} else if(!ctype_digit($_POST['prezioa']) || empty($_POST['prezioa'])) {
+				$this->erroreak[] = "Prezioa ez da zenbaki bat edo hutsa utzi duzu.";
+				return false;
+			} else if(!ctype_digit($_POST['stock']) || empty($_POST['prezioa'])) {
+				$this->erroreak[] = "Stocka ez da zenbaki bat edo hutsik utzi duzu.";
+				return false;
+			} else {
+				return true;
+			}
 		}
 }

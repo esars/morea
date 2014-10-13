@@ -30,6 +30,10 @@ class IzenaEman {
 						$this->erroreak[] = "Emaila ezin da hutsik egon";
 				} else if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 						$this->erroreak[] = "Emailaren sintaxia ez da egokia";
+				} else if(!ctype_digit($_POST['telefono']) || empty($_POST['telefono'])) {
+						$this->erroreak[] = "Telefonoa hutsik zegoen edo ez zen numerikoa";
+				} else if(strlen($_POST['helbidea']) < 5 || strlen($_POST['helbidea']) > 50) {
+						$this->erroreak[] = "Helbidea luzeegia edo motzegia zen.";
 				}
 
 				//	Gauza gehio gehitu behar dira, helbidea, telefonoa... dena luzera minimo baten
