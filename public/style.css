@@ -94,7 +94,32 @@ section {
 	width: 400px;
 	margin: 0 auto;
 }
+.alert{
+	background: rgb(202, 60, 60);
+	cursor:pointer;
+}
+.zakarra img{
+	margin-bottom: -11px;
+	margin-top: 0px;
+	padding:0px;
+	cursor: pointer;
+}
+#ezabatzeko:hover{
+	content:url(img/zakarra_irekia.png);
+}
+#ezabatzeko:active{
+	content:url(img/zakarra_2.png);
+}
+.erosi{
+	background-color: #0E90D2;
+	cursor:pointer;
+}
 /*Produktuak gehitu text area input bezela*/
 form textarea{
 	width:230px;
+}
+table tr{
+	text-align: center;
+	height:44px;
+	vertical-align: middle;
 }

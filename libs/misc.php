@@ -30,6 +30,9 @@ class Session {
 			unset($_SESSION['izena']);
 			unset($_SESSION['email']);
 		}
+		public static function saskia_ustu() {
+			unset($_SESSION['karritoa']);
+		}
 }
 class Mugitu {
 

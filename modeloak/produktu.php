@@ -156,7 +156,9 @@ class Produktu {
 
 				echo "<div class='produktubat'>";
 				echo $lerroa['izena'].'<br>';
-				echo "<img src='public/argazkiak/".$lerroa['id']."-1.png' alt='".$lerroa['izena']."'";
+				echo "<img src='public/argazkiak/".$lerroa['id']."-1.png' alt='".$lerroa['izena']."'>";
+				echo "<form action='' method='post'><input type='hidden' name='produktua' value='".$lerroa['id']."'>";
+				echo "<input id='".$lerroa['id']."' type='submit' value='gehitu' name='ekintzak'></form>";
 				echo "</div>";
 
 			}

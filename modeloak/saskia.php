@@ -22,8 +22,10 @@ class Saskia{
 				 * kontrolatzaile bat baino gehiago inplementatu daiteke.
 				*/
 				
-				if(isset($_GET['karrito'])) {
-					$this->handle($_GET["karrito"]);
+				if(isset($_POST['ekintzak'])) {
+					$this->handle($_POST['ekintzak']);
+				} else {
+					$this->handle();
 				}
 		}
 		
@@ -48,16 +50,20 @@ class Saskia{
 			switch($karrito) {
 				case "gehitu":
 					$this->saskiraGehitu();
+					$this->saskiaErakutsi();
 					break;
 				case "kendu":
 					$this->saskitikKendu();
+					$this->saskiaErakutsi();
+					break;
+				case null:
+					$this->saskiaErakutsi();
 					break;
 			}
-			$this->saskiaErakutsi();
 		}
 		private function saskiraGehitu() {
 			//kontadorea ez bada existitzen 0 balioarekin sortzen dugu
-				if(!isset($_SESSION['contador'])){
+				if(!isset($_SESSION['karritoa'])){
 					$_SESSION['contador']=0;
 				}
 				if(isset($_POST["produktua"])) {
@@ -69,21 +75,57 @@ class Saskia{
 				}
 		}
 		private function saskitikKendu() {
-				if(isset($_POST["ezabatzekoak"])) {
+				Session::saskia_ustu();
+				Mugitu::nora('index.php');
+				//if(isset($_POST["ezabatzekoak"])) {
 			//Ezabatzekoak postak ezabatzeko produktuen id zerrenda ekartzen du ',' banatuak
 			//beraz, explode funtzioarekin array bihurtzen dugu "$ezabatzeko_array" izenarekin 
 			//ondoren for batekin banan banan ezabatzeko
-					$ezabatzeko_array=explode(',',$_POST["ezabatzekoak"]);
+					//$ezabatzeko_array=explode(',',$_POST["ezabatzekoak"]);
 			//$max bariableak  arrayaren luzeera esaten digu "sizeOf()" funtzioaren bitartez
-					$max=sizeOf($ezabatzeko_array);
-					for($i=0;$i<$max;$i++){
-						$kendu=$ezabatzeko_array[$i];
-						$pos=array_search($kendu,$_SESSION['karritoa']);
-						unset($_SESSION['karritoa'][$pos]);
+					//$max=sizeOf($ezabatzeko_array);
+					//for($i=0;$i<$max;$i++){
+					//	$kendu=$ezabatzeko_array[$i];
+						//$pos=array_search($kendu,$_SESSION['karritoa']);
+						//unset($_SESSION['karritoa'][$pos]);
+					//}
+				//}
+		//}
+	}
+		private function saskiaErakutsi() {
+			echo '<div id="ezkutatua"><div id="saskia">';
+			echo '<h1 style="margin:auto;text-align:center">Erosketen Gurditxoa</h1>';
+			echo '<table class="pure-table" style="margin:auto">';
+			echo '<thead><tr><th>Izena</th><th>Kopurua</th><th>Prezioa</th></tr></thead><tbody>';
+			if(isset($_SESSION['karritoa'])){
+				$karritoaren_array=array_count_values($_SESSION['karritoa']);
+				$totala=0;
+
+			/*
+			 * Karritoaren array-ean produktu ezberdinak 
+			 * ateratzen ditugu eta bakoitzaren kopurua
+			*/
+			
+				foreach($karritoaren_array as $x=>$x_value){
+				$sql = "SELECT * FROM produktu where id=".$x."";
+				$produktuak = $this->db->query($sql);
+					while($row = $produktuak->fetch_assoc()) {
+						echo '<tr><td>'.$row['izena'].'</td><td>'.$x_value.'</td>';
+						echo '<td>'.$row['prezioa']*$x_value.' euro</td>';
+						echo '</tr>';
+						$totala+=$row['prezioa']*$x_value;
+		
 					}
 				}
-		}
-		private function saskiaErakutsi() {
-				
+				echo '</tbody><thead><tr><th>Guztira:'.$totala.' euro</th>';
+				echo '<th class="erosi">Erosi</th><th class="zakarra">';
+				echo '<form action="" method="post">';
+				echo '<input id="ezabatzeko" type="image" name="ekintzak" src="public/img/zakarra_2.png" value="kendu"></form>';
+				echo '</th></tr></thead>';
+				echo '</table></div></div>';
+			}
+			else{
+				echo '<tr><td colspan="3">Saskia hutsik</td></tr></tbody></table></div></div>';
+			}
 		}
 }
