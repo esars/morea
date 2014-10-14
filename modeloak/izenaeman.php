@@ -97,9 +97,4 @@ class IzenaEman {
 						}
 				}
 		}
-		private function erabiltzaileDatuakAldatu() {
-
-			// EGITEKO...
-
-		}
 }

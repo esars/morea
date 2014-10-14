@@ -181,5 +181,6 @@ table tr{
 	height: 20px;
 	position:relative;
 	top: 0px;
-	left: 90%
+	left: 90%;
+	z-index: 2;
 }
