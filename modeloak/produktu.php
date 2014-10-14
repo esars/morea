@@ -30,7 +30,7 @@ class Produktu {
 				}
 		}
 
-		private function handle($ekintza = null, $ad) {
+		private function handle($ekintza = null, $ad = false) {
 
 			/* PRODUKTUEN KONTROLATZAILEA
 			 *
@@ -150,7 +150,7 @@ class Produktu {
 				echo "<img class='pure-img' src='public/argazkiak/".$lerroa['id']."-1.png' alt='".$lerroa['izena']."'>";
 				echo $lerroa['izena'].'<br>';
 				echo "<input type='hidden' name='produktua' value='".$lerroa['id']."'>";
-				echo "<input id='".$lerroa['id']."' class='karrito_gehitu' type='submit' value='gehitu' name='ekintzak'></div>";
+				echo "<input id='".$lerroa['id']."' class='karrito_gehitu pure-button' type='submit' value='gehitu' name='ekintzak'></div>";
 
 			}
 
