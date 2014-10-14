@@ -15,7 +15,7 @@ Erabilitako liburutegiak
 Irudiak gehitu produktuei
 -------------------------
 Irudiak png formatuan egon beharko dute, /public/argazkiak karpetan gordeko dira eta hurrengo nomenklatura jarraituko dute:
->ProduktuarenId-[12345]
+>ProduktuarenId-[12345].png
 
 Beraz, 5 argazki gehienez jarri ahal dira produktu bakoitzeko. Hona hemen adibide batzuk:
 * 3-1.png
@@ -33,3 +33,14 @@ Administratzailea
 $_GET['ekintza'] erabiltzen da produktuak maneiatzeko. Hiru aukera ditu: gehitu, aldatu eta kendu. Azken bi hauek $_GET['id']
 ere beharko dute. Kendu konfirmazio orrialde hutsa izango da. Aurrerago interfaze grafiko bat programatuko dugu hauei guztiei
 estekak erabiliz.
+
+mySQLdump erabiltzen degu argazkien eta produktuen artean konflikturik ez izateko. Bai taulak sortzeko SQLa bai produktuen taularen
+SQLa config karpetan daude. Hona hemen beharrezko komandoak taula importatzeko eta esportatzeko:
+
+###Esportatzeko
+
+	mysqldump -p --user=morea landare produktu > produktu.sql
+		
+###Inportatzeko
+
+	mysql -u morea -p -D landare < produktu.sql
