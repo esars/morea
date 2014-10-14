@@ -2,6 +2,12 @@ $('#erab').hover(aldatu_erab);
 $('#erab').mouseout(ber_aldatu_erab);
 $('#saski').hover(aldatu_saski);
 $('#saski').mouseout(ber_aldatu_saski);
+$('.tooltip').tooltipster({contentAsHTML:'true',position:'bottom'});
+//$('#my-tooltip').tooltipster({
+//                content: $('<span><img src="my-image.png" /> <strong>This text is in bold case !</strong></span>')
+//            });
+$('.karrito_gehitu').click(karritora_gehitu);
+$('#ezkutatua').load('bistak/saskia_bista.php');
 function aldatu_erab () {
 	//$('#erab').fadeToggle(2000,0.5);
 	$('#erab').attr('src','public/img/erab_koloreztatua.png');
@@ -22,3 +28,7 @@ $(document).ready(function() {
 		$(".notif").fadeOut("slow");
 	},4500);
 });
+function karritora_gehitu(){
+	id=$(this).prev('input').val();
+	$('#ezkutatua').load('bistak/saskia_bista.php?produktua='+$(this).prev('input').val()+'&ekintzak=gehitu');
+}

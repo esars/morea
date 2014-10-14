@@ -144,11 +144,11 @@ class Produktu {
 				// Kontsulta array asoziatibo baten bihurtzen dugu
 				// goiko metodoaren bidez
 
-				echo "<div class='produktubat'>";
+				echo "<div class='produktubat' style='background:url(public/argazkiak/".$lerroa['id']."-1.png);background-size:100px 80px;'>";
+				//echo "<img src='public/argazkiak/".$lerroa['id']."-1.png' alt='".$lerroa['izena']."'>";
 				echo $lerroa['izena'].'<br>';
-				echo "<img src='public/argazkiak/".$lerroa['id']."-1.png' alt='".$lerroa['izena']."'>";
-				echo "<form action='' method='post'><input type='hidden' name='produktua' value='".$lerroa['id']."'>";
-				echo "<input id='".$lerroa['id']."' type='submit' value='gehitu' name='ekintzak'></form>";
+				echo "<input type='hidden' name='produktua' value='".$lerroa['id']."'>";
+				echo "<input id='".$lerroa['id']."' class='karrito_gehitu' type='submit' value='gehitu' name='ekintzak'></div>";
 
 			}
 
