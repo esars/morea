@@ -24,20 +24,21 @@ class Produktu {
 				*/
 
 				if(isset($_GET['ekintza'])) {
-					$this->handle($_GET["ekintza"]);
+					$this->handle($_GET["ekintza"], Sartu::adminBarruan());
 				} else {
 					$this->handle();
 				}
 		}
 
-		private function handle($ekintza = null) {
+		private function handle($ekintza = null, $ad) {
 
 			/* PRODUKTUEN KONTROLATZAILEA
 			 *
 			 * GETaren arabera funtzio bat edo bestea egingo du.
 			 * Hemen ere datubasera konexioa egiten dugu. Funtzionalitate
-			 * orokor gehiago gehitu daitezke.
-			 *
+			 * orokor gehiago gehitu daitezke. Parametro bezela admina barruan
+			 * dagoen hartzen du baita.
+			 * 
 			*/
 
 			global $config;
@@ -50,7 +51,7 @@ class Produktu {
 
 			switch($ekintza) {
 				case "gehitu":
-					if(Sartu::adminBarruan()) {
+					if($ad) {
 						include("bistak/produktua_gehitu.php");
 						$this->produktuaGehitu();
 					} else {
@@ -58,7 +59,7 @@ class Produktu {
 					}
 					break;
 				case "kendu":
-					if(Sartu::adminBarruan()) {
+					if($ad) {
 						include("bistak/produktua_kendu.php");
 						$this->produktuaKendu($_GET['id']);
 					} else {
@@ -66,7 +67,7 @@ class Produktu {
 					}
 					break;
 				case "aldatu":
-					if(Sartu::adminBarruan()) {
+					if($ad) {
 						include("bistak/produktua_aldatu.php");
 						$this->produktuaAldatu($_GET['id']);
 					} else {
