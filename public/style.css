@@ -165,9 +165,21 @@ table tr{
 	height:300px;
 	box-sizing:border-box;
 	border: solid thin black;
-	background:no-repeat;
-	background-size:100px 80px;
+	float: left;
+	margin: 10px;
+	border-radius: 5px
 }
 .produktubat img{
-	width:200px;
+	height:200px;
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+	top: -24px
+}
+.produktubat input[type='image']{
+	width:20px;
+	height: 20px;
+	position:relative;
+	top: 0px;
+	left: 90%
 }
