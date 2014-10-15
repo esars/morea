@@ -145,13 +145,16 @@ class Produktu {
 				// Kontsulta array asoziatibo baten bihurtzen dugu
 				// goiko metodoaren bidez
 
-				echo "<div class='produktubat'>";
-				echo "<input type='image' src='public/img/gehitu.png' name='gehio' value='".$lerroa['id']."'>";
-				echo "<img class='pure-img' src='public/argazkiak/".$lerroa['id']."-1.png' alt='".$lerroa['izena']."'>";
-				echo $lerroa['izena'].'<br>';
-				echo "<input type='hidden' name='produktua' value='".$lerroa['id']."'>";
-				echo "<input id='".$lerroa['id']."' class='karrito_gehitu pure-button' type='submit' value='gehitu' name='ekintzak'></div>";
-
+				echo "<div class='produktubat'>
+		<style scoped>.button-xsmall{font-size: 60%;}.button-success{background: rgb(28, 184, 65);}</style>
+				<img src='public/argazkiak/".$lerroa['id']."-1.png' alt='".$lerroa['izena']."'>
+				<div id='zehaztasun_aldea'><h3>".$lerroa['izena']."</h3><p>";
+				$deskripzioa = substr($lerroa['deskripzioa'],0,35);
+				echo $deskripzioa."</p></div>
+			<div id='botoien_aldea'><h3>".$lerroa['prezioa']."</h3></div><button class='button-xsmall pure-button pure-input-1 pure-button-primary' value='Informazio gehiago'>Informazio gehiago</button>
+				<input type='hidden' name='produktua' value='".$lerroa['id']."'>			
+				<button id='".$lerroa['id']."' class='button-success button-xsmall karrito_gehitu pure-button pure-input-1 pure-button-primary' value='gehitu' name='ekintzak'>Saskiratu	<i class='fa fa-shopping-cart fa-l'></i></button>
+				</div>";
 			}
 
 		}

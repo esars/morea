@@ -77,6 +77,7 @@ class Saskia{
 				}
 		}
 		private function saskitikKendu() {
+
 				if(isset($_POST["id_prod"])&&isset($_SESSION['karritoa'])) {
 			//Ezabatzekoak postak ezabatzeko produktuen id zerrenda ekartzen du ',' banatuak
 			//beraz, explode funtzioarekin array bihurtzen dugu "$ezabatzeko_array" izenarekin 
