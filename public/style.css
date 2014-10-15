@@ -87,8 +87,18 @@ input[type='submit'],input[type='button']{
 							0px 3px 0px #2a363b;
 	margin-top: -3px;
 }
+.button-secondary {
+	color: white;
+	border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.button-ezabatu {
+	background: rgb(202, 60, 60); /* this is a maroon */
+}
 section {
 	clear: both;
+	width: 90%;
+	margin: 0 auto;
 }
 .gehituform {
 	width: 400px;
@@ -201,6 +211,7 @@ table tr{
 #zehaztasun_aldea p,#zehaztasun_aldea h3{
 	margin-top:0px;
 	margin-bottom:0px;
+	line-height: auto;
 }
 #zehaztasun_aldea h3{
 	text-align: center

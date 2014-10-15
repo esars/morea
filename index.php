@@ -5,15 +5,21 @@ require_once "modeloak/sartu.php";
 require_once "modeloak/izenaeman.php";
 require_once "modeloak/produktu.php";
 require_once "modeloak/saskia.php";
-include("bistak/header.php");
-include("bistak/nagusia.php");
+
 $login = new Sartu();
 $reg = new IzenaEman();
 $sask = new Saskia();
+
+include("bistak/header.php");
+include("bistak/nagusia.php");
+
 if(Sartu::barruan()) {
 	include("bistak/barruan.php");
 } else {
 	include("bistak/login_registro.php");
+}
+if(Sartu::adminBarruan()) {
+	include("bistak/admin.php");
 }
 $prod = new Produktu();
 include("bistak/footer.php");

@@ -13,12 +13,12 @@
 
           <div class="pure-control-group">
               <label for="prezioa">Prezioa</label>
-              <input id="prezioa" required type="number" placeholder="Prezio bat ezarri" name="prezioa">
+              <input id="prezioa" required type="number" min="0" step="any" placeholder="Prezio bat ezarri" name="prezioa">
           </div>
 
           <div class="pure-control-group">
               <label for="foo">Stock</label>
-              <input id="foo" type="number" name="stock" placeholder="Sartu eskura dauden unitateak...">
+              <input id="foo" type="number" min="0" step="any" name="stock" placeholder="Sartu eskura dauden unitateak...">
           </div>
       </fieldset>
       <input type="submit" class='pure-button pure-input-1-6 pure-button-primary formbotoi' id='registro1' value='Produktua datubasera gehitu' name="pgehitu">

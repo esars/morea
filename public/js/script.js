@@ -1,5 +1,7 @@
 $('#erab').hover(aldatu_erab);
 $('#erab').mouseout(ber_aldatu_erab);
+$('#admin').hover(aldatu_admin);
+$('#admin').mouseout(ber_aldatu_admin);
 $('#saski').hover(aldatu_saski);
 $('#saski').mouseout(ber_aldatu_saski);
 $('.tooltip').tooltipster({contentAsHTML:'true',position:'bottom'});
@@ -11,6 +13,13 @@ function aldatu_erab () {
 }
 function ber_aldatu_erab () {
 	$('#erab').attr('src','public/img/erab.png');
+}
+function aldatu_admin () {
+	//$('#erab').fadeToggle(2000,0.5);
+	$('#admin').attr('src','public/img/admin_koloreztatua.png');
+}
+function ber_aldatu_admin () {
+	$('#admin').attr('src','public/img/admin.png');
 }
 function aldatu_saski () {
 	//$('#erab').fadeToggle(2000,0.5);

@@ -24,6 +24,11 @@
 			<a class='tooltip' title='Kokapena' href="kokapena.php"><li>Kokapena</li></a>
 			<a class='tooltip' title='Login/erregistroa' href="#" data-featherlight="#mylightbox"><li><img id='erab' src="public/img/erab.png" alt="Sartu edo erregistratu"></li></a>
 			<a class='tooltip' title='Saskia' href="#" data-featherlight="#saskia"><li><img id='saski' src="public/img/shopping.png" alt="Karritoan duzuna ikusi"></li></a>
+			<?php
+			if(Sartu::adminBarruan()) {
+							?><a class='tooltip' title='Admin' href="#" data-featherlight="#admin"><li><img id='admin' src="public/img/admin.png" alt="Karritoan duzuna ikusi"></li></a><?php
+			}
+			?>
 		</ul>
 		<div id="ezkutatua"><div id="saskia">saskia hutsik</div></div>
 	</nav>

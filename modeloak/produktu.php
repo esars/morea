@@ -150,8 +150,8 @@ class Produktu {
 				<img src='public/argazkiak/".$lerroa['id']."-1.png' alt='".$lerroa['izena']."'>
 				<div id='zehaztasun_aldea'><h3>".$lerroa['izena']."</h3><p>";
 				$deskripzioa = substr($lerroa['deskripzioa'],0,35);
-				echo $deskripzioa."</p></div>
-			<div id='botoien_aldea'><h3>".$lerroa['prezioa']."</h3></div><button class='button-xsmall pure-button pure-input-1 pure-button-primary' value='Informazio gehiago'>Informazio gehiago</button>
+				echo /*$deskripzioa.*/"</p></div>
+			<div id='botoien_aldea'><h3>".$lerroa['prezioa']." €</h3></div><button class='button-xsmall pure-button pure-input-1 pure-button-primary' value='Informazio gehiago'>Informazio gehiago</button>
 				<input type='hidden' name='produktua' value='".$lerroa['id']."'>			
 				<button id='".$lerroa['id']."' class='button-success button-xsmall karrito_gehitu pure-button pure-input-1 pure-button-primary' value='gehitu' name='ekintzak'>Saskiratu	<i class='fa fa-shopping-cart fa-l'></i></button>
 				</div>";
@@ -189,10 +189,10 @@ class Produktu {
 			} else if(strlen($_POST['deskripzioa']) < 20 || empty($_POST['deskripzioa'])) {
 				$this->erroreak[] = "Deskripzioa motzegia da edo hutsik utzi duzu.";
 				return false;
-			} else if(!ctype_digit($_POST['prezioa']) || empty($_POST['prezioa'])) {
+			} else if(!(is_numeric($_POST['prezioa']) && floor($_POST['prezioa']) != $_POST['prezioa']) || empty($_POST['prezioa'])) {
 				$this->erroreak[] = "Prezioa ez da zenbaki bat edo hutsa utzi duzu.";
 				return false;
-			} else if(!ctype_digit($_POST['stock']) || empty($_POST['prezioa'])) {
+			} else if(!(is_numeric($_POST['prezioa']) && floor($_POST['prezioa']) != $_POST['prezioa']) || empty($_POST['prezioa'])) {
 				$this->erroreak[] = "Stocka ez da zenbaki bat edo hutsik utzi duzu.";
 				return false;
 			} else {

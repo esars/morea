@@ -39,8 +39,8 @@ SQLa config karpetan daude. Hona hemen beharrezko komandoak taula importatzeko e
 
 ###Esportatzeko
 
-	mysqldump -p --user=morea landare produktu > produktu.sql
+	mysqldump -p --user=morea landare produktu > produktuak.sql
 		
 ###Inportatzeko
 
-	mysql -u morea -p -D landare < produktu.sql
+	mysql -u morea -p -D landare < produktuak.sql
