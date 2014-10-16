@@ -73,7 +73,7 @@ body {
 	height:500px;
 	padding: auto;
 }
-#ezkutatua{
+#ezkutatua, #ezkutatua1 {
 	display: none;
 }
 input[type='submit'],input[type='button']{
@@ -136,7 +136,7 @@ table tr{
 	display: inline-block;
 	width: 210px;
 	height: 250px;
-	margin: auto;
+	margin: ;
 }
 .produktubat > img {
 	width: auto;
@@ -177,7 +177,7 @@ table tr{
 	//border: solid thin black;
 	float: left;
 	margin: 10px;
-	margin-left: 30px;
+	margin-left: 1.7%;
 	border-radius: 5px;
 	background-color: white;
 	text-align: center;

@@ -26,7 +26,8 @@
 			<a class='tooltip' title='Saskia' href="#" data-featherlight="#saskia"><li><img id='saski' src="public/img/shopping.png" alt="Karritoan duzuna ikusi"></li></a>
 			<?php
 			if(Sartu::adminBarruan()) {
-							?><a class='tooltip' title='Admin' href="#" data-featherlight="#admin"><li><img id='admin' src="public/img/admin.png" alt="Karritoan duzuna ikusi"></li></a><?php
+							?><a class='tooltip' title='Admin' href="#" data-featherlight="#admin"><li><img id='adminarg' src="public/img/admin.png" alt="Karritoan duzuna ikusi"></li></a><?php
+							include("bistak/admin.php");
 			}
 			?>
 		</ul>
