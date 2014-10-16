@@ -15,11 +15,11 @@ include("bistak/nagusia.php");
 
 if(Sartu::barruan()) {
 	include("bistak/barruan.php");
+	if(Sartu::adminBarruan()) {
+		include("bistak/admin.php");
+}
 } else {
 	include("bistak/login_registro.php");
-}
-if(Sartu::adminBarruan()) {
-	include("bistak/admin.php");
 }
 $prod = new Produktu();
 include("bistak/footer.php");

@@ -56,7 +56,7 @@ body {
 	width: 30%;
 	float:left;
 }
-#mylightbox{
+#mylightbox,#admin_div{
 	width:600px;
 	height: 500px;
 }
