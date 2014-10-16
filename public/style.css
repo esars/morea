@@ -97,7 +97,7 @@ input[type='submit'],input[type='button']{
 }
 section {
 	clear: both;
-	width: 90%;
+	width: 95%;
 	margin: 0 auto;
 }
 .gehituform {
@@ -134,7 +134,7 @@ table tr{
 	vertical-align: middle;}
 .produktubat {
 	display: inline-block;
-	width: 200px;
+	width: 210px;
 	height: 250px;
 	margin: auto;
 }
@@ -171,7 +171,7 @@ table tr{
 }
 /*Produktuak erakutsi*/
 .produktubat{
-	width:200px;
+	width:210px;
 	height:300px;
 	box-sizing:border-box;
 	//border: solid thin black;

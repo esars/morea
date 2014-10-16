@@ -28,13 +28,18 @@ function aldatu_saski () {
 function ber_aldatu_saski () {
 	$('#saski').attr('src','public/img/shopping.png');
 }
-$(document).ready(function() {
+function notifErakutsi(denbora) {
 	$(".notif").fadeIn("slow");
 	setTimeout(function() {
 		$(".notif").fadeOut("slow");
-	},4500);
+	},denbora);
+}
+$(document).ready(function() {
+	notifErakutsi(4500);
 });
 function karritora_gehitu(){
 	id=$(this).prev('input').val();
 	$('#ezkutatua').load('bistak/saskia_bista.php?produktua='+$(this).prev('input').val()+'&ekintzak=gehitu');
+	$('#mezuak').append("<div class='notif mezu'>Produktua gehitu duzu</div>");
+	notifErakutsi(2300);
 }
