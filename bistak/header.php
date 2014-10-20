@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Morea Lorategia</title>
-	<link rel="stylesheet" type="text/css" href="public/style.css">
+	<link rel="stylesheet" type="text/css" href="style2.css">
 	<link rel="stylesheet" type="text/css" href="public/pure.css">
 	<link rel="stylesheet" type="text/css" href="public/featherlight.min.css">
 	<link rel="stylesheet" type="text/css" href="public/tooltipster.css">
@@ -31,4 +31,5 @@
 			?>
 		</ul>
 	</nav>
+	<div id="ezkutatua2"></div>
 	</header>

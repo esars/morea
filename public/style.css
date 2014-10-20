@@ -73,7 +73,7 @@ body {
 	height:500px;
 	padding: auto;
 }
-#ezkutatua, #ezkutatua1 {
+#ezkutatua, #ezkutatua1,#ezkutatua2 {
 	display: none;
 }
 input[type='submit'],input[type='button']{
@@ -177,7 +177,7 @@ table tr{
 	//border: solid thin black;
 	float: left;
 	margin: 10px;
-	margin-left: 1.7%;
+	margin-left: 1.6%;
 	border-radius: 5px;
 	background-color: white;
 	text-align: center;

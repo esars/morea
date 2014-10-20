@@ -66,6 +66,10 @@ class Produktu {
 						$this->erroreak[] = "Ez zara kudeatzailea.";
 					}
 					break;
+				case "erakutsi":
+				//echo '<script>alert('.$_GET['id'].')</script>';
+						$this->produktuBatErakutsi($_GET['id']);
+					break;
 				case "aldatu":
 					if($ad) {
 						include("bistak/produktua_aldatu.php");
@@ -150,14 +154,14 @@ class Produktu {
 				<div id='zehaztasun_aldea'><h3>".$lerroa['izena']."</h3><p>";
 				$deskripzioa = substr($lerroa['deskripzioa'],0,35);
 				echo /*$deskripzioa.*/"</p></div>
-			<div id='botoien_aldea'><h3>".$lerroa['prezioa']." €</h3></div><button class='button-xsmall pure-button pure-input-1 pure-button-primary info' value='Informazio gehiago'>Informazio gehiago	<i class='fa fa-file-text-o''></i></button>
+			<div id='botoien_aldea'><h3>".$lerroa['prezioa']." €</h3></div><button data-featherlight='#info' class='button-xsmall pure-button pure-input-1 pure-button-primary info' value='".$lerroa['id']."' name='erakutsi'>Informazio gehiago	<i class='fa fa-file-text-o''></i></button>
 				<input type='hidden' name='produktua' value='".$lerroa['id']."'>			
 				<button id='".$lerroa['id']."' class='button-success button-xsmall karrito_gehitu pure-button pure-input-1 pure-button-primary' value='gehitu' name='ekintzak'>Saskiratu	<i class='fa fa-shopping-cart fa-l'></i></button>
 				</div>";
 			}
 
 		}
-		public static function produktuBatErakutsi($id) {
+		private function produktuBatErakutsi($id) {
 
 			/*
 			 * Produktu guztiak erakusteko funtzioaren pixkat desberdina da
@@ -168,11 +172,18 @@ class Produktu {
 
 			$sql = "SELECT * FROM produktu WHERE id='".$id."';";
 			$query = $this->db->query($sql);
-
 			if($query) {
 				$produktua = $query->fetch_object();
-
+				$total_imagenes = glob("../public/argazkiak/".$produktua->id."-{*.jpg,*.gif,*.png}",GLOB_BRACE);
+				echo "<div id='info'>";
 				echo "<h1>".$produktua->izena."</h1>";
+				echo "<p>Deskripzioa: ".$produktua->deskripzioa."</p>";
+				echo "<p>Stock: ".$produktua->stock."</p>";
+				echo "<p>Prezioa: ".$produktua->prezioa." euro</p>";
+				foreach($total_imagenes as $v){  
+				$ruta_zatiak = explode("/", $v);
+				echo '<img src="'.$ruta_zatiak[1].'/'.$ruta_zatiak[2].'/'.$ruta_zatiak[3].'" border="0" style="width:100px;float:left;margin:10px;" />';  
+}  				echo "</div>";
 			} else {
 				$this->erroreak[] = "Landare hau ez da existitzen";
 				Mugitu::nora('index.php');

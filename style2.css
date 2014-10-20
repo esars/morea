@@ -56,7 +56,7 @@ body {
 	width: 30%;
 	float:left;
 }
-#mylightbox{
+#mylightbox,#admin_div{
 	width:600px;
 	height: 500px;
 }
@@ -73,7 +73,7 @@ body {
 	height:500px;
 	padding: auto;
 }
-#ezkutatua{
+#ezkutatua, #ezkutatua1,#ezkutatua2 {
 	display: none;
 }
 input[type='submit'],input[type='button']{
@@ -87,8 +87,18 @@ input[type='submit'],input[type='button']{
 							0px 3px 0px #2a363b;
 	margin-top: -3px;
 }
+.button-secondary {
+	color: white;
+	border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.button-ezabatu {
+	background: rgb(202, 60, 60); /* this is a maroon */
+}
 section {
 	clear: both;
+	width: 95%;
+	margin: 0 auto;
 }
 .gehituform {
 	width: 400px;
@@ -124,9 +134,9 @@ table tr{
 	vertical-align: middle;}
 .produktubat {
 	display: inline-block;
-	width: 200px;
+	width: 210px;
 	height: 250px;
-	margin: auto;
+	margin: ;
 }
 .produktubat > img {
 	width: auto;
@@ -161,13 +171,13 @@ table tr{
 }
 /*Produktuak erakutsi*/
 .produktubat{
-	width:200px;
+	width:210px;
 	height:300px;
 	box-sizing:border-box;
 	//border: solid thin black;
 	float: left;
 	margin: 10px;
-	margin-left: 30px;
+	margin-left: 1.6%;
 	border-radius: 5px;
 	background-color: white;
 	text-align: center;
@@ -201,6 +211,7 @@ table tr{
 #zehaztasun_aldea p,#zehaztasun_aldea h3{
 	margin-top:0px;
 	margin-bottom:0px;
+	line-height: auto;
 }
 #zehaztasun_aldea h3{
 	text-align: center
@@ -210,4 +221,8 @@ table tr{
 }
 #zehaztasun_aldea h3{
 	color: #E84A5F
+}
+#info{
+	max-width:600px;
+	max-height:300px;
 }
