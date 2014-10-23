@@ -48,7 +48,6 @@ class Produktu {
 									   	$config["pass"],
 										$config["izen"])
 										or die("Error " . mysqli_error($this->db));
-
 			switch($ekintza) {
 				case "gehitu":
 					if($ad) {
@@ -67,12 +66,10 @@ class Produktu {
 					}
 					break;
 				case "erakutsi":
-				//echo '<script>alert('.$_GET['id'].')</script>';
 						$this->produktuBatErakutsi($_GET['id']);
 					break;
 				case "aldatu":
 					if($ad) {
-						include("bistak/produktua_aldatu.php");
 						$this->produktuaAldatu($_GET['id']);
 					} else {
 						$this->erroreak[] = "Ez zara kudeatzailea.";
@@ -132,7 +129,40 @@ class Produktu {
 			}
 		}
 		private function produktuaAldatu($id) {
+			if(isset($id)) {
+				if(isset($_POST["paldatu"])) {
 
+					if($this->produktuaBalidatu()) {
+
+						//	HTMLa eta JavaScripta sartu bada, testu normalean bihurtu	//
+
+						$izena = $this->db->real_escape_string(strip_tags($_POST['pizena'], ENT_QUOTES));
+						$deskr = $this->db->real_escape_string(strip_tags($_POST['deskripzioa'], ENT_QUOTES));
+						$prezioa = $_POST['prezioa'];
+						$stock = $_POST['stock'];
+
+						$sql = "INSERT INTO produktu (izena,deskripzioa,prezioa,stock)
+										VALUES ('".$izena."', '".$deskr."', '".$prezioa."', '".$stock."' ) WHERE id='".$id."';";
+						$produktuaSartu = $this->db->query($sql);
+
+						if($produktuaSartu) {
+
+							$azkenProduktua = $this->db->query("SELECT * FROM produktu WHERE izena='".$izena."';")->fetch_object();
+
+							$this->mezuak[] = "Produktua aldatu";
+
+							Mugitu::nora("index.php");
+						} else {
+							$this->erroreak[] = "Errorea produktua aldatzean";
+						}
+					}
+				} else {
+					include("bistak/produktua_aldatu.php");
+					
+				}
+			} else {
+					$this->erroreak[] = "Ez da ID bat eman";
+			}
 		}
 		private function produktuakErakutsi($param = null) {
 			$sql = "SELECT * FROM produktu;";
@@ -180,6 +210,9 @@ class Produktu {
 				echo "<p>Deskripzioa: ".$produktua->deskripzioa."</p>";
 				echo "<p>Stock: ".$produktua->stock."</p>";
 				echo "<p>Prezioa: ".$produktua->prezioa." euro</p>";
+				if(Sartu::adminBarruan()) {
+					echo "<a href='index.php?ekintza=aldatu&id=".$produktua->id."'>Produktua aldatu</a>";
+				}
 				foreach($total_imagenes as $v){  
 				$ruta_zatiak = explode("/", $v);
 				echo '<img src="'.$ruta_zatiak[1].'/'.$ruta_zatiak[2].'/'.$ruta_zatiak[3].'" border="0" style="width:100px;float:left;margin:10px;" />';  
@@ -190,7 +223,7 @@ class Produktu {
 			}
 		}
 		private function produktuaBalidatu() {
-			if(strlen($_POST['pizena']) < 5 || empty($_POST['pizena'])) {
+			if(strlen($_POST['pizena']) < 3 || empty($_POST['pizena'])) {
 				$this->erroreak[] = "Izena motzegia da edo hutsik utzi duzu";
 				return false;
 			} else if(!preg_match('/^[a-z\d]{2,64}$/i', str_replace(' ', '', $_POST['pizena']))) {
@@ -208,5 +241,24 @@ class Produktu {
 			} else {
 				return true;
 			}
+		}
+		public function zeozeLortu($kanpo) {
+				// ID eta kanpo izen bat emanda balioa itzultzen du
+				$id = $_GET['id'];
+				$sql = "SELECT * FROM produktu WHERE id='".$id."';";
+				
+				$kontsulta = $this->db->query($sql)->fetch_object();
+				
+				switch($kanpo) {
+						case "izena":
+							return $kontsulta->izena;
+							break;
+						case "prezioa":
+							return $kontsulta->deskripzioa;
+							break;
+						case "stock":
+							return $kontsulta->stock;
+							break;
+				}
 		}
 }
