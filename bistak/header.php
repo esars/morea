@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Morea Lorategia</title>
-	<link rel="stylesheet" type="text/css" href="style2.css">
+	<link rel="stylesheet" type="text/css" href="public/style.css">
 	<link rel="stylesheet" type="text/css" href="public/pure.css">
 	<link rel="stylesheet" type="text/css" href="public/featherlight.min.css">
 	<link rel="stylesheet" type="text/css" href="public/tooltipster.css">
@@ -26,7 +26,7 @@
 			<a class='tooltip' title='Saskia' href="#" data-featherlight="#saskia"><li><img id='saski' src="public/img/shopping.png" alt="Karritoan duzuna ikusi"></li></a>
 			<?php
 			if(Sartu::adminBarruan()) {
-							?><a class='tooltip' title='Admin' href="#" data-featherlight="#admin_div"><li><img id='adminarg' src="public/img/admin.png" alt="Karritoan duzuna ikusi"></li></a><?php
+							?><a class='tooltip' title='<a href="#">Produktua gehitu</a><a href="#">Produktua kendu</a>' href="#" data-featherlight="#admin_div"><li><img id='adminarg' src="public/img/admin.png" alt="Karritoan duzuna ikusi"></li></a><?php
 			}
 			?>
 		</ul>
