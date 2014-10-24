@@ -9,10 +9,9 @@ require_once "modeloak/saskia.php";
 $login = new Sartu();
 $reg = new IzenaEman();
 $sask = new Saskia();
-
 include("bistak/header.php");
 include("bistak/nagusia.php");
-
+$prod = new Produktu();
 if(Sartu::barruan()) {
 	include("bistak/barruan.php");
 	if(Sartu::adminBarruan()) {
@@ -21,6 +20,7 @@ if(Sartu::barruan()) {
 } else {
 	include("bistak/login_registro.php");
 }
-$prod = new Produktu();
+
+
 include("bistak/footer.php");
 ?>
