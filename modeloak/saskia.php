@@ -160,10 +160,30 @@ class Saskia{
 				print_r ($erostear);
 				if(isset($_POST['erosi'])) {
 					$kopurua = 0;
-					//	for(i=0;i<count($erostear);i++) {
-								//if $kopurua = 0
-								
-					//	}
+					for($i=0;$i<count($erostear);$i++) {
+								if($erostear[$i] == $erostear[$i + 1]) {
+									$kopurua = $kopurua + 1;
+								} else {
+									$this->erosketaInsertatu($erostear[$i], $kopurua);
+								}
+					}
 				}
+		}
+		private function erosketaInsertatu($id, $kantitatea) {
+				/*
+				 * salmentak taulara informazioa gehitu, lerro bat
+				 * gehitzen den bakoitzean exekutatuko da, bi 
+				 * parametroak behar-beharrezkoak dira.
+				 */
+				 $sql = "INSERT INTO salmentak
+				         (id_er, id_prod, kopurua)
+				         VALUES
+				         ('".Session::get($id)."', '".$id."', '".$kantitatea."')";
+				 $sartu = $this->db->query($sql);
+				 if($sartu) {
+							$this->mezuak[] = "Arrakastaz erosi d(it)uzu produktua(k)";
+					} else {
+							$this->erroreak[] = "Errorea eskaera egitean. Saia zaitez berriro.";
+					}
 		}
 }

@@ -47,6 +47,7 @@ class Sartu {
 					if(password_verify($_POST['pasahitza'].$emaitza->pasahitza_salt, $emaitza->pasahitza_hash)) {
 						Session::set('email', $emaitza->email);
 						Session::set('izena', $emaitza->izena);
+						Session::set('id', $emaitza->id);
 						$this->mezuak[] = "Egunon, ".Session::get('izena');
 					} else {
 						$this->erroreak[] = "Pasahitz okerra";
