@@ -26,7 +26,7 @@ class Saskia{
 					$this->handle($_GET['ekintzak']);
 				} else if(isset($_POST['ekintzak'])){
 					$this->handle($_POST['ekintzak']);
-				}else {
+				} else {
 					$this->handle();
 				}
 		}
@@ -58,6 +58,9 @@ class Saskia{
 					$this->saskitikKendu();
 					$this->saskiaErakutsi();
 					break;
+				case "erosi":
+					$this->erosi();
+					$this->saskitikKendu();
 				case null:
 					$this->saskiaErakutsi();
 					break;
@@ -99,10 +102,23 @@ class Saskia{
 					Mugitu::nora('index.php');
 				}
 		}
-		private function saskiaErakutsi() {
-			echo '<div id="ezkutatua"><div id="saskia">';
+		private function saskiaErakutsi($lb = true) {
+			/*
+			 * $lb parametroak lightboxaren barruan dagoen ala ez
+			 * esango digu. Beste leku batetik deitu nahi dugunean
+			 * saskiaErakutsi(false) erabiliko dugu izkutuan ez
+			 * egoteko
+			*/
+			if($lb) {
+				echo '<div id="ezkutatua"><div id="saskia">';
+			}
 			echo '<h1 style="margin:auto;text-align:center">Erosketen Gurditxoa</h1>';
-			echo '<table class="pure-table" style="margin:auto">';
+			echo '<table class="pure-table" style="margin:auto;';
+			if(!$lb) {
+				//Lighbox barruan ez dagoenean zabalera gehiago eman
+					echo 'width: 75%;';
+			}
+			echo '">';
 			echo '<thead><tr><th>Izena</th><th>Kopurua</th><th>Prezioa</th>';
 			echo '<th class="zakarra"><form action="" method="post">';
 			echo '<input id="ezabatzeko" class="tooltip" title="Guztiak ezabatu" type="image" name="ekintzak" src="public/img/zakarra_2.png" value="kendu"></form></th></tr></thead><tbody>';
@@ -127,12 +143,27 @@ class Saskia{
 					}
 				}
 				echo '</tbody><thead><tr><th>Guztira:'.$totala.' euro</th>';
-				echo '<th colspan="3" class="erosi">Erosi</th>';
+				echo '<th colspan="3" class="erosi"><button class="erosibotoi" onClick="location.href=\'index.php?ekintzak=erosi\'">Erosi</button></th>';
 				echo '</tr></thead>';
-				echo '</table></div></div>';
+				echo '</table>';
 			}
 			else{
-				echo '<tr><td colspan="4">Saskia hutsik</td></tr></tbody></table></div></div>';
+				echo '<tr><td colspan="4">Saskia hutsik</td></tr></tbody></table>';
 			}
+			if($lb) {
+					echo '</div></div>';
+			}
+		}
+		private function erosi() {
+				$this->saskiaErakutsi(false);
+				$erostear = $_SESSION['karritoa'];
+				print_r ($erostear);
+				if(isset($_POST['erosi'])) {
+					$kopurua = 0;
+					//	for(i=0;i<count($erostear);i++) {
+								//if $kopurua = 0
+								
+					//	}
+				}
 		}
 }
