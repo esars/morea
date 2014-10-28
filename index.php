@@ -8,15 +8,18 @@ require_once "modeloak/saskia.php";
 
 $login = new Sartu();
 $reg = new IzenaEman();
-$sask = new Saskia();
+
 include("bistak/header.php");
 include("bistak/nagusia.php");
+
+$sask = new Saskia();
 $prod = new Produktu();
+
 if(Sartu::barruan()) {
 	include("bistak/barruan.php");
 	if(Sartu::adminBarruan()) {
 		include("bistak/admin.php");
-}
+	}
 } else {
 	include("bistak/login_registro.php");
 }

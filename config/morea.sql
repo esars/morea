@@ -52,10 +52,12 @@ CREATE TABLE `produktu` (
 --
 
 CREATE TABLE `salmentak` (
-`id` int(5) NOT NULL,
-  `id_er` int(5) NOT NULL,
-  `id_prod` int(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+   `id` int(5) not null auto_increment,
+   `id_er` int(5) not null,
+   `id_prod` int(100) not null,
+   `kopurua` int(3) not null default '1',
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 --
 -- Indexes for dumped tables
