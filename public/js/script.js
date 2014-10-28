@@ -48,3 +48,66 @@ function karritora_gehitu(){
 function erakutsi_info(){
 	$('#ezkutatua2').load('bistak/prod_info.php?id='+$(this).val()+'&ekintza=erakutsi');
 }
+//kudeatzailearen zatia
+
+$(':checkbox').click(ezabatu);
+$('.txekeatu').click(aldatu);
+$('#ezabatu_botoia').click(ezabatzekoak_bidali);
+$('#aldatu_botoia').click(aldatutakoa_bidali);
+$('#gehitu1').click(function(){
+$('#gehitu_form').submit();
+});
+aurreko_id='';
+ezabatzekoak_array='';
+function ezabatzekoak_bidali(){
+	ezabatzekoak_array='';
+		for (var i = $('.ezab').length - 1; i >= 0; i--) {
+			if($('.ezab:eq('+i+')').is(':checked')){
+			ezabatzekoak_array=ezabatzekoak_array+','+$('.ezab:eq('+i+')').val();
+		}
+	}
+$('#kentzeko_id').val(ezabatzekoak_array);
+$('#kentzeko_forma').submit();
+}
+function aldatutakoa_bidali(){
+	for (var i = 0; i <= $('.txekeatu').length-1; i++) {
+			if($('.txekeatu:eq('+i+')').is(':checked')){
+			forma=$('.txekeatu:eq('+i+')').val();
+		}
+	}
+	$('#'+forma).submit();
+}
+function ezabatu () {
+	id=$(this).attr('id');
+	if($(this).is(':checked')){
+	$(this).parent().parent().css('background-color','red');
+	$(this).parent().next().children('input:radio').removeAttr('checked');
+	$('.f'+id).attr('disabled','disabled');
+		if($(this).parent().next().children('input:radio').attr('id')==aurreko_id){
+			aurreko_id=''
+		}
+}
+else{
+	$(this).parent().parent().css('background-color','white');
+}
+}
+function aldatu () {
+	id=$(this).attr('id');
+	if(aurreko_id!=id&&aurreko_id!=''){
+		$('.f'+aurreko_id).attr('disabled','disabled');
+		if(aurreko_id!='0'){
+		$('#'+aurreko_id).parent().parent().css('background-color','white');}
+	}
+	if($(this).is(':checked')){
+	$('.f'+id).removeAttr('disabled');
+	$(this).parent().parent().css('background-color','grey');
+	$(this).parent().prev().children('input:checkbox').removeAttr('checked');
+	$('.txekeatu:eq(0)').css('background-color','green');
+	aurreko_id=id;
+}
+else{
+	$('.f'+id).attr('disabled','disabled');
+	$(this).parent().parent().css('background-color','white');
+	aurreko_id='';
+}
+}

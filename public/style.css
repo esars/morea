@@ -27,6 +27,12 @@ nav>ul>a>li>img {
 	height:25px;
 	transition: all 200ms linear;
 }
+.botoiak{
+	cursor: pointer;
+}
+.botoiak:hover{
+	background-color:#E84A5F;
+}
 nav>ul>a>li:hover {
 	text-shadow: 0px 0px 1px #4788A0,
 							 0px 0px 2px #3D6473,

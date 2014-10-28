@@ -24,13 +24,15 @@ class Produktu {
 				*/
 
 				if(isset($_GET['ekintza'])) {
-					$this->handle($_GET["ekintza"], Sartu::adminBarruan());
-				} else {
+					$this->handle($_GET['ekintza']);
+				} else if(isset($_POST['ekintza'])){
+					$this->handle($_POST['ekintza']);
+				}else {
 					$this->handle();
 				}
 		}
 
-		private function handle($ekintza = null, $ad = false) {
+		private function handle($ekintza = null, $ad = true) {
 
 			/* PRODUKTUEN KONTROLATZAILEA
 			 *
@@ -51,7 +53,7 @@ class Produktu {
 			switch($ekintza) {
 				case "gehitu":
 					if($ad) {
-						include("bistak/produktua_gehitu.php");
+						//include("bistak/produktua_gehitu.php");
 						$this->produktuaGehitu();
 					} else {
 						$this->erroreak[] = "Ez zara kudeatzailea.";
@@ -60,7 +62,7 @@ class Produktu {
 				case "kendu":
 					if($ad) {
 						include("bistak/produktua_kendu.php");
-						$this->produktuaKendu($_GET['id']);
+						$this->produktuaKendu($_POST['id']);
 					} else {
 						$this->erroreak[] = "Ez zara kudeatzailea.";
 					}
@@ -68,9 +70,12 @@ class Produktu {
 				case "erakutsi":
 						$this->produktuBatErakutsi($_GET['id']);
 					break;
+				case "kudeatzaile":
+						include("bistak/kudeatu.php");
+					break;
 				case "aldatu":
 					if($ad) {
-						$this->produktuaAldatu($_GET['id']);
+						$this->produktuaAldatu($_POST['id']);
 					} else {
 						$this->erroreak[] = "Ez zara kudeatzailea.";
 					}
@@ -82,13 +87,11 @@ class Produktu {
 			}
 		}
 		private function produktuaGehitu() {
-
 			if(isset($_POST["pgehitu"])) {
 
 				if($this->produktuaBalidatu()) {
 
 					//	HTMLa eta JavaScripta sartu bada, testu normalean bihurtu	//
-
 					$izena = $this->db->real_escape_string(strip_tags($_POST['pizena'], ENT_QUOTES));
 					$deskr = $this->db->real_escape_string(strip_tags($_POST['deskripzioa'], ENT_QUOTES));
 					$prezioa = $_POST['prezioa'];
@@ -117,13 +120,16 @@ class Produktu {
 			// KONFIRMAZIOA PASA ONDOREN
 
 			if(isset($_POST['pborratu'])) {
-				$sql = "DELETE * FROM produktu WHERE id='".$id."';";
+				$id_ak=explode(",",$id);
+				for($i=1;$i<=sizeof($id_ak)-1;$i++){
+				$sql = "DELETE FROM produktu WHERE id='".$id_ak[$i]."';";
 
-				$borratu = $this->db->query($sql);
+				$borratu = $this->db->query($sql);}
 
-				if($borratu) {
+				if(isset($borratu)) {
 					$this->mezuak[] = "Produktua arrakastaz ezabatu duzu";
-				} else {
+				}
+				else{
 					$this->erroreak[] = "Errorea produktua ezabatzean";
 				}
 			}
@@ -136,22 +142,16 @@ class Produktu {
 
 						//	HTMLa eta JavaScripta sartu bada, testu normalean bihurtu	//
 
-						$izena = $this->db->real_escape_string(strip_tags($_POST['pizena'], ENT_QUOTES));
-						$deskr = $this->db->real_escape_string(strip_tags($_POST['deskripzioa'], ENT_QUOTES));
+						$izena = $_POST['pizena'];
+						$deskr = $_POST['deskripzioa'];
 						$prezioa = $_POST['prezioa'];
 						$stock = $_POST['stock'];
-
-						$sql = "INSERT INTO produktu (izena,deskripzioa,prezioa,stock)
-										VALUES ('".$izena."', '".$deskr."', '".$prezioa."', '".$stock."' ) WHERE id='".$id."';";
+						$sql = "update produktu set izena='".$izena."',deskripzioa='".$deskr."',prezioa='".$prezioa."',stock='".$stock."'
+									WHERE id='".$id."';";
 						$produktuaSartu = $this->db->query($sql);
 
 						if($produktuaSartu) {
-
-							$azkenProduktua = $this->db->query("SELECT * FROM produktu WHERE izena='".$izena."';")->fetch_object();
-
-							$this->mezuak[] = "Produktua aldatu";
-
-							Mugitu::nora("index.php");
+							$this->mezuak[] = "Produktua aldatua";
 						} else {
 							$this->erroreak[] = "Errorea produktua aldatzean";
 						}
@@ -232,10 +232,10 @@ class Produktu {
 			} else if(strlen($_POST['deskripzioa']) < 20 || empty($_POST['deskripzioa'])) {
 				$this->erroreak[] = "Deskripzioa motzegia da edo hutsik utzi duzu.";
 				return false;
-			} else if(!(is_numeric($_POST['prezioa']) && floor($_POST['prezioa']) != $_POST['prezioa']) || empty($_POST['prezioa'])) {
+			} else if(empty($_POST['prezioa'])) {
 				$this->erroreak[] = "Prezioa ez da zenbaki bat edo hutsa utzi duzu.";
 				return false;
-			} else if(!(is_numeric($_POST['prezioa']) && floor($_POST['prezioa']) != $_POST['prezioa']) || empty($_POST['prezioa'])) {
+			} else if(empty($_POST['stock'])) {
 				$this->erroreak[] = "Stocka ez da zenbaki bat edo hutsik utzi duzu.";
 				return false;
 			} else {

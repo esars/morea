@@ -26,7 +26,7 @@
 			<a class='tooltip' title='Saskia' href="#" data-featherlight="#saskia"><li><img id='saski' src="public/img/shopping.png" alt="Karritoan duzuna ikusi"></li></a>
 			<?php
 			if(Sartu::adminBarruan()) {
-							?><a class='tooltip' title='<a href="#">Produktua gehitu</a><a href="#">Produktua kendu</a>' href="#" data-featherlight="#admin_div"><li><img id='adminarg' src="public/img/admin.png" alt="Karritoan duzuna ikusi"></li></a><?php
+							?><a title='' href="kudeatzailea.php?ekintza='kudeatzaile'"><li><img id='adminarg' src="public/img/admin.png" alt="Karritoan duzuna ikusi"></li></a><?php
 			}
 			?>
 		</ul>
