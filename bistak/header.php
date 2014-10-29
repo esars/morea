@@ -13,6 +13,7 @@
 	<script src="public/js/jquery.js"></script>
 	<script src="public/js/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="public/js/jquery.tooltipster.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="shortcut icon" type="image/png" href="public/mariolorea.png">
 </head>
 <body>
 	<header>
