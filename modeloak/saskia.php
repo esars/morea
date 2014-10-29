@@ -60,7 +60,7 @@ class Saskia{
 					break;
 				case "erosi":
 					$this->erosi();
-					$this->saskiOrrialdetikKendu();
+					$this->saskitikKendu();
 				case null:
 					$this->saskiaErakutsi();
 					break;

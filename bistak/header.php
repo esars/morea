@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="eu">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +20,14 @@
 		<img src="public/img/logoa.png" alt="Logoa" id="logoa" class="pure-img">
 	<nav>
 		<ul>
-			<a id='my-tooltip' class='tooltip' title='Bistaratu salgai dauden produktuak' href="index.php"><li>Produktuak</li></a>
+			<a id='my-tooltip' class='tooltip' title='<ul id="kategoriak">
+																																														<li>Zentroak</li>
+																																														<li>Erramuak</li>
+																																														<li>Funeralak</li>
+																																														<li>Ezkontzak</li>
+																																														<li>Matujak</li>
+																																														<li>Olioa</li>
+																																													</ul>' href="index.php"><li>Produktuak</li></a>
 			<a class='tooltip' title='Jakin ezazu gehiago guri buruz' href="gu.php"><li>Gu</li></a>
 			<a class='tooltip' title='Aurkitu gaitzazu' href="kokapena.php"><li>Kokapena</li></a>
 			<a class='tooltip' title='Login / Izena eman' href="#" data-featherlight="#mylightbox"><li><img id='erab' src="public/img/erab.png" alt="Sartu edo erregistratu"></li></a>
