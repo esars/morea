@@ -34,7 +34,7 @@ foreach($total_imagenes as $v){
   $ruta_zatiak = explode("/", $v);
   echo $ruta_zatiak[2]."<br>";
 }
-    echo "</td>
+    echo "<input type='button' class='fl".$contador." fn".$contador."' disabled value='aldatu'><input type='button' class='fl".$contador." fn".$contador."' disabled value='gehitu'></td>
     <td><input id='n".$contador."' class='ezab' type='checkbox' value='".$lerroa['id']."'></td>
     <td><input id='l".$contador."' class='txekeatu' name='aldatu' value='aldatu".$contador."' type='radio'></td>
   </tr>";
