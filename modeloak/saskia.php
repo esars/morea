@@ -154,7 +154,7 @@ class Saskia{
 					}
 				}
 				echo '</tbody><thead><tr><th>Guztira:'.$totala.' euro</th>';
-				echo '<th colspan="3" class="erosi"><button class="erosibotoi" onClick="location.href=\'index.php?ekintzak=erosi\'">Erosi</button></th>';
+				echo '<th colspan="3" class="erosi"><button class="erosibotoi" onClick="location.href=\'index.php?ekintzak=erosi\'">Erosia</button></th>';
 				echo '</tr></thead>';
 				echo '</table>';
 			}
@@ -170,12 +170,14 @@ class Saskia{
 				$erostear = $_SESSION['karritoa'];
 				print_r ($erostear);
 				//~ echo sizeOf($erostear);
-				if(isset($_POST['erosi'])) {
+				if(isset($_POST['erosi'])) {for($i=0;$i<=sizeof($erostear-1);$i++) {
+									$this->erosketaInsertatu($erostear[$i]);
 					$kopurua = 1;
 					for($i = 0; $i < sizeOf($erostear); $i++) {
 							echo array_search($erostear[$i]);
 					}
 				}
+			}
 		}
 		private function erosketaInsertatu($id, $kantitatea) {
 				/*
@@ -184,9 +186,9 @@ class Saskia{
 				 * parametroak behar-beharrezkoak dira.
 				 */
 				 $sql = "INSERT INTO salmentak
-				         (id_er, id_prod, kopurua)
+				         (id_er, id_prod)
 				         VALUES
-				         ('".Session::get($id)."', '".$id."', '".$kantitatea."')";
+				         ('".Session::get($id)."', '".$id."')";
 				 $sartu = $this->db->query($sql);
 				 if($sartu) {
 							$this->mezuak[] = "Arrakastaz erosi d(it)uzu produktua(k)";
