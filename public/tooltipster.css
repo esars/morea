@@ -4,8 +4,11 @@
 	border: 2px solid #2A363B;
 	background: #99B898;
 	color: #fff;
-	font-weight: bold;
 	text-shadow: 0px 0px 1px black;
+	letter-spacing: 0.3px;
+	padding:0px 0px;
+	font-size:1.2em;
+	font-weight: bold;
 }
 
 /* Use this next selector to style things like font-size and line-height: */

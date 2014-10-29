@@ -7,6 +7,7 @@ footer {
 }
 header>nav{
 	float:right;
+	margin-right: 15px;
 }
 nav>ul>*{
 	text-decoration:none;
@@ -49,9 +50,9 @@ nav>ul>a>li>img:hover {
 	-o-filter:drop-shadow(0px 0px 1px #4788A0);
 	-o-filter:drop-shadow(0px 0px 2px #3D6473);
 	-o-filter:drop-shadow(0px 0px 3px #2A363B);
-	-moz-filter:drop-shadow(0px 0px 1px #4788A0);
-	-moz-filter:drop-shadow(0px 0px 2px #3D6473);
-	-moz-filter:drop-shadow(0px 0px 3px #2A363B);
+	filter:drop-shadow(0px 0px 1px 1px #4788A0);
+	filter:drop-shadow(0px 0px 2px 2px #3D6473);
+	filter:drop-shadow(0px 0px 3px 3px #2A363B);
 }
 body {
 	font-family: 'Cabin', sans-serif;
@@ -233,4 +234,14 @@ table tr{
 	height: 100%;
 	background-color: transparent;
 	border: none;
+}
+#kategoriak {
+	margin: 0px 0px;
+	list-style-type: none;
+	padding: 0px 0px;
+}
+#kategoriak > li {
+	padding: 0px 5px 0px 5px;
+	width: 100%;
+	text-align: center;
 }
