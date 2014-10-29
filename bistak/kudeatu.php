@@ -43,12 +43,12 @@ foreach($total_imagenes as $v){
     ?>
   </tbody>
   <thead>
-  <tr><form id='gehitu_form' method="post" action="kudeatzailea.php">
+  <tr><form id='gehitu_form' method="post" action="kudeatzailea.php" enctype="multipart/form-data">
     <th> <input style='width:100px' id="pizena" name="pizena" required type="text" placeholder="Izena"></th>
     <th colspan='2'><textarea id="deskripzioa" name="deskripzioa" required placeholder="Deskripzioa"></textarea></th>
     <th><input id="foo" style='width:50px' type="number" min="0" step="any" name="stock" placeholder="Stock"></th>
     <th> <input id="prezioa" style='width:50px' required type="number" min="0" step="any" placeholder="Prezioa" name="prezioa"></th>
-    <th></th>
+    <th><input type="file" id='argazkia' name="imga" required class='primary-button' style='width:200px'></th>
     <input type="hidden" name='pgehitu'>
     <input type="hidden" name='ekintza' value='gehitu'>
     <th colspan='2' id='gehitu1' class='erosi'>Gehitu</th></form>

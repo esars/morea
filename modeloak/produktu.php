@@ -87,9 +87,16 @@ class Produktu {
 			}
 		}
 		private function produktuaGehitu() {
-			if(isset($_POST["pgehitu"])) {
-
-				if($this->produktuaBalidatu()) {
+			if(isset($_POST["pgehitu"])&&isset($_FILES['imga'])) {
+				$arraya=explode('.',$_FILES['imga']['name']);
+					$formatua=$arraya[sizeof($arraya)-1];
+					if($formatua!='png'&&$formatua!='jpg'&&$formatua!='jpeg'&&$formatua!='tif'){
+						$validatua=false;
+					}
+					else{
+						$validatua=true;
+					}
+				if($this->produktuaBalidatu()&&$validatua) {
 
 					//	HTMLa eta JavaScripta sartu bada, testu normalean bihurtu	//
 					$izena = $this->db->real_escape_string(strip_tags($_POST['pizena'], ENT_QUOTES));
@@ -100,18 +107,30 @@ class Produktu {
 					$sql = "INSERT INTO produktu (izena,deskripzioa,prezioa,stock)
 									VALUES ('".$izena."', '".$deskr."', '".$prezioa."', '".$stock."');";
 					$produktuaSartu = $this->db->query($sql);
-
+					$azkenProduktua = $this->db->query("SELECT * FROM produktu WHERE izena='".$izena."';")->fetch_object();
+					//argazkia sartu
+					$rutaEnServidor='public/argazkiak';
+					$rutaTemporal=$_FILES['imga']['tmp_name'];
+					$nombreImagen=$_FILES['imga']['name'];
+					$rutaDestino=$rutaEnServidor.'/'.$azkenProduktua->id.'-1.'.$formatua;
+					move_uploaded_file($rutaTemporal,$rutaDestino);
 					if($produktuaSartu) {
-
-						$azkenProduktua = $this->db->query("SELECT * FROM produktu WHERE izena='".$izena."';")->fetch_object();
-
 						$this->mezuak[] = "Produktua gehitua, gehituizkiozu argazkiak ".$azkenProduktua->id."-*.png formatuan";
-
+						//$this->mezuak[] = $mezua;
 						Mugitu::nora("produktua.php");
 					} else {
 						$this->erroreak[] = "Errorea produktua gehitzean";
 					}
 				}
+				else if($this->produktuaBalidatu()){
+					$this->erroreak[] = "Argazki formatu okerra";
+				}
+				else if($validatua){
+					$this->erroreak[] = "Arazoak izen deskripzio prezio edo stockarekin";
+				}
+			}
+			else{
+				$this->erroreak[] = "Argazkia sartu beharrekoa da";
 			}
 
 		}
@@ -124,8 +143,11 @@ class Produktu {
 				for($i=1;$i<=sizeof($id_ak)-1;$i++){
 				$sql = "DELETE FROM produktu WHERE id='".$id_ak[$i]."';";
 
-				$borratu = $this->db->query($sql);}
-
+				$borratu = $this->db->query($sql);
+				$total_imagenes = glob("public/argazkiak/".$id_ak[$i]."-{*.jpg,*.gif,*.png}",GLOB_BRACE);
+				foreach($total_imagenes as $v){  
+				unlink($v);}
+				}
 				if(isset($borratu)) {
 					$this->mezuak[] = "Produktua arrakastaz ezabatu duzu";
 				}
@@ -179,9 +201,12 @@ class Produktu {
 
 					// Kontsulta array asoziatibo baten bihurtzen dugu
 					// goiko metodoaren bidez
-
+					$argazkia = glob("public/argazkiak/".$lerroa['id']."-{1.jpg,1.gif,1.png,1.jpeg,1.tif}",GLOB_BRACE);
+					if(!isset($argazkia[0])){
+						$argazkia[0]='hutsa';
+					}
 					echo "<div class='produktubat'>
-					<img src='public/argazkiak/".$lerroa['id']."-1.png' alt='".$lerroa['izena']."'>
+					<img src='".$argazkia[0]."' alt='".$lerroa['izena']."'>
 					<div id='zehaztasun_aldea'><h3>".$lerroa['izena']."</h3><p>";
 					$deskripzioa = substr($lerroa['deskripzioa'],0,35);
 					echo /*$deskripzioa.*/"</p></div>
@@ -212,7 +237,7 @@ class Produktu {
 				echo "<p>Stock: ".$produktua->stock."</p>";
 				echo "<p>Prezioa: ".$produktua->prezioa." euro</p>";
 				if(Sartu::adminBarruan()) {
-					echo "<a href='index.php?ekintza=aldatu&id=".$produktua->id."'>Produktua aldatu</a>";
+					echo "<a href='kudeatzailea.php'>Produktua aldatu</a>";
 				}
 				foreach($total_imagenes as $v){  
 				$ruta_zatiak = explode("/", $v);
