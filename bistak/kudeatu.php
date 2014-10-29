@@ -32,7 +32,7 @@ global $config;
 $total_imagenes = glob("public/argazkiak/".$lerroa['id']."-{*.jpg,*.gif,*.png}",GLOB_BRACE);
 foreach($total_imagenes as $v){
   $ruta_zatiak = explode("/", $v);
-  echo $ruta_zatiak[2]."<br>";
+  echo '<a href="#" class="tooltip" title="<img width=\'100px\' src=\'public/argazkiak/'.$ruta_zatiak[2].'\'>">'.$ruta_zatiak[2]."</a><br>";
 }
     echo "<input type='file' id='argazkia' name='imga_berria' disabled class='fl".$contador." fn".$contador."' style='width:200px;display:none'></form></td>
     <td><input id='n".$contador."' class='ezab' type='checkbox' value='".$lerroa['id']."'></td>
