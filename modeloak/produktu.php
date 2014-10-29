@@ -158,7 +158,16 @@ class Produktu {
 		}
 		private function produktuaAldatu($id) {
 			if(isset($id)) {
-				if(isset($_POST["paldatu"])) {
+				//echo '<script>alert("'.$_FILES['imga_berria']['name'].'")</script>';
+				$arraya=explode('.',$_FILES['imga_berria']['name']);
+				$formatua=$arraya[sizeof($arraya)-1];
+				if($_FILES['imga_berria']['name']!=null&&$formatua!='png'&&$formatua!='jpg'&&$formatua!='jpeg'&&$formatua!='tif'){
+						$validatua=false;
+					}
+					else{
+						$validatua=true;
+					}
+				if(isset($_POST["paldatu"])&&$validatua) {
 
 					if($this->produktuaBalidatu()) {
 
@@ -171,7 +180,15 @@ class Produktu {
 						$sql = "update produktu set izena='".$izena."',deskripzioa='".$deskr."',prezioa='".$prezioa."',stock='".$stock."'
 									WHERE id='".$id."';";
 						$produktuaSartu = $this->db->query($sql);
-
+						if($_FILES['imga_berria']['name']!=null){
+							$total_imagenes = glob("public/argazkiak/".$id."-{*.jpg,*.gif,*.png}",GLOB_BRACE);
+							$urrengo_argazkia=sizeof($total_imagenes)+1;
+							$rutaEnServidor='public/argazkiak';
+							$rutaTemporal=$_FILES['imga_berria']['tmp_name'];
+							$nombreImagen=$_FILES['imga_berria']['name'];
+							$rutaDestino=$rutaEnServidor.'/'.$id.'-'.$urrengo_argazkia.'.'.$formatua;
+							move_uploaded_file($rutaTemporal,$rutaDestino);
+						}
 						if($produktuaSartu) {
 							$this->mezuak[] = "Produktua aldatua";
 						} else {
@@ -179,7 +196,7 @@ class Produktu {
 						}
 					}
 				} else {
-					include("bistak/produktua_aldatu.php");
+					$this->erroreak[] = "Argazkiaren formatua ez da irakurgarria";
 					
 				}
 			} else {

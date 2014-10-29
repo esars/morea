@@ -83,6 +83,7 @@ function ezabatu () {
 	$(this).parent().parent().css('background-color','red');
 	$(this).parent().next().children('input:radio').removeAttr('checked');
 	$('.f'+id).attr('disabled','disabled');
+	$('.f'+id+':file').css('display','none');
 		if($(this).parent().next().children('input:radio').attr('id')==aurreko_id){
 			aurreko_id=''
 		}
@@ -95,11 +96,13 @@ function aldatu () {
 	id=$(this).attr('id');
 	if(aurreko_id!=id&&aurreko_id!=''){
 		$('.f'+aurreko_id).attr('disabled','disabled');
+		$('.f'+aurreko_id+':file').css('display','none');
 		if(aurreko_id!='0'){
 		$('#'+aurreko_id).parent().parent().css('background-color','white');}
 	}
 	if($(this).is(':checked')){
 	$('.f'+id).removeAttr('disabled');
+	$('.f'+id+':file').css('display','block');
 	$(this).parent().parent().css('background-color','grey');
 	$(this).parent().prev().children('input:checkbox').removeAttr('checked');
 	$('.txekeatu:eq(0)').css('background-color','green');
@@ -107,6 +110,7 @@ function aldatu () {
 }
 else{
 	$('.f'+id).attr('disabled','disabled');
+	$('.f'+id+':file').css('display','none');
 	$(this).parent().parent().css('background-color','white');
 	aurreko_id='';
 }

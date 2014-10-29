@@ -24,17 +24,17 @@ global $config;
       $produktuak=$mysqli->query($sql);
       while($lerroa = $produktuak->fetch_assoc()) {
       echo "<tr class='fila' style='border:solid thin black;'>
-    <form action='kudeatzailea.php' method='post' id='aldatu".$contador."'><td class='aldagarriak'><input type='hidden' name='ekintza' value='aldatu'><input type='hidden' name='id' value='".$lerroa['id']."'><input disabled name='pizena' type='text' value='".$lerroa['izena']."' style='width:100px' class='fl".$contador." fn".$contador."'></td>
+    <form action='kudeatzailea.php' method='post' id='aldatu".$contador."' enctype='multipart/form-data'><td class='aldagarriak'><input type='hidden' name='ekintza' value='aldatu'><input type='hidden' name='id' value='".$lerroa['id']."'><input disabled name='pizena' type='text' value='".$lerroa['izena']."' style='width:100px' class='fl".$contador." fn".$contador."'></td>
     <td>".$lerroa['id']."</td>
     <td class='aldagarriak'><textarea  name='deskripzioa' disabled class='fl".$contador." fn".$contador."'>".$lerroa['deskripzioa']."</textarea></td>
     <td class='aldagarriak'><input  name='stock' disabled type='number' value='".$lerroa['stock']."' style='width:50px' class='fl".$contador." fn".$contador."'></td>
-    <td class='aldagarriak'><input name='prezioa' disabled type='number' value='".$lerroa['prezioa']."' style='width:50px' class='fl".$contador." fn".$contador."'><input type='hidden' name='paldatu' value='".$lerroa['id']."'></td><td></form>";
+    <td class='aldagarriak'><input name='prezioa' disabled type='number' value='".$lerroa['prezioa']."' style='width:50px' class='fl".$contador." fn".$contador."'><input type='hidden' name='paldatu' value='".$lerroa['id']."'></td><td>";
 $total_imagenes = glob("public/argazkiak/".$lerroa['id']."-{*.jpg,*.gif,*.png}",GLOB_BRACE);
 foreach($total_imagenes as $v){
   $ruta_zatiak = explode("/", $v);
   echo $ruta_zatiak[2]."<br>";
 }
-    echo "<input type='button' class='fl".$contador." fn".$contador."' disabled value='aldatu'><input type='button' class='fl".$contador." fn".$contador."' disabled value='gehitu'></td>
+    echo "<input type='file' id='argazkia' name='imga_berria' disabled class='fl".$contador." fn".$contador."' style='width:200px;display:none'></form></td>
     <td><input id='n".$contador."' class='ezab' type='checkbox' value='".$lerroa['id']."'></td>
     <td><input id='l".$contador."' class='txekeatu' name='aldatu' value='aldatu".$contador."' type='radio'></td>
   </tr>";
