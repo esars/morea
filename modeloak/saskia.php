@@ -60,7 +60,7 @@ class Saskia{
 					break;
 				case "erosi":
 					$this->erosi();
-					$this->saskitikKendu();
+					$this->saskiOrrialdetikKendu();
 				case null:
 					$this->saskiaErakutsi();
 					break;
@@ -81,25 +81,29 @@ class Saskia{
 		}
 		private function saskitikKendu() {
 
-				if(isset($_POST["id_prod"])&&isset($_SESSION['karritoa'])) {
+				if(isset($_POST["id_prod"]) && isset($_SESSION['karritoa'])) {
 			//Ezabatzekoak postak ezabatzeko produktuen id zerrenda ekartzen du ',' banatuak
 			//beraz, explode funtzioarekin array bihurtzen dugu "$ezabatzeko_array" izenarekin 
 			//ondoren for batekin banan banan ezabatzeko
 					$ezabatzeko_array=explode(',',$_POST["id_prod"]);
+					
 			//$max bariableak  arrayaren luzeera esaten digu "sizeOf()" funtzioaren bitartez
 					//$max=sizeOf($ezabatzeko_array);
+					
 					for($i=0;$i<$ezabatzeko_array[0];$i++){
 						$kendu=$ezabatzeko_array[1];
 						$pos=array_search($kendu,$_SESSION['karritoa']);
-						unset($_SESSION['karritoa'][$pos]);
+						($_SESSION['karritoa'][$pos]);
 					}
 					if(sizeOf($_SESSION['karritoa'])<1){
 						Session::saskia_ustu();
 					}
 				}
-				else{
-					Session::saskia_ustu();
-					Mugitu::nora('index.php');
+				else {
+					if(!isset($_POST['erosibotoi'])) {
+						Session::saskia_ustu();
+						Mugitu::nora('index.php');
+					}
 				}
 		}
 		private function saskiaErakutsi($lb = true) {
@@ -121,7 +125,14 @@ class Saskia{
 			echo '">';
 			echo '<thead><tr><th>Izena</th><th>Kopurua</th><th>Prezioa</th>';
 			echo '<th class="zakarra"><form action="" method="post">';
-			echo '<input id="ezabatzeko" class="tooltip" title="Guztiak ezabatu" type="image" name="ekintzak" src="public/img/zakarra_2.png" value="kendu"></form></th></tr></thead><tbody>';
+			echo '<input id="ezabatzeko" class="tooltip" title="Guztiak ezabatu" type="image" name="ekintzak" src="public/img/zakarra_2.png" value="kendu">';
+			
+						/*
+			 * Hau jarri behar da, karritoaren lokuragatik
+			*/
+			echo '<input type="hidden" name="erosibotoi" value="erosibotoi">';
+			echo '</form></th></tr></thead><tbody>';
+
 			if(isset($_SESSION['karritoa'])){
 				$karritoaren_array=array_count_values($_SESSION['karritoa']);
 				$totala=0;
@@ -158,14 +169,11 @@ class Saskia{
 				$this->saskiaErakutsi(false);
 				$erostear = $_SESSION['karritoa'];
 				print_r ($erostear);
+				//~ echo sizeOf($erostear);
 				if(isset($_POST['erosi'])) {
-					$kopurua = 0;
-					for($i=0;$i<count($erostear);$i++) {
-								if($erostear[$i] == $erostear[$i + 1]) {
-									$kopurua = $kopurua + 1;
-								} else {
-									$this->erosketaInsertatu($erostear[$i], $kopurua);
-								}
+					$kopurua = 1;
+					for($i = 0; $i < sizeOf($erostear); $i++) {
+							echo array_search($erostear[$i]);
 					}
 				}
 		}
