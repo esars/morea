@@ -21,12 +21,12 @@
 	<nav>
 		<ul>
 			<a id='my-tooltip' class='tooltip' title='<ul id="kategoriak">
-																																														<li><a href="index.php?kat=Zentroak">Zentroak</a></li>
-																																														<li><a href="index.php?kat=Erramuak">Erramuak</a></li>
-																																														<li><a href="index.php?kat=Funeralak">Funeralak</a></li>
-																																														<li><a href="index.php?kat=Ezkontzak">Ezkontzak</a></li>
-																																														<li><a href="index.php?kat=Matujak">Matujak</a></li>
-																																														<li><a href="index.php?kat=Zuhaitzak">Zuhaitzak</a></li>
+																																														<li><a href="index.php?kat=Zentroak"><i class="fa fa-support"></i>  Zentroak</a></li>
+																																														<li><a href="index.php?kat=Erramuak"><i class="fa fa-gift"></i>  Erramuak</a></li>
+																																														<li><a href="index.php?kat=Funeralak"><i class="fa fa-thumbs-down"></i>  Funeralak</a></li>
+																																														<li><a href="index.php?kat=Ezkontzak"><i class="fa fa-heart"></i>  Ezkontzak</a></li>
+																																														<li><a href="index.php?kat=Matujak"><i class="fa fa-leaf"></i>  Matujak</a></li>
+																																														<li><a href="index.php?kat=Zuhaitzak"><i class="fa fa-tree"></i>  Zuhaitzak</a></li>
 																																													</ul>' href="index.php"><li>Produktuak</li></a>
 			<a class='tooltip' title='Jakin ezazu gehiago guri buruz' href="gu.php"><li>Gu</li></a>
 			<a class='tooltip' title='Aurkitu gaitzazu' href="kokapena.php"><li>Kokapena</li></a>
