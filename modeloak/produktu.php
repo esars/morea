@@ -22,8 +22,9 @@ class Produktu {
 				 * Web orrialdearen konplexutasuna haundituko balitz
 				 * kontrolatzaile bat baino gehiago inplementatu daiteke.
 				*/
-
-				if(isset($_GET['ekintza'])) {
+				if(isset($_POST['bilaketa'])) {
+					$this->bilatu();
+				} else if(isset($_GET['ekintza'])) {
 					$this->handle($_GET['ekintza']);
 				} else if(isset($_GET['kat'])) {
 					$this->kategorizator($_GET['kat']);
@@ -239,6 +240,8 @@ class Produktu {
 			if(!isset($_GET['ekintzak']) /*&& !$_GET['ekintzak'] == "erosi"*/) {
 				if(isset($kategoria)) {
 				 $sql = "SELECT * FROM produktu WHERE kategoria='".$kategoria."';";	
+				} else if(isset($param)) {
+					$sql = "SELECT * FROM produktu WHERE izena LIKE '%".$param."%';";
 				} else {
 					$sql = "SELECT * FROM produktu;";
 				}
@@ -363,8 +366,11 @@ class Produktu {
 		}
 		public function kateaSortu() {
 			$length = 5;
- $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+			$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
    $string = substr( str_shuffle( $chars ), 0, $length );
    return $string;
-}
+		}
+		private function bilatu() {
+			$string = $_POST['bilaketa'];
+		}
 }
