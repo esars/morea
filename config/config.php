@@ -11,6 +11,16 @@ $config = [
     "izen" => "landare",
 ];
 
+$kategoriak = [
+   "Zentroak",
+   "Erramuak",
+   "Funeralak",
+   "Ezkontzak",
+   "Matujak",
+   "Zuhaitzak",
+];
+
+global $kategoriak;
 /*
  * Erroreak izkutatu edo erakutsi
  */

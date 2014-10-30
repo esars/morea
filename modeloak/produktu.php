@@ -25,9 +25,11 @@ class Produktu {
 
 				if(isset($_GET['ekintza'])) {
 					$this->handle($_GET['ekintza']);
-				} else if(isset($_POST['ekintza'])){
+				} else if(isset($_GET['kat'])) {
+					$this->kategorizator($_GET['kat']);
+				} else if(isset($_POST['ekintza'])) {
 					$this->handle($_POST['ekintza']);
-				}else {
+				} else {
 					$this->handle();
 				}
 		}
@@ -86,6 +88,21 @@ class Produktu {
 
 			}
 		}
+		private function kategorizator($param) {
+				/*
+				 * produktu.phpren handle propioa.
+				 * Kategoria bat edo bestea erakusten du. 
+				*/ 
+				global $config;
+
+				$this->db = mysqli_connect(	$config["host"],
+									   	$config["user"],
+									   	$config["pass"],
+										$config["izen"])
+										or die("Error " . mysqli_error($this->db));
+				
+				$this->produktuakErakutsi(null, $kategoria);
+		}
 		private function produktuaGehitu() {
 			if(isset($_POST["pgehitu"])&&isset($_FILES['imga'])) {
 				$arraya=explode('.',$_FILES['imga']['name']);
@@ -103,9 +120,10 @@ class Produktu {
 					$deskr = $this->db->real_escape_string(strip_tags($_POST['deskripzioa'], ENT_QUOTES));
 					$prezioa = $_POST['prezioa'];
 					$stock = $_POST['stock'];
+					$kategoria = $_POST['kategoria'];
 
-					$sql = "INSERT INTO produktu (izena,deskripzioa,prezioa,stock)
-									VALUES ('".$izena."', '".$deskr."', '".$prezioa."', '".$stock."');";
+					$sql = "INSERT INTO produktu (izena,deskripzioa,prezioa,stock,kategoria)
+									VALUES ('".$izena."', '".$deskr."', '".$prezioa."', '".$stock."', '".$kategoria."');";
 					$produktuaSartu = $this->db->query($sql);
 					$azkenProduktua = $this->db->query("SELECT * FROM produktu WHERE izena='".$izena."';")->fetch_object();
 					//argazkia sartu
@@ -203,9 +221,13 @@ class Produktu {
 					$this->erroreak[] = "Ez da ID bat eman";
 			}
 		}
-		private function produktuakErakutsi($param = null) {
+		private function produktuakErakutsi($param = null, $kategoria = null) {
 			if(!isset($_GET['ekintzak']) /*&& !$_GET['ekintzak'] == "erosi"*/) {
-				$sql = "SELECT * FROM produktu;";
+				if(isset($kategoria)) {
+				 $sql = "SELECT * FROM produktu WHERE kategoria='".$kategoria."';";	
+				} else {
+					$sql = "SELECT * FROM produktu;";
+				}
 				$produktuak = $this->db->query($sql);
 
 				/*

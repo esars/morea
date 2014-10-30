@@ -21,12 +21,12 @@
 	<nav>
 		<ul>
 			<a id='my-tooltip' class='tooltip' title='<ul id="kategoriak">
-																																														<li>Zentroak</li>
-																																														<li>Erramuak</li>
-																																														<li>Funeralak</li>
-																																														<li>Ezkontzak</li>
-																																														<li>Matujak</li>
-																																														<li>Olioa</li>
+																																														<li><a href="index.php?kat=Zentroak">Zentroak</a></li>
+																																														<li><a href="index.php?kat=Erramuak">Erramuak</a></li>
+																																														<li><a href="index.php?kat=Funeralak">Funeralak</a></li>
+																																														<li><a href="index.php?kat=Ezkontzak">Ezkontzak</a></li>
+																																														<li><a href="index.php?kat=Matujak">Matujak</a></li>
+																																														<li><a href="index.php?kat=Zuhaitzak">Zuhaitzak</a></li>
 																																													</ul>' href="index.php"><li>Produktuak</li></a>
 			<a class='tooltip' title='Jakin ezazu gehiago guri buruz' href="gu.php"><li>Gu</li></a>
 			<a class='tooltip' title='Aurkitu gaitzazu' href="kokapena.php"><li>Kokapena</li></a>
