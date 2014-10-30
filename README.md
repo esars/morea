@@ -11,6 +11,7 @@ Erabilitako liburutegiak
 
 * Pure CSS (Yahoo)
 * Featherlight jQuery plugin
+* font-awesome 4.2.0
 
 Irudiak gehitu produktuei
 -------------------------
