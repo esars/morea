@@ -60,7 +60,6 @@ class Saskia{
 					break;
 				case "erosi":
 					$this->erosi();
-					$this->saskitikKendu();
 				case null:
 					$this->saskiaErakutsi();
 					break;
@@ -154,7 +153,13 @@ class Saskia{
 					}
 				}
 				echo '</tbody><thead><tr><th>Guztira:'.$totala.' euro</th>';
-				echo '<th colspan="3" class="erosi"><button class="erosibotoi" onClick="location.href=\'index.php?ekintzak=erosi\'">Erosia</button></th>';
+				echo '<th colspan="3" class="erosi">';
+				if(!$lb) {
+				//Lighbox barruan ez dagoenean erosi botoi ezberdina
+					echo '<form action="" method="post"><input type="hidden" name="erosi" value="bai"><button class="erosibotoi" type="submit" name="ekintzak" value="erosi">Erosketa egin</button></form></th>';
+			}
+			else{
+				echo '<button class="erosibotoi" onClick="location.href=\'index.php?ekintzak=erosi\'">Erosia</button></th>';}
 				echo '</tr></thead>';
 				echo '</table>';
 			}
@@ -166,34 +171,38 @@ class Saskia{
 			}
 		}
 		private function erosi() {
+				if(!isset($_POST['erosi'])&&isset($_SESSION['karritoa'])){
 				$this->saskiaErakutsi(false);
-				$erostear = $_SESSION['karritoa'];
-				print_r ($erostear);
-				//~ echo sizeOf($erostear);
-				if(isset($_POST['erosi'])) {for($i=0;$i<=sizeof($erostear-1);$i++) {
-									$this->erosketaInsertatu($erostear[$i]);
-					$kopurua = 1;
-					for($i = 0; $i < sizeOf($erostear); $i++) {
-							echo array_search($erostear[$i]);
-					}
+				$erostear = $_SESSION['karritoa'];}
+				//print_r ($erostear);
+				//echo Session::get('id');
+				else if(isset($_POST['erosi'])&&isset($_SESSION['karritoa'])) {
+					$erostear = $_SESSION['karritoa'];
+					$kodea=$this->kodigoaSortu();
+					for($i=0;$i<=sizeof($erostear)-1;$i++) {
+					$this->erosketaInsertatu($erostear[$i],$kodea);
+
 				}
+				$this->saskitikKendu();
+				$this->mezuak[] = "Erosketa arrakastaz egina";
 			}
 		}
-		private function erosketaInsertatu($id, $kantitatea) {
+		private function erosketaInsertatu($ida,$kodea) {
 				/*
 				 * salmentak taulara informazioa gehitu, lerro bat
 				 * gehitzen den bakoitzean exekutatuko da, bi 
 				 * parametroak behar-beharrezkoak dira.
 				 */
 				 $sql = "INSERT INTO salmentak
-				         (id_er, id_prod)
+				         (id_er, id_prod, codigo)
 				         VALUES
-				         ('".Session::get($id)."', '".$id."')";
+				         ('".Session::get('id')."', '".$ida."', '".$kodea."')";
 				 $sartu = $this->db->query($sql);
-				 if($sartu) {
-							$this->mezuak[] = "Arrakastaz erosi d(it)uzu produktua(k)";
-					} else {
-							$this->erroreak[] = "Errorea eskaera egitean. Saia zaitez berriro.";
-					}
 		}
+			public function kodigoaSortu() {
+			$length = 10;
+ $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+   $string = substr( str_shuffle( $chars ), 0, $length );
+   return $string;
+}
 }

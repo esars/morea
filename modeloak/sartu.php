@@ -29,7 +29,7 @@ class Sartu {
 
 			if(!$this->db->connect_errno) {
 				$izena = $this->db->real_escape_string($_POST['email']);
-				$sql = "SELECT izena, email, pasahitza_hash, pasahitza_salt
+				$sql = "SELECT izena, email, pasahitza_hash, pasahitza_salt, id
 						FROM erabiltzaile
 						WHERE izena = '" . $izena . "' OR email = '" . $izena . "';";
 				$existitzenbada = $this->db->query($sql);
@@ -47,7 +47,7 @@ class Sartu {
 					if(password_verify($_POST['pasahitza'].$emaitza->pasahitza_salt, $emaitza->pasahitza_hash)) {
 						Session::set('email', $emaitza->email);
 						Session::set('izena', $emaitza->izena);
-					//	Session::set('id', $emaitza->id);
+						Session::set('id', $emaitza->id);
 						$this->mezuak[] = "Egunon, ".Session::get('izena');
 					} else {
 						$this->erroreak[] = "Pasahitz okerra";
