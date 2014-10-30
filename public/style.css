@@ -249,7 +249,7 @@ table tr{
 #kategoriak > li > a {
 	color: white;
 	text-decoration: none;
-	transition: 200ms all linear;
+	transition: 200ms all ease-in-out;
 }
 #kategoriak > li > a:hover {
 	color: #2A363B;

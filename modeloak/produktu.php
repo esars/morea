@@ -63,7 +63,6 @@ class Produktu {
 					break;
 				case "kendu":
 					if($ad) {
-						include("bistak/produktua_kendu.php");
 						$this->produktuaKendu($_POST['id']);
 					} else {
 						$this->erroreak[] = "Ez zara kudeatzailea.";
@@ -74,6 +73,9 @@ class Produktu {
 					break;
 				case "kudeatzaile":
 						include("bistak/kudeatu.php");
+					break;
+				case "argazkia_kendu":
+						$this->argazkiaKendu();
 					break;
 				case "aldatu":
 					if($ad) {
@@ -101,18 +103,22 @@ class Produktu {
 										$config["izen"])
 										or die("Error " . mysqli_error($this->db));
 				
-				$this->produktuakErakutsi(null, $kategoria);
+				$this->produktuakErakutsi(null, $param);
 		}
 		private function produktuaGehitu() {
+			//formulariotik datorrela validatu
+        if($this->formaBalidatu()){
+			//argazkia validatu
 			if(isset($_POST["pgehitu"])&&isset($_FILES['imga'])) {
 				$arraya=explode('.',$_FILES['imga']['name']);
 					$formatua=$arraya[sizeof($arraya)-1];
-					if($formatua!='png'&&$formatua!='jpg'&&$formatua!='jpeg'&&$formatua!='tif'){
+					if($formatua!='png'&&$formatua!='jpg'&&$formatua!='jpeg'&&$formatua!='tif'&&$formatua!='JPG'&&$formatua!='JPEG'){
 						$validatua=false;
 					}
 					else{
 						$validatua=true;
 					}
+			
 				if($this->produktuaBalidatu()&&$validatua) {
 
 					//	HTMLa eta JavaScripta sartu bada, testu normalean bihurtu	//
@@ -150,10 +156,11 @@ class Produktu {
 			else{
 				$this->erroreak[] = "Argazkia sartu beharrekoa da";
 			}
-
+			}
 		}
 		private function produktuaKendu($id) {
-
+			//formulariotik datorrela validatu
+        if($this->formaBalidatu()){
 			// KONFIRMAZIOA PASA ONDOREN
 
 			if(isset($_POST['pborratu'])) {
@@ -162,7 +169,7 @@ class Produktu {
 				$sql = "DELETE FROM produktu WHERE id='".$id_ak[$i]."';";
 
 				$borratu = $this->db->query($sql);
-				$total_imagenes = glob("public/argazkiak/".$id_ak[$i]."-{*.jpg,*.gif,*.png}",GLOB_BRACE);
+				$total_imagenes = glob("public/argazkiak/".$id_ak[$i]."-{*.jpg,*.gif,*.png,*.JPG,*.JPEG}",GLOB_BRACE);
 				foreach($total_imagenes as $v){  
 				unlink($v);}
 				}
@@ -174,12 +181,15 @@ class Produktu {
 				}
 			}
 		}
+		}
 		private function produktuaAldatu($id) {
+			//formulariotik datorrela validatu
+        if($this->formaBalidatu()){
 			if(isset($id)) {
 				//echo '<script>alert("'.$_FILES['imga_berria']['name'].'")</script>';
 				$arraya=explode('.',$_FILES['imga_berria']['name']);
 				$formatua=$arraya[sizeof($arraya)-1];
-				if($_FILES['imga_berria']['name']!=null&&$formatua!='png'&&$formatua!='jpg'&&$formatua!='jpeg'&&$formatua!='tif'){
+				if($_FILES['imga_berria']['name']!=null&&$formatua!='png'&&$formatua!='jpg'&&$formatua!='jpeg'&&$formatua!='tif'&&$formatua!='JPG'&&$formatua!='JPEG'){
 						$validatua=false;
 					}
 					else{
@@ -199,11 +209,15 @@ class Produktu {
 									WHERE id='".$id."';";
 						$produktuaSartu = $this->db->query($sql);
 						if($_FILES['imga_berria']['name']!=null){
-							$total_imagenes = glob("public/argazkiak/".$id."-{*.jpg,*.gif,*.png}",GLOB_BRACE);
-							$urrengo_argazkia=sizeof($total_imagenes)+1;
+							$total_imagenes = glob("public/argazkiak/".$id."-{*.jpg,*.gif,*.png,*.JPG,*.JPEG}",GLOB_BRACE);
+							$urrengo_argazkia=$this->kateaSortu();
 							$rutaEnServidor='public/argazkiak';
 							$rutaTemporal=$_FILES['imga_berria']['tmp_name'];
 							$nombreImagen=$_FILES['imga_berria']['name'];
+							$total_imagenes_1 = glob("public/argazkiak/".$id."-{1.jpg,1.gif,1.png,1.jpeg,1.JPG,1.JPEG}",GLOB_BRACE);
+							if(sizeof($total_imagenes_1)==0){
+								$urrengo_argazkia=1;
+							}
 							$rutaDestino=$rutaEnServidor.'/'.$id.'-'.$urrengo_argazkia.'.'.$formatua;
 							move_uploaded_file($rutaTemporal,$rutaDestino);
 						}
@@ -220,7 +234,7 @@ class Produktu {
 			} else {
 					$this->erroreak[] = "Ez da ID bat eman";
 			}
-		}
+		}}
 		private function produktuakErakutsi($param = null, $kategoria = null) {
 			if(!isset($_GET['ekintzak']) /*&& !$_GET['ekintzak'] == "erosi"*/) {
 				if(isset($kategoria)) {
@@ -307,6 +321,27 @@ class Produktu {
 				return true;
 			}
 		}
+		private function formaBalidatu() {
+			if(isset($_SESSION['codigo'])) {
+            if ($_POST['codigo'] == $_SESSION['codigo']) {
+                return false;
+            } else {
+                $_SESSION['codigo'] = $_POST['codigo'];
+                return true;
+            }
+        } else {
+            $_SESSION['codigo'] = $_POST['codigo'];
+           		return true;
+        }
+		}
+		private function argazkiaKendu() {
+			//formulariotik datorrela validatu
+        if($this->formaBalidatu()){
+			if(isset($_POST['ruta_borratzeko_argazkiana'])) {
+				unlink($_POST['ruta_borratzeko_argazkiana']);
+			}
+		}
+		}
 		public function zeozeLortu($kanpo) {
 				// ID eta kanpo izen bat emanda balioa itzultzen du
 				$id = $_GET['id'];
@@ -326,4 +361,10 @@ class Produktu {
 							break;
 				}
 		}
+		public function kateaSortu() {
+			$length = 5;
+ $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+   $string = substr( str_shuffle( $chars ), 0, $length );
+   return $string;
+}
 }

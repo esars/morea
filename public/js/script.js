@@ -5,9 +5,12 @@ $('#adminarg').mouseout(ber_aldatu_admin);
 $('#saski').hover(aldatu_saski);
 $('#saski').mouseout(ber_aldatu_saski);
 $('.tooltip').tooltipster({contentAsHTML:'true',position:'bottom'});
+$('.tooltip2').tooltipster({contentAsHTML:'true',position:'bottom',});
+$('.tooltip3').tooltipster({contentAsHTML:'true',position:'right',animation:'grow',content:'ezabatu',});
 $('.karrito_gehitu').click(karritora_gehitu);
 $('#ezkutatua').load('bistak/saskia_bista.php');
 $('#admin').load('bistak/admin.php');
+$('.borratzekoa').click(argazkia_ezabatu);
 $("button[name='erakutsi']").hover(erakutsi_info);
 function aldatu_erab () {
 	//$('#erab').fadeToggle(2000,0.5);
@@ -84,6 +87,7 @@ function ezabatu () {
 	$(this).parent().next().children('input:radio').removeAttr('checked');
 	$('.f'+id).attr('disabled','disabled');
 	$('.f'+id+':file').css('display','none');
+	$('.sf'+id).css('display','none');
 		if($(this).parent().next().children('input:radio').attr('id')==aurreko_id){
 			aurreko_id=''
 		}
@@ -97,12 +101,14 @@ function aldatu () {
 	if(aurreko_id!=id&&aurreko_id!=''){
 		$('.f'+aurreko_id).attr('disabled','disabled');
 		$('.f'+aurreko_id+':file').css('display','none');
+		$('.sf'+aurreko_id).css('display','none');
 		if(aurreko_id!='0'){
 		$('#'+aurreko_id).parent().parent().css('background-color','white');}
 	}
 	if($(this).is(':checked')){
 	$('.f'+id).removeAttr('disabled');
 	$('.f'+id+':file').css('display','block');
+	$('.sf'+id).css('display','inline-block');
 	$(this).parent().parent().css('background-color','grey');
 	$(this).parent().prev().children('input:checkbox').removeAttr('checked');
 	$('.txekeatu:eq(0)').css('background-color','green');
@@ -111,7 +117,12 @@ function aldatu () {
 else{
 	$('.f'+id).attr('disabled','disabled');
 	$('.f'+id+':file').css('display','none');
+	$('.sf'+id).css('display','none');
 	$(this).parent().parent().css('background-color','white');
 	aurreko_id='';
 }
+}
+function argazkia_ezabatu(){
+	$('#argazki_bakarraren_id').val($(this).attr('id'));
+	$('#argazki_bakarraren_forma').submit();
 }

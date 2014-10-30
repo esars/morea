@@ -60,14 +60,6 @@ foreach($total_imagenes as $v){
     <th><input id="foo" style='width:50px' type="number" min="0" step="any" name="stock" placeholder="Stock"></th>
     <th> <input id="prezioa" style='width:50px' required type="number" min="0" step="any" placeholder="Prezioa" name="prezioa"></th>
     <th><input type="file" id='argazkia' name="imga" required class='primary-button' style='width:200px'></th>
-    <th><select name="kategoria">
-		<option value="Zentroak">Zentroak</option>
-		<option value="Erramuak">Erramuak</option>
-		<option value="Funeralak">Funeralak</option>
-		<option value="Ezkontzak">Ezkontzak</option>
-		<option value="Matujak">Matujak</option>
-		<option value="Zuhaitzak">Zuhaitzak</option>
-    </select></th>
     <input type="hidden" name='pgehitu'>
     <input type="hidden" name='codigo' value='<?php echo md5(uniqid(rand(), true)) ?>'>
     <input type="hidden" name='ekintza' value='gehitu'>
