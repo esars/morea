@@ -9,6 +9,7 @@ $('#saski').mouseout(ber_aldatu_saski);
 $('.tooltip').tooltipster({contentAsHTML:'true',position:'bottom'});
 $('.tooltip2').tooltipster({contentAsHTML:'true',position:'bottom',});
 $('.tooltip3').tooltipster({contentAsHTML:'true',position:'right',animation:'grow',content:'ezabatu',});
+$('.tooltip4').tooltipster({contentAsHTML:'true',position:'bottom-right',animation:'swing',content:'Argazki berria gehitu',});
 $('.karrito_gehitu').click(karritora_gehitu);
 $('#ezkutatua').load('bistak/saskia_bista.php');
 $('#admin').load('bistak/admin.php');
@@ -24,6 +25,7 @@ function ber_aldatu_erab () {
 function aldatu_bilatu () {
 	//$('#erab').fadeToggle(2000,0.5);
 	$('#bilatu').attr('src','public/img/bilatu_koloreztatua.png');
+	$('#bilatu-input').focus();
 }
 function ber_aldatu_bilatu () {
 	$('#bilatu').attr('src','public/img/bilatu.png');

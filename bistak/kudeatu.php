@@ -6,6 +6,7 @@
     <th>Deskripzioa</th>
     <th>Stock</th>
     <th>Prezioa</th>
+    <th>Kategoria</th>
     <th><i class='fa fa-camera fa-l'>Argazkiak</i><form id='argazki_bakarraren_forma' action='kudeatzailea.php' method='post'>
       <input id='argazki_bakarraren_id' type='hidden' name='ruta_borratzeko_argazkiana'>
       <input type="hidden" name='codigo' value='<?php echo md5(uniqid(rand(), true)) ?>'><input type='hidden' name='ekintza' value='argazkia_kendu'></form></th>
@@ -37,7 +38,15 @@ global $config;
     <td class='aldagarriak'><textarea  name='deskripzioa' disabled class='fl".$contador." fn".$contador."'>".$lerroa['deskripzioa']."</textarea>
     </td><td class='aldagarriak'><input  name='stock' disabled type='number' value='".$lerroa['stock']."' style='width:50px' class='fl".$contador." fn".$contador."'></td>
     <td class='aldagarriak'><input name='prezioa' disabled type='number' value='".$lerroa['prezioa']."' style='width:50px' class='fl".$contador." fn".$contador."'>
-    <input type='hidden' name='paldatu' value='".$lerroa['id']."'></td><td>";
+    <input type='hidden' name='paldatu' value='".$lerroa['id']."'></td><td><select disabled name='kategoria' class='fl".$contador." fn".$contador."'>
+    <option selected value='".$lerroa['kategoria']."'>".$lerroa['kategoria']."</option>
+    <option value='Zentroak'>Zentroak</option>
+    <option value='Erramuak'>Erramuak</option>
+    <option value='Funeralak'>Funeralak</option>
+    <option value='Ezkontzak'>Ezkontzak</option>
+    <option value='Matujak'>Matujak</option>
+    <option value='Zuhaitzak'>Zuhaitzak</option>
+    </select></td><td>";
 $total_imagenes = glob("public/argazkiak/".$lerroa['id']."-{*.jpg,*.gif,*.png,*.JPG,*.JPEG}",GLOB_BRACE);
 foreach($total_imagenes as $v){
   $ruta_zatiak = explode("/", $v);
@@ -45,7 +54,7 @@ foreach($total_imagenes as $v){
   title="<img width=\'100px\' src=\'public/argazkiak/'.$ruta_zatiak[2].'\'>">'.$ruta_zatiak[2]."</span>
   <i id='public/argazkiak/".$ruta_zatiak[2]."' class='tooltip3 fa fa-trash fa-l sfl".$contador." sfn".$contador." borratzekoa' style='color:red;display:none;cursor:pointer'></i><br>";
 }
-    echo "<input type='file' id='argazkia' name='imga_berria' disabled class='fl".$contador." fn".$contador."' style='width:200px;display:none'></form></td>
+    echo "<input type='file' id='argazkia' name='imga_berria' disabled class='tooltip4 fl".$contador." fn".$contador."' style='width:200px;display:none'></form></td>
     <td><input id='n".$contador."' class='ezab' type='checkbox' value='".$lerroa['id']."'></td>
     <td><input id='l".$contador."' class='txekeatu' name='aldatu' value='aldatu".$contador."' type='radio'></td>
   </tr>";
@@ -59,7 +68,6 @@ foreach($total_imagenes as $v){
     <th colspan='2'><textarea id="deskripzioa" name="deskripzioa" required placeholder="Deskripzioa"></textarea></th>
     <th><input id="foo" style='width:50px' type="number" min="0" step="any" name="stock" placeholder="Stock"></th>
     <th> <input id="prezioa" style='width:50px' required type="number" min="0" step="any" placeholder="Prezioa" name="prezioa"></th>
-    <th><input type="file" id='argazkia' name="imga" required class='primary-button' style='width:200px'></th>
     <th><select name="kategoria">
 		<option value="Zentroak">Zentroak</option>
 		<option value="Erramuak">Erramuak</option>
@@ -68,6 +76,7 @@ foreach($total_imagenes as $v){
 		<option value="Matujak">Matujak</option>
 		<option value="Zuhaitzak">Zuhaitzak</option>
     </select></th>
+    <th><input type="file" id='argazkia' name="imga" required class='primary-button' style='width:200px'></th>
     <input type="hidden" name='pgehitu'>
     <input type="hidden" name='codigo' value='<?php echo md5(uniqid(rand(), true)) ?>'>
     <input type="hidden" name='ekintza' value='gehitu'>
