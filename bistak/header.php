@@ -45,7 +45,7 @@
 			?>
 			<?php
 			if(Sartu::adminBarruan()) {
-							?><a class="tooltip" title='Datubasea kudeatu' href="kudeatzailea.php?ekintza='kudeatzaile'"><li><img id='adminarg' src="public/img/admin.png" alt="Karritoan duzuna ikusi"></li></a><?php
+							?><a class="tooltip ikono" title='Datubasea kudeatu' href="kudeatzailea.php?ekintza='kudeatzaile'"><li><img id='adminarg' src="public/img/admin.png" alt="Karritoan duzuna ikusi"></li></a><?php
 			}
 			?>
 		</ul>
