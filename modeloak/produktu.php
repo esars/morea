@@ -23,7 +23,7 @@ class Produktu {
 				 * kontrolatzaile bat baino gehiago inplementatu daiteke.
 				*/
 				if(isset($_POST['bilaketa'])) {
-					$this->bilatu();
+					$this->produktuakErakutsi($_POST['bilaketa'], null);
 				} else if(isset($_GET['ekintza'])) {
 					$this->handle($_GET['ekintza']);
 				} else if(isset($_GET['kat'])) {
@@ -241,7 +241,8 @@ class Produktu {
 				if(isset($kategoria)) {
 				 $sql = "SELECT * FROM produktu WHERE kategoria='".$kategoria."';";	
 				} else if(isset($param)) {
-					$sql = "SELECT * FROM produktu WHERE izena LIKE '%".$param."%';";
+					$sql = "SELECT * FROM produktu WHERE izena LIKE '%".$param."%' OR
+					                               deskripzioa LIKE '%".$param."%';";
 				} else {
 					$sql = "SELECT * FROM produktu;";
 				}
@@ -252,6 +253,13 @@ class Produktu {
 					* Kasu hontan soilik produktu bakoitzaren
 					* argazki bakar bat erakutsiko dugu
 				*/
+				
+				if(isset($param)) {
+						if(!$produktuak) {
+								$this->erroreak[] = "Bilaketak ez du emaitzarik eman.";
+						}
+				}
+				
 				echo "<style scoped>.button-xsmall{font-size: 60%;}.button-success{background: rgb(28, 184, 65);}</style>";
 				while($lerroa = $produktuak->fetch_assoc()) {
 
@@ -369,8 +377,5 @@ class Produktu {
 			$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
    $string = substr( str_shuffle( $chars ), 0, $length );
    return $string;
-		}
-		private function bilatu() {
-			$string = $_POST['bilaketa'];
 		}
 }

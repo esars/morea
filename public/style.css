@@ -192,9 +192,8 @@ table tr{
 .produktubat img{
 	height:200px;
 	width: 190px;
-	margin: auto;
+	margin: 7px 0px;
 	border-radius: 5px 5px 0px 0px;
-	padding: 5px;
 }
 .produktubat button{
 	margin-left: 5px;
@@ -245,7 +244,6 @@ table tr{
 	padding: 10px 0px 5px 5px;
 	padding-left: 0px;
 	width: 100%;
-	text-align: center;
 }
 #kategoriak > li > a {
 	color: white;
@@ -274,4 +272,11 @@ table tr{
 }
 #bilatuform button {
 	float:right;
+	border: none;
+}
+.ikono {
+	margin-right: 35px;
+}
+.featherlight-content {
+	border-radius: 3px;
 }
