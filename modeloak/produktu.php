@@ -315,22 +315,22 @@ class Produktu {
 			if($query) {
 				$produktua = $query->fetch_object();
 				$total_imagenes = glob("../public/argazkiak/".$produktua->id."-{*.jpg,*.gif,*.png}",GLOB_BRACE);
-				echo "<div id='info'>";
+				echo "<div id='info'><div id='testu'>";
 				echo "<h1>".$produktua->izena."</h1>";
 				echo "<p>Deskripzioa: ".$produktua->deskripzioa."</p>";
 				echo "<p>Stock: ".$produktua->stock."</p>";
-				echo "<p>Prezioa: ".$produktua->prezioa." euro</p>";
-				if(Sartu::adminBarruan()) {
-					echo "<a href='kudeatzailea.php'>Produktua aldatu</a>";
-				}
+				echo "<p>Prezioa: ".$produktua->prezioa." €</p>";
+				echo "</div>";
+				echo "<div id='argazki'>";
 				foreach($total_imagenes as $v){  
 				$ruta_zatiak = explode("/", $v);
-				echo '<img src="'.$ruta_zatiak[1].'/'.$ruta_zatiak[2].'/'.$ruta_zatiak[3].'" border="0" style="width:100px;float:left;margin:10px;" />';  
-}  				echo "</div>";
+				echo '<img class="pure-img" src="'.$ruta_zatiak[1].'/'.$ruta_zatiak[2].'/'.$ruta_zatiak[3].'" border="0" style="width:100px;float:left;margin:10px;" />';  
+}  				echo "</div></div>";
 			} else {
 				$this->erroreak[] = "Landare hau ez da existitzen";
 				Mugitu::nora('index.php');
 			}
+			echo "<div style='clear: both'></div>";
 		}
 		private function produktuaBalidatu() {
 			if(strlen($_POST['pizena']) < 3 || empty($_POST['pizena'])) {
@@ -393,6 +393,11 @@ class Produktu {
 				}
 		}
 		public function kateaSortu() {
+			
+			/*
+			 * Irudiei ausazko string-ak gehitzeko
+			*/
+			
 			$length = 5;
 			$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
    $string = substr( str_shuffle( $chars ), 0, $length );

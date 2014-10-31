@@ -57,5 +57,6 @@
 	<h6>All rights reserved</h6>
 	<script src="public/js/script.js"></script>
 </footer>
+</div>
 </body>
 </html>

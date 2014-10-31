@@ -16,11 +16,12 @@
 	<link rel="shortcut icon" type="image/png" href="public/mariolorea.png">
 </head>
 <body>
+	<div id="edukia">
 	<header>
 		<img src="public/img/logoa.png" alt="Logoa" id="logoa" class="pure-img">
 	<nav>
 		<ul>
-			<a id='my-tooltip' class='tooltip' title='
+			<a id='my-tooltip' class='tooltip' title='</a>
 																													<ul id="kategoriak">
 																													<li><a href="index.php?kat=Zentroak"><i class="fa fa-support"></i>  Zentroak</a></li>
 																													<li><a href="index.php?kat=Erramuak"><i class="fa fa-gift"></i>  Erramuak</a></li>
