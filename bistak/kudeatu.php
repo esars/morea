@@ -1,4 +1,4 @@
-<table class='pure-table' style='margin:auto;width:90%;background-color:white'>
+<table class='pure-table' style='margin:auto;width:90%;background-color:white' id='kudeatzailea'>
   <thead>
   <tr>
     <th>Izena</th>
@@ -68,7 +68,7 @@ foreach($total_imagenes as $v){
     <th colspan='2'><textarea id="deskripzioa" name="deskripzioa" required placeholder="Deskripzioa"></textarea></th>
     <th><input id="foo" style='width:50px' type="number" min="0" step="any" name="stock" placeholder="Stock"></th>
     <th> <input id="prezioa" style='width:50px' required type="number" min="0" step="any" placeholder="Prezioa" name="prezioa"></th>
-    <th><select name="kategoria">
+    <th><select name="kategoria" class="selekat">
 		<option value="Zentroak">Zentroak</option>
 		<option value="Erramuak">Erramuak</option>
 		<option value="Funeralak">Funeralak</option>

@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="public/pure.css">
 	<link rel="stylesheet" type="text/css" href="public/featherlight.min.css">
 	<link rel="stylesheet" type="text/css" href="public/tooltipster.css">
-	<link href='http://fonts.googleapis.com/css?family=Lobster|Cabin:400,500' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lobster|Magra:400,500' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="public/font-awesome-4.2.0/css/font-awesome.min.css">
 	<script src="public/js/jquery.js"></script>
 	<script src="public/js/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
