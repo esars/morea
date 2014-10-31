@@ -6,6 +6,7 @@
     <th>Deskripzioa</th>
     <th>Stock</th>
     <th>Prezioa</th>
+    <th>Kategoria</th>
     <th><i class='fa fa-camera fa-l'>Argazkiak</i><form id='argazki_bakarraren_forma' action='kudeatzailea.php' method='post'>
       <input id='argazki_bakarraren_id' type='hidden' name='ruta_borratzeko_argazkiana'>
       <input type="hidden" name='codigo' value='<?php echo md5(uniqid(rand(), true)) ?>'><input type='hidden' name='ekintza' value='argazkia_kendu'></form></th>

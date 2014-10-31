@@ -28,7 +28,9 @@ class Produktu {
 					$this->handle($_GET['ekintza']);
 				} else if(isset($_GET['kat'])) {
 					$this->kategorizator($_GET['kat']);
-				} else if(isset($_POST['ekintza'])) {
+				} else if(isset($_GET['bilaketa'])) {
+					$this->parametrizatzailea($_GET['bilaketa']);
+				}else if(isset($_POST['ekintza'])) {
 					$this->handle($_POST['ekintza']);
 				} else {
 					$this->handle();
@@ -105,6 +107,22 @@ class Produktu {
 										or die("Error " . mysqli_error($this->db));
 				
 				$this->produktuakErakutsi(null, $param);
+		}
+		private function parametrizatzailea($parametroa) {
+			//echo '<script>alert("apa")</script>';
+				/*
+				 * produktu.phpren handle propioa.
+				 * Kategoria bat edo bestea erakusten du. 
+				*/ 
+				global $config;
+
+				$this->db = mysqli_connect(	$config["host"],
+									   	$config["user"],
+									   	$config["pass"],
+										$config["izen"])
+										or die("Error " . mysqli_error($this->db));
+				
+				$this->produktuakErakutsi($parametroa, null);
 		}
 		private function produktuaGehitu() {
 			//formulariotik datorrela validatu
@@ -206,7 +224,8 @@ class Produktu {
 						$deskr = $_POST['deskripzioa'];
 						$prezioa = $_POST['prezioa'];
 						$stock = $_POST['stock'];
-						$sql = "update produktu set izena='".$izena."',deskripzioa='".$deskr."',prezioa='".$prezioa."',stock='".$stock."'
+						$kategoria = $_POST['kategoria'];
+						$sql = "update produktu set izena='".$izena."',deskripzioa='".$deskr."',prezioa='".$prezioa."',stock='".$stock."',kategoria='".$kategoria."'
 									WHERE id='".$id."';";
 						$produktuaSartu = $this->db->query($sql);
 						if($_FILES['imga_berria']['name']!=null){
@@ -237,10 +256,12 @@ class Produktu {
 			}
 		}}
 		private function produktuakErakutsi($param = null, $kategoria = null) {
+			//echo '<script>alert("apa")</script>';
 			if(!isset($_GET['ekintzak']) /*&& !$_GET['ekintzak'] == "erosi"*/) {
 				if(isset($kategoria)) {
 				 $sql = "SELECT * FROM produktu WHERE kategoria='".$kategoria."';";	
 				} else if(isset($param)) {
+
 					$sql = "SELECT * FROM produktu WHERE izena LIKE '%".$param."%';";
 				} else {
 					$sql = "SELECT * FROM produktu;";

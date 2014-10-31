@@ -31,8 +31,17 @@
 																												</ul>' href="index.php"><li>Produktuak</li></a>
 			<a class='tooltip' title='Jakin ezazu gehiago guri buruz' href="gu.php"><li>Gu</li></a>
 			<a class='tooltip' title='Aurkitu gaitzazu' href="kokapena.php"><li>Kokapena</li></a>
-			<a class='tooltip' title='Login / Izena eman' href="#" data-featherlight="#mylightbox"><li><img id='erab' src="public/img/erab.png" alt="Sartu edo erregistratu"></li></a>
-			<a class='tooltip' title='<span>Bilatu: </span><form id="bilatuform" action="" method="post"><input id="bilatu-input" type="text" name="bilaketa"><button type="submit"><i class="fa fa-search"></i></button></form>'><li><img id='bilatu' src="public/img/bilatu.png" alt="Bilatu"></li></a>
+			<?php
+			if(isset($_SESSION['izena'])){
+							?>			<a class='tooltip' title='Zure profila' href="profila.php" data-featherlight="#mylightbox"><li><img id='erab' src="public/img/erab.png" alt="Sartu edo erregistratu"></li></a>
+<?php
+			}
+			else{
+							?><a class='tooltip' title='Login / Izena eman' href="#" data-featherlight="#mylightbox"><li><img id='erab' src="public/img/erab.png" alt="Sartu edo erregistratu"></li></a>
+<?php
+			}
+			?>
+			<a class='tooltip' title='<span>Bilatu: </span><form id="bilatuform" action="" method="get"><input id="bilatu-input" type="text" name="bilaketa"><button type="submit"><i class="fa fa-search"></i></button></form>'><li><img id='bilatu' src="public/img/bilatu.png" alt="Bilatu"></li></a>
 			<a class='tooltip' title='Saskia bistaratu' href="#" data-featherlight="#saskia"><li><img id='saski' src="public/img/shopping.png" alt="Karritoan duzuna ikusi"></li></a>
 			<?php
 			if(Sartu::adminBarruan()) {

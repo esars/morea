@@ -59,6 +59,8 @@ class Saskia{
 					$this->saskiaErakutsi();
 					break;
 				case "erosi":
+					if(isset($_POST['ekintzak'])&&$_POST['ekintzak']=='kendu'){
+						$this->saskitikKendu();}
 					$this->erosi();
 				case null:
 					$this->saskiaErakutsi();
@@ -79,8 +81,8 @@ class Saskia{
 				}
 		}
 		private function saskitikKendu() {
-
 				if(isset($_POST["id_prod"]) && isset($_SESSION['karritoa'])) {
+
 			//Ezabatzekoak postak ezabatzeko produktuen id zerrenda ekartzen du ',' banatuak
 			//beraz, explode funtzioarekin array bihurtzen dugu "$ezabatzeko_array" izenarekin 
 			//ondoren for batekin banan banan ezabatzeko
@@ -92,14 +94,15 @@ class Saskia{
 					for($i=0;$i<$ezabatzeko_array[0];$i++){
 						$kendu=$ezabatzeko_array[1];
 						$pos=array_search($kendu,$_SESSION['karritoa']);
-						($_SESSION['karritoa'][$pos]);
+						unset($_SESSION['karritoa'][$pos]);
 					}
 					if(sizeOf($_SESSION['karritoa'])<1){
 						Session::saskia_ustu();
 					}
 				}
 				else {
-					if(!isset($_POST['erosibotoi'])) {
+
+					if(isset($_POST['erosibotoi'])) {
 						Session::saskia_ustu();
 						Mugitu::nora('index.php');
 					}
@@ -156,10 +159,10 @@ class Saskia{
 				echo '<th colspan="3" class="erosi">';
 				if(!$lb) {
 				//Lighbox barruan ez dagoenean erosi botoi ezberdina
-					echo '<form action="" method="post"><input type="hidden" name="erosi" value="bai"><button class="erosibotoi" type="submit" name="ekintzak" value="erosi">Erosketa egin</button></form></th>';
+					echo '<form action="" method="post"><input type="hidden" name="erosibotoi" value="erosibotoi"><input type="hidden" name="codigo" value="'.md5(uniqid(rand(), true)).'"><input type="hidden" name="erosi" value="bai"><button class="erosibotoi" type="submit" name="ekintzak" value="erosi">Erosketa egin</button></form></th>';
 			}
 			else{
-				echo '<button class="erosibotoi" onClick="location.href=\'index.php?ekintzak=erosi\'">Erosia</button></th>';}
+				echo '<form action="" method="get"><button class="erosibotoi" type="submit" name="ekintzak" value="erosi">Erosketa egin</button></form></th>';}
 				echo '</tr></thead>';
 				echo '</table>';
 			}
@@ -171,6 +174,7 @@ class Saskia{
 			}
 		}
 		private function erosi() {
+			if($this->formaBalidatu()){
 				if(!isset($_POST['erosi'])&&isset($_SESSION['karritoa'])){
 				$this->saskiaErakutsi(false);
 				$erostear = $_SESSION['karritoa'];}
@@ -178,26 +182,43 @@ class Saskia{
 				//echo Session::get('id');
 				else if(isset($_POST['erosi'])&&isset($_SESSION['karritoa'])) {
 					$erostear = $_SESSION['karritoa'];
+					$karritoaren_array=array_count_values($_SESSION['karritoa']);
 					$kodea=$this->kodigoaSortu();
-					for($i=0;$i<=sizeof($erostear)-1;$i++) {
-					$this->erosketaInsertatu($erostear[$i],$kodea);
-
+				foreach($karritoaren_array as $ida=>$kantitatea){
+				$this->erosketaInsertatu($ida,$kodea,$kantitatea);
 				}
 				$this->saskitikKendu();
 				$this->mezuak[] = "Erosketa arrakastaz egina";
 			}
 		}
-		private function erosketaInsertatu($ida,$kodea) {
+		}
+		private function erosketaInsertatu($ida,$kodea,$kantitatea) {
 				/*
 				 * salmentak taulara informazioa gehitu, lerro bat
 				 * gehitzen den bakoitzean exekutatuko da, bi 
 				 * parametroak behar-beharrezkoak dira.
 				 */
 				 $sql = "INSERT INTO salmentak
-				         (id_er, id_prod, codigo)
+				         (id_er, id_prod, codigo, kantitatea)
 				         VALUES
-				         ('".Session::get('id')."', '".$ida."', '".$kodea."')";
+				         ('".Session::get('id')."', '".$ida."', '".$kodea."', '".$kantitatea."')";
 				 $sartu = $this->db->query($sql);
+		}
+		private function formaBalidatu() {
+			if(!isset($_POST['codigo'])){
+				return true;
+			}
+			else if(isset($_SESSION['codigo'])) {
+            if ($_POST['codigo'] == $_SESSION['codigo']) {
+                return false;
+            } else {
+                $_SESSION['codigo'] = $_POST['codigo'];
+                return true;
+            }
+        } else {
+            $_SESSION['codigo'] = $_POST['codigo'];
+           		return true;
+        }
 		}
 			public function kodigoaSortu() {
 			$length = 10;

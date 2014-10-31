@@ -38,6 +38,18 @@
 			}
 		}
 	}
+	if (isset($sask)) {
+		if ($sask->erroreak) {
+			foreach ($sask->erroreak as $e) {
+				echo "<div class='notif error'>".$e."</div>";
+			}
+		}
+		if ($sask->mezuak) {
+			foreach ($sask->mezuak as $m) {
+				echo "<div class='notif mezu'>".$m."</div>";
+			}
+		}
+	}
 ?>
 </div>
 <footer>
