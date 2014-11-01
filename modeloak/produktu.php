@@ -321,11 +321,11 @@ class Produktu {
 				echo "<p>Stock: ".$produktua->stock."</p>";
 				echo "<p>Prezioa: ".$produktua->prezioa." €</p>";
 				echo "</div>";
-				echo "<div id='argazki'>";
+				echo "<section id='argazki'>";
 				foreach($total_imagenes as $v){  
 				$ruta_zatiak = explode("/", $v);
 				echo '<img class="pure-img" src="'.$ruta_zatiak[1].'/'.$ruta_zatiak[2].'/'.$ruta_zatiak[3].'" border="0" style="width:100px;float:left;margin:10px;" />';  
-}  				echo "</div></div>";
+}  				echo "</section></div>";
 			} else {
 				$this->erroreak[] = "Landare hau ez da existitzen";
 				Mugitu::nora('index.php');

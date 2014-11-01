@@ -184,7 +184,7 @@ table tr{
 	width:210px;
 	height:300px;
 	box-sizing:border-box;
-	//border: solid thin black;
+	box-shadow: 0px 0px 3px gray;
 	float: left;
 	margin: 10px;
 	margin-left: 1.6%;
@@ -277,23 +277,48 @@ table tr{
 .featherlight-content {
 	border-radius: 3px;
 }
-#kudeatzailea > * {
-	font-family: 'Magra', sans-serif;
-}
-.selekat {
-	border: 1px solid gray;
-	background: transparent;
-}
-#info > #argazki {
-	width: 50%;
-	float:right;
-}
 #info > #argazki > img {
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
 }
-#info > #testu {
-	width: 50%;
-	float: left;
+#argazki {
+   /* Prevent vertical gaps */
+   line-height: 0;
+   
+   -webkit-column-count: 3;
+   -webkit-column-gap:   2px;
+   -moz-column-count:    3;
+   -moz-column-gap:      2px;
+   column-count:         3;
+   column-gap:           2px;
+   
+}
+#argazki img {
+  /* Just in case there are inline attributes */
+  width: 50% !important;
+  height: auto !important;
+}
+.slider {
+	position: relative; 
+	width: 768px;
+	overflow: auto;
+	margin: 0 auto;
+}
+.slider li { list-style: none; }
+.slider ul li { float: left; }
+
+#gureinfo {
+	padding: 16px 16px;
+	width: 768px;
+	margin: 0 auto;
+	background-color: rgba(255,255,255,.5);
+	box-shadow: 0px 0px 5px black;
+	margin-top: 10px;
+	text-align: justify;
+	border: 1px solid white;
+	border-radius: 3px;
+}
+#gureinfo h1 {
+	text-align: center;
 }

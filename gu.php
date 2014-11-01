@@ -14,7 +14,7 @@ if(Sartu::barruan()) {
 } else {
 	include("bistak/login_registro.php");
 }
-echo "Guri buruz orrialdea";
+include("bistak/guriburuz.php");
 include("bistak/footer.php");
 
 
