@@ -50,6 +50,18 @@
 			}
 		}
 	}
+	if (isset($kontua)) {
+		if ($kontua->erroreak) {
+			foreach ($kontua->erroreak as $e) {
+				echo "<div class='notif error'>".$e."</div>";
+			}
+		}
+		if ($kontua->mezuak) {
+			foreach ($kontua->mezuak as $m) {
+				echo "<div class='notif mezu'>".$m."</div>";
+			}
+		}
+	}
 ?>
 </div>
 <footer>

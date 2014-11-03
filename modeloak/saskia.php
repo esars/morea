@@ -202,10 +202,11 @@ class Saskia{
 				 * gehitzen den bakoitzean exekutatuko da, bi 
 				 * parametroak behar-beharrezkoak dira.
 				 */
+				 $data = date('Y-m-d H:i:s');
 				 $sql = "INSERT INTO salmentak
-				         (id_er, id_prod, codigo, kantitatea)
+				         (id_er, id_prod, codigo, kantitatea, data)
 				         VALUES
-				         ('".Session::get('id')."', '".$ida."', '".$kodea."', '".$kantitatea."')";
+				         ('".Session::get('id')."', '".$ida."', '".$kodea."', '".$kantitatea."', '".$data."');";
 				 $sartu = $this->db->query($sql);
 		}
 		private function formaBalidatu() {

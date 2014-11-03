@@ -8,6 +8,7 @@ footer {
 header>nav{
 	float:right;
 	margin-right: 15px;
+	margin-bottom: 10px;
 }
 nav>ul>*{
 	text-decoration:none;
@@ -141,13 +142,8 @@ form textarea{
 table tr{
 	text-align: center;
 	height:44px;
-	vertical-align: middle;}
-.produktubat {
-	display: inline-block;
-	width: 210px;
-	height: 250px;
-	margin: ;
-}
+	vertical-align: middle;
+	}
 .produktubat > img {
 	width: auto;
 	height: auto;
@@ -184,23 +180,28 @@ table tr{
 	width:210px;
 	height:300px;
 	box-sizing:border-box;
-	box-shadow: 0px 0px 3px gray;
+	box-shadow: inset 0px 0px 5px gray;
 	float: left;
 	margin: 10px;
 	margin-left: 1.6%;
 	border-radius: 5px;
-	background-color: rgba(255,255,255,.7);
+	background-color: rgba(255,255,255,.3);
 	text-align: center;
+	padding: 0px 0px;
+	z-index: 50;
 }
 .produktubat img{
 	height:200px;
-	width: 190px;
-	margin: 7px 0px;
+	width: 208px;
+	margin: 0px 0px;
 	border-radius: 5px 5px 0px 0px;
+	z-index: 25;
+	box-shadow: 0px 0px 5px #333;
 }
 .produktubat button{
 	margin-left: 5px;
 	margin-right: 5px;
+	margin-top: 12px;
 }
 #botoien_aldea{
 	width:90px;
@@ -310,11 +311,10 @@ table tr{
 
 .gureinfo {
 	padding: 16px 16px;
-	width: 768px;
-	margin: 0 auto;
+	width: 960px;
+	margin: 20px auto;
 	background-color: rgba(255,255,255,.5);
 	box-shadow: 0px 0px 5px black;
-	margin-top: 10px;
 	text-align: justify;
 	border: 1px solid white;
 	border-radius: 3px;

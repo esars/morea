@@ -4,7 +4,7 @@ class Kontua {
 	/*
 	 * Kontua klasea
 	 * Erabiltzailearen datuak aldatzeaz arduratzen da,
-	 * baita adminaren kudeatzailea abiarazteko. Beste 
+	 * baita historiala erakusteko.. Beste 
 	 * klase batzuen modura, handle funtzio bat izango du.
 	*/
 	
@@ -15,40 +15,31 @@ class Kontua {
 	
 	public function __construct() {
 		if(Sartu::barruan()) {
-			$param = $_GET['kontua'];
-			if isset($param) {
-					$this->handle($param, Sartu::adminBarruan());
+			global $config;
+
+			$this->db = mysqli_connect(	$config["host"],
+									   	$config["user"],
+									   	$config["pass"],
+										$config["izen"])
+										or die("Error " . mysqli_error($this->db));
+			$param = $_GET['erabid'];
+			if(isset($param)) {
+					$this->handle($param);
+			} else {
+					$this->erroreak[] = "$_GET 'erabid' aldagaia falta da.";
 			}
 		} else {
-			$this->erroreak[] = "Ezin izan gara zure kontura sartu."
+			$this->erroreak[] = "Ezin izan gara zure kontura sartu.";
 		}
 	}
-	private function handle($zer, $ad) {
+	private function handle($uid) {
 		
 		//~ KONTROLATZAILEA
 		
-		switch($zer) {
-			case "datuakAldatu":
-				include("bistak/datuak_aldatu.php");
-				$this->datuakAldatu();
-				break;
-			case "pasahitzaAldatu":
-				include("bistak/pasahitza_aldatu.php");
-				$this->pasahitzaAldatu();
-				break;
-			case "kontuaBorratu":
-				include("bistak/kontua_borratu.php");
-				$this->kontuaBorratu();
-				break;
-			case "kontuakKudeatu":
-				if($ad) {
-					include("bistak/kontuak_kudeatu.php");
-					$this->kontuakKudeatu();
-					break;
-				} else {
-					$this->erroreak[] = "Ez zara kudeatzailea";
-				}
-				break;
+		if(Session::get('id') == $uid || Sartu::adminBarruan()) {
+			$this->erabInfo();
+		} else {
+			$this->erorreak[] = "Ez dauzkazu beharrezko baimenak.";
 		}
 	}
 	private function datuakAldatu() {
@@ -62,5 +53,29 @@ class Kontua {
 	}
 	private function kontuakKudeatu() {
 		
+	}
+	private function erabInfo() {
+		$erab = $this->db->query("SELECT * from erabiltzaile WHERE id='".Session::get('id')."';");
+		
+		if(Sartu::adminBarruan()) {
+			$konts = "SELECT produktu.izena Prizena,
+							 produktu.prezioa Preezioa, 
+							 salmentak.data, 
+							 produktu.codigo 
+					  FROM salmentak,produktu;";
+		} else {
+			$konts = "SELECT produktu.izena Prizena,
+							 produktu.prezioa Preezioa, 
+							 salmentak.data, 
+							 produktu.codigo  
+					  FROM salmentak,produktu 
+					  WHERE salmentak.id_er='".Session::get('id')."';";
+		}
+		
+		$hist = $this->db->query($konts);
+		
+		$erabObj = $erab->fetch_object();
+		
+		include("bistak/erab.php");
 	}
 }
