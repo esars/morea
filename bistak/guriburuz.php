@@ -1,10 +1,10 @@
 <script src="public/js/unslider.js"></script>
 <script>
-	$(function() {
+	$(document).ready(function() {
 		$('.slider').unslider({dots:true});
 	});
 </script>
-<div id="gureinfo">
+<div class="gureinfo">
 	<h1>Guri Buruz</h1>
 	<div class="slider">
     <ul>

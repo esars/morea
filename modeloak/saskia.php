@@ -174,24 +174,28 @@ class Saskia{
 			}
 		}
 		private function erosi() {
-			if($this->formaBalidatu()){
-				if(!isset($_POST['erosi'])&&isset($_SESSION['karritoa'])){
-				$this->saskiaErakutsi(false);
-				$erostear = $_SESSION['karritoa'];}
-				//print_r ($erostear);
-				//echo Session::get('id');
-				else if(isset($_POST['erosi'])&&isset($_SESSION['karritoa'])) {
-					$erostear = $_SESSION['karritoa'];
-					$karritoaren_array=array_count_values($_SESSION['karritoa']);
-					$kodea=$this->kodigoaSortu();
-				foreach($karritoaren_array as $ida=>$kantitatea){
-				$this->erosketaInsertatu($ida,$kodea,$kantitatea);
+			if(Sartu::barruan()) {
+				if($this->formaBalidatu()){
+					if(!isset($_POST['erosi'])&&isset($_SESSION['karritoa'])){
+					$this->saskiaErakutsi(false);
+					$erostear = $_SESSION['karritoa'];}
+					//print_r ($erostear);
+					//echo Session::get('id');
+					else if(isset($_POST['erosi'])&&isset($_SESSION['karritoa'])) {
+						$erostear = $_SESSION['karritoa'];
+						$karritoaren_array=array_count_values($_SESSION['karritoa']);
+						$kodea=$this->kodigoaSortu();
+					foreach($karritoaren_array as $ida=>$kantitatea){
+					$this->erosketaInsertatu($ida,$kodea,$kantitatea);
+					}
+					$this->saskitikKendu();
+					$this->mezuak[] = "Erosketa arrakastaz egina";
 				}
-				$this->saskitikKendu();
-				$this->mezuak[] = "Erosketa arrakastaz egina";
 			}
-		}
-		}
+	} else {
+			$this->erroreak[] = "Bazkide izan behar zara erosketak egiteko.";
+	}
+}
 		private function erosketaInsertatu($ida,$kodea,$kantitatea) {
 				/*
 				 * salmentak taulara informazioa gehitu, lerro bat
