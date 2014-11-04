@@ -94,7 +94,7 @@ function aldatutakoa_bidali(){
 function ezabatu () {
 	id=$(this).attr('id');
 	if($(this).is(':checked')){
-	$(this).parent().parent().css('background-color','red');
+	$(this).parent().parent().css('background-color','#CF402C');
 	$(this).parent().next().children('input:radio').removeAttr('checked');
 	$('.f'+id).attr('disabled','disabled');
 	$('.f'+id+':file').css('display','none');

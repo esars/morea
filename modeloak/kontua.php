@@ -58,24 +58,20 @@ class Kontua {
 		$erab = $this->db->query("SELECT * from erabiltzaile WHERE id='".Session::get('id')."';");
 		
 		if(Sartu::adminBarruan()) {
-			$konts = "SELECT produktu.izena Prizena,
-							 produktu.prezioa Preezioa, 
-							 salmentak.data, 
-							 produktu.codigo 
-					  FROM salmentak,produktu;";
+			$konts = "SELECT id_er,codigo, p.izena iz, p.prezioa pre, kantitatea, data, e.izena eiz
+					  FROM salmentak s JOIN produktu p ON s.id_prod=p.id
+									   JOIN erabiltzaile e ON s.id_er=e.id;";
 		} else {
-			$konts = "SELECT produktu.izena Prizena,
-							 produktu.prezioa Preezioa, 
-							 salmentak.data, 
-							 produktu.codigo  
-					  FROM salmentak,produktu 
-					  WHERE salmentak.id_er='".Session::get('id')."';";
+			$konts = "SELECT p.izena iz, p.prezioa pre, codigo, kantitatea, data
+					  FROM salmentak s JOIN produktu p
+					  ON s.id_prod=p.id
+					  WHERE id_er=".Session::get('id').";";
 		}
 		
 		$hist = $this->db->query($konts);
 		
 		$erabObj = $erab->fetch_object();
-		
+		var_dump($hist);
 		include("bistak/erab.php");
 	}
 }

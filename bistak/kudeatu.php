@@ -1,4 +1,4 @@
-<table class='pure-table' style='margin:auto;width:90%;background-color:white' id='kudeatzailea'>
+<table class='pure-table' style='margin:auto;width:90%;background-color:rgba(255,255,255, .5)' id='kudeatzailea'>
   <thead>
   <tr>
     <th>Izena</th>

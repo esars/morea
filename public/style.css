@@ -74,8 +74,8 @@ body {
 #mylightbox>#regi>form{
 	float:left;
 	margin: 10px;
-	margin-left: 30px;
-	margin-right: 30px;
+	margin-left: 20px;
+	margin-right: 20px;
 
 }
 #regi{
@@ -186,22 +186,23 @@ table tr{
 	margin-left: 1.6%;
 	border-radius: 5px;
 	background-color: rgba(255,255,255,.3);
-	text-align: center;
+	text-align: left;
 	padding: 0px 0px;
 	z-index: 50;
 }
 .produktubat img{
 	height:200px;
-	width: 208px;
+	width: 210px;
 	margin: 0px 0px;
+	margin-bottom: 10px;
 	border-radius: 5px 5px 0px 0px;
 	z-index: 25;
-	box-shadow: 0px 0px 5px #333;
+	box-shadow: 0px 0px 3px #777;
 }
 .produktubat button{
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-top: 12px;
+	margin-left: 9px;
+	margin-right: 0px;
+	margin-top: 2px;
 }
 #botoien_aldea{
 	width:90px;
@@ -322,3 +323,8 @@ table tr{
 .gureinfo h1 {
 	text-align: center;
 }
+/*
+.hist td {
+	width: 18%;
+}
+*/

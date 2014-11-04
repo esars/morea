@@ -202,7 +202,8 @@ class Saskia{
 				 * gehitzen den bakoitzean exekutatuko da, bi 
 				 * parametroak behar-beharrezkoak dira.
 				 */
-				 $data = date('Y-m-d H:i:s');
+				 
+				 $data = date('Y-m-d h:i:s');
 				 $sql = "INSERT INTO salmentak
 				         (id_er, id_prod, codigo, kantitatea, data)
 				         VALUES
