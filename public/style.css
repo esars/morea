@@ -287,3 +287,8 @@ table tr{
 	border: 1px solid gray;
 	background: transparent;
 }
+/*estilo input file*/
+.tooltip4{
+            width: 190px;
+            display: none;
+        }

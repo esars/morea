@@ -71,6 +71,9 @@ $('#aldatu_botoia').click(aldatutakoa_bidali);
 $('#gehitu1').click(function(){
 $('#gehitu_form').submit();
 });
+$('#gehitu2').click(function(){
+$('#gehitu2_form').submit();
+});
 aurreko_id='';
 ezabatzekoak_array='';
 function ezabatzekoak_bidali(){

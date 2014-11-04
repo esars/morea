@@ -180,7 +180,7 @@ class Saskia{
 				$erostear = $_SESSION['karritoa'];}
 				//print_r ($erostear);
 				//echo Session::get('id');
-				else if(isset($_POST['erosi'])&&isset($_SESSION['karritoa'])) {
+				else if(isset($_POST['erosi'])&&isset($_SESSION['karritoa'])&&isset($_SESSION['id'])) {
 					$erostear = $_SESSION['karritoa'];
 					$karritoaren_array=array_count_values($_SESSION['karritoa']);
 					$kodea=$this->kodigoaSortu();
@@ -189,6 +189,12 @@ class Saskia{
 				}
 				$this->saskitikKendu();
 				$this->mezuak[] = "Erosketa arrakastaz egina";
+			}
+			else if(!isset($_SESSION['id'])){
+				$this->mezuak[] = "Saioa hasi erosketa gauzatzeko";
+		}
+			else{
+				echo '<script>window.location="index.php"</script>';
 			}
 		}
 		}
