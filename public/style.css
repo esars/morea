@@ -319,6 +319,7 @@ table tr{
 	text-align: justify;
 	border: 1px solid white;
 	border-radius: 3px;
+	min-height:400px;
 }
 .gureinfo h1 {
 	text-align: center;
@@ -328,3 +329,18 @@ table tr{
             width: 190px;
             display: none;
         }
+#argazkiak_produktu img{
+	width: 350px
+}
+#argazkiak_produktu{
+	width:45%;
+	float: left;
+	margin-right:5%;
+}
+#testu{
+width:48%;
+margin: 0px;
+padding: 0px;
+float: right;
+border:solid thin black;
+}

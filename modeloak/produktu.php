@@ -73,10 +73,14 @@ class Produktu {
 						$this->produktuBatErakutsi($_GET['id']);
 					break;
 				case "kudeatzaile_prod":
+						if(Sartu::adminBarruan())
 						include("bistak/kudeatu.php");
+					else $this->produktuakErakutsi();
 					break;
 				case "kudeatzaile_erab":
+						if(Sartu::adminBarruan())
 						include("bistak/kudeatu_erab.php");
+						else $this->produktuakErakutsi();
 					break;
 				case "argazkia_kendu":
 						$this->argazkiaKendu();
@@ -182,7 +186,9 @@ class Produktu {
 		}
 		private function produktuaKendu($id) {
 			//formulariotik datorrela validatu
-        if($this->formaBalidatu()){
+		if(!Sartu::adminBarruan()) {
+		echo '<script>alert(document.location.href);window.location="index.php"</script>';}
+        else if($this->formaBalidatu()){
 			// KONFIRMAZIOA PASA ONDOREN
 
 			if(isset($_POST['pborratu'])) {
@@ -336,7 +342,7 @@ class Produktu {
 					<div id='zehaztasun_aldea'><h3>".$lerroa['izena']."</h3><p>";
 					$deskripzioa = substr($lerroa['deskripzioa'],0,35);
 					echo /*$deskripzioa.*/"</p></div>
-				<div id='botoien_aldea'><h3>".$lerroa['prezioa']." €</h3></div><button data-featherlight='#info' class='button-xsmall pure-button pure-input-1 pure-button-primary info' value='".$lerroa['id']."' name='erakutsi'>Informazio gehiago	<i class='fa fa-file-text-o''></i></button>
+				<div id='botoien_aldea'><h3>".$lerroa['prezioa']." €</h3></div><button class='button-xsmall pure-button pure-input-1 pure-button-primary info' value='".$lerroa['id']."' name='erakutsi'>Informazio gehiago	<i class='fa fa-file-text-o''></i></button>
 					<input type='hidden' name='produktua' value='".$lerroa['id']."'>			
 					<button id='".$lerroa['id']."' class='button-success button-xsmall karrito_gehitu pure-button pure-input-1 pure-button-primary' value='gehitu' name='ekintzak'>Saskiratu	<i class='fa fa-shopping-cart fa-l'></i></button>
 					</div>";
@@ -356,23 +362,37 @@ class Produktu {
 			$query = $this->db->query($sql);
 			if($query) {
 				$produktua = $query->fetch_object();
-				$total_imagenes = glob("../public/argazkiak/".$produktua->id."-{*.jpg,*.gif,*.png}",GLOB_BRACE);
-				echo "<div id='info'><div id='testu'>";
+				$total_imagenes = glob("public/argazkiak/".$produktua->id."-{*.jpg,*.gif,*.png}",GLOB_BRACE);
+				echo "<div class='gureinfo'><div id='argazkiak_produktu' class='slider'><ul>";
+				foreach($total_imagenes as $v){  
+				echo '<li style="margin:auto"><img src="'.$v.'"alt="Sliderreko argazkia" /></li>';  
+}  				echo "</ul></div>";
+echo"<script src='public/js/unslider.js'></script>
+	<script>
+	$(document).ready(function() {
+		$('.slider').unslider({
+			speed: 500,               //  The speed to animate each slide (in milliseconds)
+			delay: 2500,              //  The delay between slide animations (in milliseconds)
+			complete: function() {},  //  A function that gets called after every slide animation
+			keys: true,               //  Enable keyboard (left, right) arrow shortcuts
+			dots: true,               //  Display dot navigation
+			fluid: false              //  Support responsive design. May break non-responsive designs
+		});
+	});
+</script>";
+				echo "<div id='testu'>";
 				echo "<h1>".$produktua->izena."</h1>";
 				echo "<p>Deskripzioa: ".$produktua->deskripzioa."</p>";
 				echo "<p>Stock: ".$produktua->stock."</p>";
 				echo "<p>Prezioa: ".$produktua->prezioa." €</p>";
-				echo "</div>";
-				echo "<section id='argazki'>";
-				foreach($total_imagenes as $v){  
-				$ruta_zatiak = explode("/", $v);
-				echo '<img class="pure-img" src="'.$ruta_zatiak[1].'/'.$ruta_zatiak[2].'/'.$ruta_zatiak[3].'" border="0" style="width:100px;float:left;margin:10px;" />';  
-}  				echo "</section></div>";
-			} else {
+				echo "<input type='hidden' name='produktua' value='".$produktua->id."'>			
+				<button id='".$produktua->id."' class='button-success button-xsmall karrito_gehitu pure-button pure-input-1 pure-button-primary' value='gehitu' name='ekintzak'>Saskiratu	<i class='fa fa-shopping-cart fa-l'></i></button>";
+				echo "</div></div>";
+			} 
+			else {
 				$this->erroreak[] = "Landare hau ez da existitzen";
 				Mugitu::nora('index.php');
 			}
-			echo "<div style='clear: both'></div>";
 		}
 		private function produktuaBalidatu() {
 			if(strlen($_POST['pizena']) < 3 || empty($_POST['pizena'])) {

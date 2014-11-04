@@ -14,7 +14,7 @@ $('.karrito_gehitu').click(karritora_gehitu);
 $('#ezkutatua').load('bistak/saskia_bista.php');
 $('#admin').load('bistak/admin.php');
 $('.borratzekoa').click(argazkia_ezabatu);
-$("button[name='erakutsi']").hover(erakutsi_info);
+$("button[name='erakutsi']").click(erakutsi_info);
 function aldatu_erab () {
 	//$('#erab').fadeToggle(2000,0.5);
 	$('#erab').attr('src','public/img/erab_koloreztatua.png');
@@ -60,7 +60,7 @@ function karritora_gehitu(){
 	notifErakutsi(2300);
 }
 function erakutsi_info(){
-	$('#ezkutatua2').load('bistak/prod_info.php?id='+$(this).val()+'&ekintza=erakutsi');
+	window.location='index.php?id='+$(this).val()+'&ekintza=erakutsi';
 }
 //kudeatzailearen zatia
 
