@@ -174,6 +174,7 @@ class Saskia{
 			}
 		}
 		private function erosi() {
+
 			if(Sartu::barruan()) {
 				if($this->formaBalidatu()){
 					if(!isset($_POST['erosi'])&&isset($_SESSION['karritoa'])){
@@ -192,10 +193,13 @@ class Saskia{
 					$this->mezuak[] = "Erosketa arrakastaz egina";
 				}
 			}
-	} else {
+			else {
 			$this->erroreak[] = "Bazkide izan behar zara erosketak egiteko.";
 	}
-}
+		}
+		echo '<script>window.location="index.php"</script>';
+		}
+
 		private function erosketaInsertatu($ida,$kodea,$kantitatea) {
 				/*
 				 * salmentak taulara informazioa gehitu, lerro bat

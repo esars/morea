@@ -7,11 +7,11 @@
     <th>Stock</th>
     <th>Prezioa</th>
     <th>Kategoria</th>
-    <th><i class='fa fa-camera fa-l'>Argazkiak</i><form id='argazki_bakarraren_forma' action='kudeatzailea.php' method='post'>
+    <th><i class='fa fa-camera fa-l'>Argazkiak</i><form id='argazki_bakarraren_forma' action='index.php' method='post'>
       <input id='argazki_bakarraren_id' type='hidden' name='ruta_borratzeko_argazkiana'>
       <input type="hidden" name='codigo' value='<?php echo md5(uniqid(rand(), true)) ?>'><input type='hidden' name='ekintza' value='argazkia_kendu'></form></th>
     <th class='tooltip botoiak' id='ezabatu_botoia' title='Aukeratuak ezabatu'><i class='fa fa-trash fa-l'>Ezabatu</i>
-      <form id='kentzeko_forma' method='post' action='kudeatzailea.php'><input type="hidden" name='pborratu'>
+      <form id='kentzeko_forma' method='post' action='index.php'><input type="hidden" name='pborratu'>
         <input type="hidden" name='codigo' value='<?php echo md5(uniqid(rand(), true)) ?>'>
         <input type="hidden" name='ekintza' value='kendu'><input type="hidden" name='id' id='kentzeko_id'></form></th>
     <th class='tooltip botoiak' id='aldatu_botoia' title='Aldaketak gauzatu'><i class='fa fa-edit fa-l'>Aldatu</i></th>
@@ -30,7 +30,7 @@ global $config;
       $produktuak=$mysqli->query($sql);
       while($lerroa = $produktuak->fetch_assoc()) {
       echo "<tr class='fila' style='border:solid thin black;'>
-    <form action='kudeatzailea.php' method='post' id='aldatu".$contador."' enctype='multipart/form-data'>
+    <form action='index.php' method='post' id='aldatu".$contador."' enctype='multipart/form-data'>
     <input type='hidden' name='codigo' value='".md5(uniqid(rand(), true))."'><td class='aldagarriak'>
     <input type='hidden' name='ekintza' value='aldatu'><input type='hidden' name='id' value='".$lerroa['id']."'>
     <input disabled name='pizena' type='text' value='".$lerroa['izena']."' style='width:100px' class='fl".$contador." fn".$contador."'></td>
@@ -54,7 +54,7 @@ foreach($total_imagenes as $v){
   title="<img width=\'100px\' src=\'public/argazkiak/'.$ruta_zatiak[2].'\'>">'.$ruta_zatiak[2]."</span>
   <i id='public/argazkiak/".$ruta_zatiak[2]."' class='tooltip3 fa fa-trash fa-l sfl".$contador." sfn".$contador." borratzekoa' style='color:red;display:none;cursor:pointer'></i><br>";
 }
-    echo "<input type='file' id='argazkia' name='imga_berria' disabled class='tooltip4 fl".$contador." fn".$contador."' style='width:200px;display:none'></form></td>
+    echo "<input type='file' id='argazkia' name='imga_berria' disabled class='tooltip4 fl".$contador." fn".$contador."'></form></td>
     <td><input id='n".$contador."' class='ezab' type='checkbox' value='".$lerroa['id']."'></td>
     <td><input id='l".$contador."' class='txekeatu' name='aldatu' value='aldatu".$contador."' type='radio'></td>
   </tr>";
@@ -63,7 +63,7 @@ foreach($total_imagenes as $v){
     ?>
   </tbody>
   <thead>
-  <tr><form id='gehitu_form' method="post" action="kudeatzailea.php" enctype="multipart/form-data">
+  <tr><form id='gehitu_form' method="post" action="index.php" enctype="multipart/form-data">
     <th> <input style='width:100px' id="pizena" name="pizena" required type="text" placeholder="Izena"></th>
     <th colspan='2'><textarea id="deskripzioa" name="deskripzioa" required placeholder="Deskripzioa"></textarea></th>
     <th><input id="foo" style='width:50px' type="number" min="0" step="any" name="stock" placeholder="Stock"></th>

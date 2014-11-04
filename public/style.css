@@ -323,8 +323,8 @@ table tr{
 .gureinfo h1 {
 	text-align: center;
 }
-/*
-.hist td {
-	width: 18%;
-}
-*/
+/*estilo input file*/
+.tooltip4{
+            width: 190px;
+            display: none;
+        }

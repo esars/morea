@@ -28,7 +28,7 @@ class Produktu {
 					$this->kategorizator($_GET['kat']);
 				} else if(isset($_GET['bilaketa'])) {
 					$this->parametrizatzailea($_GET['bilaketa']);
-				}else if(isset($_POST['ekintza'])) {
+				} else if(isset($_POST['ekintza'])) {
 					$this->handle($_POST['ekintza']);
 				} else {
 					$this->handle();
@@ -72,8 +72,11 @@ class Produktu {
 				case "erakutsi":
 						$this->produktuBatErakutsi($_GET['id']);
 					break;
-				case "kudeatzaile":
+				case "kudeatzaile_prod":
 						include("bistak/kudeatu.php");
+					break;
+				case "kudeatzaile_erab":
+						include("bistak/kudeatu_erab.php");
 					break;
 				case "argazkia_kendu":
 						$this->argazkiaKendu();
@@ -103,7 +106,7 @@ class Produktu {
 									   	$config["pass"],
 										$config["izen"])
 										or die("Error " . mysqli_error($this->db));
-				
+
 				$this->produktuakErakutsi(null, $param);
 		}
 		private function parametrizatzailea($parametroa) {
@@ -119,6 +122,7 @@ class Produktu {
 									   	$config["pass"],
 										$config["izen"])
 										or die("Error " . mysqli_error($this->db));
+				
 				
 				$this->produktuakErakutsi($parametroa, null);
 		}
@@ -162,6 +166,7 @@ class Produktu {
 					} else {
 						$this->erroreak[] = "Errorea produktua gehitzean";
 					}
+
 				}
 				else if($this->produktuaBalidatu()){
 					$this->erroreak[] = "Argazki formatu okerra";
@@ -173,7 +178,7 @@ class Produktu {
 			else{
 				$this->erroreak[] = "Argazkia sartu beharrekoa da";
 			}
-			}
+			}include("bistak/kudeatu.php");
 		}
 		private function produktuaKendu($id) {
 			//formulariotik datorrela validatu
@@ -197,12 +202,29 @@ class Produktu {
 					$this->erroreak[] = "Errorea produktua ezabatzean";
 				}
 			}
+			if(isset($_POST['eborratu'])) {
+				$id_ak=explode(",",$id);
+				for($i=1;$i<=sizeof($id_ak)-1;$i++){
+				$sql = "DELETE FROM erabiltzaile WHERE id='".$id_ak[$i]."';";
+				$borratu = $this->db->query($sql);
+				}
+				if(isset($borratu)) {
+					$this->mezuak[] = "Erabiltzailea arrakastaz ezabatu duzu";
+				}
+				else{
+					$this->erroreak[] = "Errorea erabiltzailea ezabatzean";
+				}
+			}
 		}
+		if(isset($_POST['eborratu']))include("bistak/kudeatu_erab.php");
+			else if(isset($_POST['pborratu']))include("bistak/kudeatu.php");
 		}
 		private function produktuaAldatu($id) {
 			//formulariotik datorrela validatu
-        if($this->formaBalidatu()){
-			if(isset($id)) {
+	if(!Sartu::adminBarruan()) {
+		echo '<script>alert(document.location.href);window.location="index.php"</script>';}
+       else if($this->formaBalidatu()){
+			if(isset($id)&&isset($_FILES['imga_berria'])) {
 				//echo '<script>alert("'.$_FILES['imga_berria']['name'].'")</script>';
 				$arraya=explode('.',$_FILES['imga_berria']['name']);
 				$formatua=$arraya[sizeof($arraya)-1];
@@ -245,14 +267,34 @@ class Produktu {
 							$this->erroreak[] = "Errorea produktua aldatzean";
 						}
 					}
-				} else {
+				}
+				else {
 					$this->erroreak[] = "Argazkiaren formatua ez da irakurgarria";
 					
 				}
-			} else {
+			} else if(isset($_POST["ealdatu"])){
+						$email = $_POST['email'];
+						$izena = $_POST['eizena'];
+						$telefonoa = $_POST['telefonoa'];
+						$helbidea = $_POST['helbidea'];
+						$abizena = $_POST['abizena'];
+						$id = $_POST['id'];
+						//echo '<script>alert("izena :'.$izena.'//abizena :'.$abizena.'//email :'.$email.'//helbidea :'.$helbidea.'//telefonoa :'.$telefonoa.'//id :'.$id.'//")</script>';
+						$sql = "update erabiltzaile set izena='".$izena."',email='".$email."',abizena='".$abizena."',helbidea='".$helbidea."',telefonoa='".$telefonoa."'
+									WHERE id='".$id."';";
+						$ErabiltzaileaAldatu = $this->db->query($sql);
+						if($ErabiltzaileaAldatu) {
+							$this->mezuak[] = "Erabiltzailea aldatua";
+						} else {
+							$this->erroreak[] = "Errorea erabiltzailea aldatzean";
+						}
+				}else {
 					$this->erroreak[] = "Ez da ID bat eman";
 			}
-		}}
+		}if(isset($_POST["paldatu"]))include("bistak/kudeatu.php");
+			else if(isset($_POST["ealdatu"]))include("bistak/kudeatu_erab.php");
+	}
+
 		private function produktuakErakutsi($param = null, $kategoria = null) {
 			//echo '<script>alert("apa")</script>';
 			if(!isset($_GET['ekintzak']) /*&& !$_GET['ekintzak'] == "erosi"*/) {
