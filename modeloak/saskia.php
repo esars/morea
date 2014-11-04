@@ -64,7 +64,10 @@ class Saskia{
 					$this->erosi();
 				case null:
 					$this->saskiaErakutsi();
-					break;
+					break;if((int)phpversion()[2] < 5) {
+	require_once "config/passlib.php";
+}
+
 			}
 		}
 		private function saskiraGehitu() {
@@ -191,13 +194,13 @@ class Saskia{
 					}
 					$this->saskitikKendu();
 					$this->mezuak[] = "Erosketa arrakastaz egina";
+					echo '<script>window.location="index.php"</script>';
 				}
 			}
 			else {
 			$this->erroreak[] = "Bazkide izan behar zara erosketak egiteko.";
 	}
 		}
-		echo '<script>window.location="index.php"</script>';
 		}
 
 		private function erosketaInsertatu($ida,$kodea,$kantitatea) {

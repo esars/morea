@@ -21,10 +21,15 @@ $kategoriak = [
 ];
 
 global $kategoriak;
+
+if((int)phpversion()[2] < 5) {
+	require_once "config/passlib.php";
+}
+
 /*
  * Erroreak izkutatu edo erakutsi
  */
- 
+
 $erroreak_ikusi = true; 
 
 if($erroreak_ikusi) {

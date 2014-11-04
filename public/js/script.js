@@ -97,7 +97,7 @@ function aldatutakoa_bidali(){
 function ezabatu () {
 	id=$(this).attr('id');
 	if($(this).is(':checked')){
-	$(this).parent().parent().css('background-color','#CF402C');
+	$(this).parent().parent().css('background-color','#D33B37');
 	$(this).parent().next().children('input:radio').removeAttr('checked');
 	$('.f'+id).attr('disabled','disabled');
 	$('.f'+id+':file').css('display','none');
@@ -139,4 +139,14 @@ else{
 function argazkia_ezabatu(){
 	$('#argazki_bakarraren_id').val($(this).attr('id'));
 	$('#argazki_bakarraren_forma').submit();
+}
+function jasotakoak_bidali(){
+	jasotakoak_array='';
+		for (var i = $('.jasoak').length - 1; i >= 0; i--) {
+			if($('.jasoak:eq('+i+')').is(':checked')){
+			jasotakoak_array=jasotakoak_array+','+$('.jasoak:eq('+i+')').val();
+		}
+	}
+$('#arraya').val(jasotakoak_array);
+	$('#jasotakoforma').submit();
 }

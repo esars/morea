@@ -1,3 +1,4 @@
+<div class="gureinfo">
 <h2 class="eizena"><?php echo $erabObj->izena." ".$erabObj->abizena; ?></h2>
 <?php if(Sartu::adminBarruan()) { ?>
 	<h2>Prozesuan</h2>
@@ -10,6 +11,9 @@
 			<td>Prezioa</td>
 			<td>Kantitatea</td>
 			<td>Data</td>
+			<?php if(Sartu::adminBarruan()) { ?>
+				<td><form id="jasotakoforma" action='' method='post'><input type="hidden" id="arraya" name="arraya"><button onclick="jasotakoak_bidali()" class='pure-button pure-button-primary' name='jasodut'>Jaso dut!</button></form></td>
+			<?php } ?>
 		</thead>
 		<tbody>
 			<?php while($lerroa = $proz->fetch_assoc()) {
@@ -21,12 +25,16 @@
 				echo "<td>".$lerroa['pre']."</td>";
 				echo "<td>".$lerroa['kantitatea']."</td>";
 				echo "<td>".$lerroa['data']."</td>";
+				
+				if(Sartu::adminBarruan()) {
+					echo "<td><input type='checkbox' value='".$lerroa['id_prod']."' class='jasoak'></td>";
+				}
 				echo "</tr>";
-			} ?>
+			}
+} ?>
 	</tbody>
 	</table>
-<?php } ?>
-<h2>Azken Erosketak</h2>
+<h2>Eginak</h2>
 <table class="pure-table hist">
 	<thead>
 		<tr>
@@ -39,9 +47,6 @@
 			<td>Prezioa</td>
 			<td>Kantitatea</td>
 			<td>Data</td>
-			<?php if(Sartu::adminBarruan()) {
-				echo "<td>Jaso al duzu?</td>";
-			} ?>
 		</tr>
 	</thead>
 	<tbody>
@@ -59,10 +64,7 @@
 		echo "<td>".$lerroa['pre']."</td>";
 		echo "<td>".$lerroa['kantitatea']."</td>";
 		echo "<td>".$lerroa['data']."</td>";
-		if(Sartu::adminBarruan()) {
-			echo "<td><form action='' method='post'><input type='submit' value='Jaso dut!' class='pure-button pure-button-primary' name='jasodut'></form>";
-			echo "</tr>";
 	} ?>
 	</tbody>
 </table>
-<?php } ?>
+</div>

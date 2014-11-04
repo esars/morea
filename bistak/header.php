@@ -50,7 +50,7 @@
 																													<ul id="kategoriak">
 																													<li><a href="index.php?ekintza=kudeatzaile_prod"><i class="fa fa-cubes"></i>  Produktuak</a></li>
 																													<li><a href="index.php?ekintza=kudeatzaile_erab"><i class="fa fa-users"></i>  Erabiltzaileak</a></li>
-																													<li><a href="index.php?ekintza=kudeatzaile_prod"><i class="fa fa-shopping-cart"></i>  Salmentak</a></li>
+																													<li><a href="erabiltzaile.php?erabid=2"><i class="fa fa-shopping-cart"></i>  Salmentak</a></li>
 																												</ul>' href="index.php?ekintza=kudeatzaile_prod"><li><img id='adminarg' src="public/img/admin.png" alt="Karritoan duzuna ikusi"></li></a>
 <?php
 			}

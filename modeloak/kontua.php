@@ -23,6 +23,9 @@ class Kontua {
 										$config["izen"])
 										or die("Error " . mysqli_error($this->db));
 			$param = $_GET['erabid'];
+			if(isset($_POST['jasodut'])) {
+					$this->jaso();
+			}
 			if(isset($param)) {
 					$this->handle($param);
 			} else {
@@ -58,9 +61,25 @@ class Kontua {
 		$erab = $this->db->query("SELECT * from erabiltzaile WHERE id='".Session::get('id')."';");
 		
 		if(Sartu::adminBarruan()) {
+			
+			/*
+			 * Egoera kanpoa erabiltzen dugu salmenta bat iritsi den ala ez determinatzeko.
+			 * EGOERA = 1 --> Datubasean erregistratu da eskaera, bidean dago produktua
+			 * EGOERA = 0 --> Produktua iritsi da
+			*/
+			
 			$konts = "SELECT id_er,codigo, p.izena iz, p.prezioa pre, kantitatea, data, e.izena eiz
-					  FROM salmentak s JOIN produktu p ON s.id_prod=p.id
-									   JOIN erabiltzaile e ON s.id_er=e.id;";
+					  FROM salmentak s 
+					  JOIN produktu p ON s.id_prod=p.id
+					  JOIN erabiltzaile e ON s.id_er=e.id
+					  WHERE egoera='0';";
+					  
+			$prozesuan_kontsulta = "SELECT id_prod, id_er,codigo, p.izena iz, p.prezioa pre, kantitatea, data, e.izena eiz
+									FROM salmentak s 
+									JOIN produktu p ON s.id_prod=p.id
+									JOIN erabiltzaile e ON s.id_er=e.id
+									WHERE egoera='1';";
+			$proz = $this->db->query($prozesuan_kontsulta);						
 		} else {
 			$konts = "SELECT p.izena iz, p.prezioa pre, codigo, kantitatea, data
 					  FROM salmentak s JOIN produktu p
@@ -71,7 +90,12 @@ class Kontua {
 		$hist = $this->db->query($konts);
 		
 		$erabObj = $erab->fetch_object();
-		var_dump($hist);
 		include("bistak/erab.php");
+	}
+	private function jaso() {
+		$idak = explode(',', $_POST['arraya']);
+		for($i=0;$i<count($idak);++$i) {
+			
+		}
 	}
 }

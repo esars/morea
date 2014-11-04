@@ -14,7 +14,6 @@ include("bistak/nagusia.php");
 
 $sask = new Saskia();
 $prod = new Produktu();
-
 if(Sartu::barruan()) {
 	include("bistak/barruan.php");
 	if(Sartu::adminBarruan()) {
