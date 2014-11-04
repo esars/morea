@@ -14,5 +14,5 @@ if(Sartu::barruan()) {
 } else {
 	include("bistak/login_registro.php");
 }
-echo "Kokapena";
+include("bistak/kokapena.php");
 include("bistak/footer.php");

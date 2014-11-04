@@ -174,40 +174,43 @@ class Saskia{
 			}
 		}
 		private function erosi() {
-			if($this->formaBalidatu()){
-				if(!isset($_POST['erosi'])&&isset($_SESSION['karritoa'])){
-				$this->saskiaErakutsi(false);
-				$erostear = $_SESSION['karritoa'];}
-				//print_r ($erostear);
-				//echo Session::get('id');
-				else if(isset($_POST['erosi'])&&isset($_SESSION['karritoa'])&&isset($_SESSION['id'])) {
-					$erostear = $_SESSION['karritoa'];
-					$karritoaren_array=array_count_values($_SESSION['karritoa']);
-					$kodea=$this->kodigoaSortu();
-				foreach($karritoaren_array as $ida=>$kantitatea){
-				$this->erosketaInsertatu($ida,$kodea,$kantitatea);
+
+			if(Sartu::barruan()) {
+				if($this->formaBalidatu()){
+					if(!isset($_POST['erosi'])&&isset($_SESSION['karritoa'])){
+					$this->saskiaErakutsi(false);
+					$erostear = $_SESSION['karritoa'];}
+					//print_r ($erostear);
+					//echo Session::get('id');
+					else if(isset($_POST['erosi'])&&isset($_SESSION['karritoa'])) {
+						$erostear = $_SESSION['karritoa'];
+						$karritoaren_array=array_count_values($_SESSION['karritoa']);
+						$kodea=$this->kodigoaSortu();
+					foreach($karritoaren_array as $ida=>$kantitatea){
+					$this->erosketaInsertatu($ida,$kodea,$kantitatea);
+					}
+					$this->saskitikKendu();
+					$this->mezuak[] = "Erosketa arrakastaz egina";
 				}
-				$this->saskitikKendu();
-				$this->mezuak[] = "Erosketa arrakastaz egina";
 			}
-			else if(!isset($_SESSION['id'])){
-				$this->mezuak[] = "Saioa hasi erosketa gauzatzeko";
+			else {
+			$this->erroreak[] = "Bazkide izan behar zara erosketak egiteko.";
+	}
 		}
-			else{
-				echo '<script>window.location="index.php"</script>';
-			}
+		echo '<script>window.location="index.php"</script>';
 		}
-		}
+
 		private function erosketaInsertatu($ida,$kodea,$kantitatea) {
 				/*
 				 * salmentak taulara informazioa gehitu, lerro bat
 				 * gehitzen den bakoitzean exekutatuko da, bi 
 				 * parametroak behar-beharrezkoak dira.
 				 */
+				 $data = date('Y-m-d H:i:s');
 				 $sql = "INSERT INTO salmentak
-				         (id_er, id_prod, codigo, kantitatea)
+				         (id_er, id_prod, codigo, kantitatea, data)
 				         VALUES
-				         ('".Session::get('id')."', '".$ida."', '".$kodea."', '".$kantitatea."')";
+				         ('".Session::get('id')."', '".$ida."', '".$kodea."', '".$kantitatea."', '".$data."');";
 				 $sartu = $this->db->query($sql);
 		}
 		private function formaBalidatu() {

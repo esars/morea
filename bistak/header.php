@@ -16,11 +16,12 @@
 	<link rel="shortcut icon" type="image/png" href="public/mariolorea.png">
 </head>
 <body>
+	<div id="edukia">
 	<header>
 		<img src="public/img/logoa.png" alt="Logoa" id="logoa" class="pure-img">
 	<nav>
 		<ul>
-			<a id='my-tooltip' class='tooltip' title='
+			<a id='my-tooltip' class='tooltip' title='</a>
 																													<ul id="kategoriak">
 																													<li><a href="index.php?kat=Zentroak"><i class="fa fa-support"></i>  Zentroak</a></li>
 																													<li><a href="index.php?kat=Erramuak"><i class="fa fa-gift"></i>  Erramuak</a></li>
@@ -31,7 +32,7 @@
 																												</ul>' href="index.php"><li>Produktuak</li></a>
 			<a class='tooltip' title='Jakin ezazu gehiago guri buruz' href="gu.php"><li>Gu</li></a>
 			<a class='tooltip' title='Aurkitu gaitzazu' href="kokapena.php"><li>Kokapena</li></a>
-			<a class='tooltip ikono' title='<span>Bilatu: </span><form id="bilatuform" action="" method="get"><input id="bilatu-input" type="text" name="bilaketa"><button type="submit"><i class="fa fa-search"></i></button></form>'><li><img id='bilatu' src="public/img/bilatu.png" alt="Bilatu"></li></a>
+			<a class='tooltip ikono' title='<span>Bilatu: </span><form id="bilatuform" action="index.php" method="get"><input id="bilatu-input" type="text" name="bilaketa"><button type="submit"><i class="fa fa-search"></i></button></form>'><li><img id='bilatu' src="public/img/bilatu.png" alt="Bilatu"></li></a>
 			<a class='tooltip ikono' title='Saskia bistaratu' href="#" data-featherlight="#saskia"><li><img id='saski' src="public/img/shopping.png" alt="Karritoan duzuna ikusi"></li></a>
 			<?php
 			if(isset($_SESSION['izena'])){
