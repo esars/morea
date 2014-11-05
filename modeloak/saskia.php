@@ -177,8 +177,7 @@ class Saskia{
 			}
 		}
 		private function erosi() {
-
-			if(Sartu::barruan()) {
+			if(Sartu::barruan()&&isset($_SESSION['karritoa'])) {
 				if($this->formaBalidatu()){
 					if(!isset($_POST['erosi'])&&isset($_SESSION['karritoa'])){
 					$this->saskiaErakutsi(false);
@@ -192,30 +191,50 @@ class Saskia{
 					foreach($karritoaren_array as $ida=>$kantitatea){
 					$this->erosketaInsertatu($ida,$kodea,$kantitatea);
 					}
+					if(!isset($_SESSION['mezua_stock'])){
 					$this->saskitikKendu();
-					$this->mezuak[] = "Erosketa arrakastaz egina";
-					echo '<script>window.location="index.php"</script>';
+					unset($_GET['ekintzak']);
+					$this->mezuak[] = "Erosketa arrakastaz egina";}
+					else {$this->erroreak[] = "Ez da stocka geratzen '".$_SESSION['mezua_stock']."' erosteko";
+						unset($_GET['ekintzak']);
+				}
 				}
 			}
-			else {
+		}
+		else if(!Sartu::barruan()){
+			unset($_GET['ekintzak']);
 			$this->erroreak[] = "Bazkide izan behar zara erosketak egiteko.";
 	}
-		}
-		}
+	else unset($_GET['ekintzak']);
+		unset($_SESSION['mezua_stock']);
+	}
 
 		private function erosketaInsertatu($ida,$kodea,$kantitatea) {
+				/*lehenik stock-a egiaztatuko dugu.*/
+				$sql="select * from produktu where id=".$ida."";
+				$bidali = $this->db->query($sql)->fetch_object();
+				//echo '<script>alert("'.$bidali->stock.'")</script>';
+				if($bidali->stock>=$kantitatea){
 				/*
 				 * salmentak taulara informazioa gehitu, lerro bat
 				 * gehitzen den bakoitzean exekutatuko da, bi 
 				 * parametroak behar-beharrezkoak dira.
 				 */
-				 
 				 $data = date('Y-m-d h:i:s');
 				 $sql = "INSERT INTO salmentak
 				         (id_er, id_prod, codigo, kantitatea, data)
 				         VALUES
 				         ('".Session::get('id')."', '".$ida."', '".$kodea."', '".$kantitatea."', '".$data."');";
 				 $sartu = $this->db->query($sql);
+				$sql1 = "update produktu set stock='".($bidali->stock-$kantitatea)."'
+									WHERE id='".$ida."';";
+				 $sartu1 = $this->db->query($sql1);}
+				 else {
+				 if(isset($_SESSION['mezua_stock']))
+				 	$_SESSION['mezua_stock']= $_SESSION['mezua_stock'].','.$bidali->izena;
+				 	else
+				 		$_SESSION['mezua_stock']= $bidali->izena;
+				}
 		}
 		private function formaBalidatu() {
 			if(!isset($_POST['codigo'])){

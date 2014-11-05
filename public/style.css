@@ -338,9 +338,9 @@ table tr{
 	margin-right:5%;
 }
 #testu{
-width:48%;
+width:50%;
 margin: 0px;
 padding: 0px;
 float: right;
-border:solid thin black;
+min-height: 350px
 }

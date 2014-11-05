@@ -342,10 +342,14 @@ class Produktu {
 					<div id='zehaztasun_aldea'><h3>".$lerroa['izena']."</h3><p>";
 					$deskripzioa = substr($lerroa['deskripzioa'],0,35);
 					echo /*$deskripzioa.*/"</p></div>
-				<div id='botoien_aldea'><h3>".$lerroa['prezioa']." €</h3></div><button class='button-xsmall pure-button pure-input-1 pure-button-primary info' value='".$lerroa['id']."' name='erakutsi'>Informazio gehiago	<i class='fa fa-file-text-o''></i></button>
-					<input type='hidden' name='produktua' value='".$lerroa['id']."'>			
+				<div id='botoien_aldea'><h3>".$lerroa['prezioa']." €</h3></div><button class='button-xsmall pure-button pure-input-1 pure-button-primary info' value='".$lerroa['id']."' name='erakutsi'>Informazio gehiago	<i class='fa fa-file-text-o''></i></button>";
+					if($lerroa['stock']>0){
+					echo "<input type='hidden' name='produktua' value='".$lerroa['id']."'>			
 					<button id='".$lerroa['id']."' class='button-success button-xsmall karrito_gehitu pure-button pure-input-1 pure-button-primary' value='gehitu' name='ekintzak'>Saskiratu	<i class='fa fa-shopping-cart fa-l'></i></button>
-					</div>";
+					</div>";}
+					else{
+					echo "<button class='button-xsmall pure-button pure-input-1' style='background-color:red'>EZ DAGO STOCK</button>
+					</div>";}
 				}
 			}
 		}
@@ -385,8 +389,12 @@ echo"<script src='public/js/unslider.js'></script>
 				echo "<p>Deskripzioa: ".$produktua->deskripzioa."</p>";
 				echo "<p>Stock: ".$produktua->stock."</p>";
 				echo "<p>Prezioa: ".$produktua->prezioa." €</p>";
+				if($produktua->stock>0){
 				echo "<input type='hidden' name='produktua' value='".$produktua->id."'>			
-				<button id='".$produktua->id."' class='button-success button-xsmall karrito_gehitu pure-button pure-input-1 pure-button-primary' value='gehitu' name='ekintzak'>Saskiratu	<i class='fa fa-shopping-cart fa-l'></i></button>";
+				<button style='float:right;' id='".$produktua->id."' class='button-success button-xsmall karrito_gehitu pure-button pure-input-1 pure-button-primary' value='gehitu' name='ekintzak'>Saskiratu	<i class='fa fa-shopping-cart fa-l'></i></button>";}
+				else{
+				echo "<input type='button' value='Ez dago stock-ean' style='background-color:red'>";	
+				}
 				echo "</div></div>";
 			} 
 			else {
@@ -434,6 +442,7 @@ echo"<script src='public/js/unslider.js'></script>
 				unlink($_POST['ruta_borratzeko_argazkiana']);
 			}
 		}
+		include("bistak/kudeatu.php");
 		}
 		public function zeozeLortu($kanpo) {
 				// ID eta kanpo izen bat emanda balioa itzultzen du

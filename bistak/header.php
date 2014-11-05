@@ -18,7 +18,7 @@
 <body>
 	<div id="edukia">
 	<header>
-		<img src="public/img/logoa.png" alt="Logoa" id="logoa" class="pure-img">
+		<img src="public/img/logoa_beixGabe.png" alt="Logoa" id="logoa" class="pure-img">
 	<nav>
 		<ul>
 			<a id='my-tooltip' class='tooltip' title='</a>
