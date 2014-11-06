@@ -94,8 +94,18 @@ class Kontua {
 	}
 	private function jaso() {
 		$idak = explode(',', $_POST['arraya']);
-		for($i=0;$i<count($idak);++$i) {
-			
+		$kodigoidak = explode(',', $_POST['arraiaCod']);
+		for($i=1;$i<count($idak);++$i) {
+			$sql = "UPDATE salmentak
+					SET egoera='0'
+					WHERE codigo='".$kodigoidak[$i]."';";
+			echo $sql;
+			$q = $this->db->query($sql);
+			var_dump($q);
+			if(!$q) {
+				$this->erroreak[] = "Erroreak kontsultan";
+			}
+					
 		}
 	}
 }
