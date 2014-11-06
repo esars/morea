@@ -40,7 +40,7 @@ class Mugitu {
 
 		public static function nora($u) {
 			//header("Location: ".$u);
-			echo "<script>window.location('".$u."')</script>";
+			//echo "<script>window.location=('".$u."')</script>";
 		}
 }
 ?>

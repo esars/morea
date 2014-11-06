@@ -348,7 +348,7 @@ class Produktu {
 					<button id='".$lerroa['id']."' class='button-success button-xsmall karrito_gehitu pure-button pure-input-1 pure-button-primary' value='gehitu' name='ekintzak'>Saskiratu	<i class='fa fa-shopping-cart fa-l'></i></button>
 					</div>";}
 					else{
-					echo "<button class='button-xsmall pure-button pure-input-1' style='background-color:red'>EZ DAGO STOCK</button>
+					echo "<button class='button-xsmall pure-button pure-input-1' style='background-color:red'>STOCK GABE</button>
 					</div>";}
 				}
 			}
@@ -367,10 +367,10 @@ class Produktu {
 			if($query) {
 				$produktua = $query->fetch_object();
 				$total_imagenes = glob("public/argazkiak/".$produktua->id."-{*.jpg,*.gif,*.png}",GLOB_BRACE);
-				echo "<div class='gureinfo'><div id='argazkiak_produktu' class='slider'><ul>";
+				echo "<div class='gureinfo'><div id='argazkien_muga'><div id='argazkiak_produktu' class='slider'><ul>";
 				foreach($total_imagenes as $v){  
 				echo '<li style="margin:auto"><img src="'.$v.'"alt="Sliderreko argazkia" /></li>';  
-}  				echo "</ul></div>";
+}  				echo "</ul></div></div>";
 echo"<script src='public/js/unslider.js'></script>
 	<script>
 	$(document).ready(function() {
@@ -380,14 +380,13 @@ echo"<script src='public/js/unslider.js'></script>
 			complete: function() {},  //  A function that gets called after every slide animation
 			keys: true,               //  Enable keyboard (left, right) arrow shortcuts
 			dots: true,               //  Display dot navigation
-			fluid: false              //  Support responsive design. May break non-responsive designs
+			fluid: true              //  Support responsive design. May break non-responsive designs
 		});
 	});
 </script>";
 				echo "<div id='testu'>";
 				echo "<h1>".$produktua->izena."</h1>";
-				echo "<p>Deskripzioa: ".$produktua->deskripzioa."</p>";
-				echo "<p>Stock: ".$produktua->stock."</p>";
+				echo "<p>Deskripzioa: ".$produktua->deskripzioa."</p><hr>";
 				echo "<p>Prezioa: ".$produktua->prezioa." €</p>";
 				if($produktua->stock>0){
 				echo "<input type='hidden' name='produktua' value='".$produktua->id."'>			
@@ -395,7 +394,9 @@ echo"<script src='public/js/unslider.js'></script>
 				else{
 				echo "<input type='button' value='Ez dago stock-ean' style='background-color:red'>";	
 				}
-				echo "</div></div>";
+				echo "</div><br><br><hr><button class='button-success button-xsmall pure-button pure-input-1' style='background-color:#3E5C9A;margin-left:10px;float:right'><i class='fa fa-facebook' style='color:white'></i></button>";
+				echo "<button class='button-success button-xsmall pure-button pure-input-1' style='background-color:#5EAADE;margin-left:10px;float:right'><i class='fa fa-twitter' style='color:white'></i></button>";
+				echo "<button class='button-success button-xsmall pure-button pure-input-1' style='background-color:#D82A21;margin-left:10px;float:right'><i class='fa fa-google-plus' style='color:white'></i></button></div>";
 			} 
 			else {
 				$this->erroreak[] = "Landare hau ez da existitzen";

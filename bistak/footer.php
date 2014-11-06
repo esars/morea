@@ -49,6 +49,14 @@
 				echo "<div class='notif mezu'>".$m."</div>";
 			}
 		}
+		if (isset($_SESSION['mezuak'])){
+			echo "<div class='notif mezu'>".$_SESSION['mezuak']."</div>";
+			unset($_SESSION['mezuak']);
+		}
+		if (isset($_SESSION['erroreak'])){
+			echo "<div class='notif mezu'>".$_SESSION['erroreak']."</div>";
+			unset($_SESSION['erroreak']);
+		}
 	}
 	if (isset($kontua)) {
 		if ($kontua->erroreak) {
