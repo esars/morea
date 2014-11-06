@@ -192,11 +192,12 @@ class Saskia{
 					$this->erosketaInsertatu($ida,$kodea,$kantitatea);
 					}
 					if(!isset($_SESSION['mezua_stock'])){
+					$this->mezuak[]='Erosketa arrakastaz egina';
 					$this->saskitikKendu();
 					unset($_GET['ekintzak']);
-					$this->mezuak[] = "Erosketa arrakastaz egina";}
-					else {$this->erroreak[] = "Ez da stocka geratzen '".$_SESSION['mezua_stock']."' erosteko";
-						unset($_GET['ekintzak']);
+					}
+					else {$this->erroreak[] = $_SESSION['mezua_stock'];
+					unset($_GET['ekintzak']);
 				}
 				}
 			}
@@ -214,7 +215,7 @@ class Saskia{
 				$sql="select * from produktu where id=".$ida."";
 				$bidali = $this->db->query($sql)->fetch_object();
 				//echo '<script>alert("'.$bidali->stock.'")</script>';
-				if($bidali->stock>=$kantitatea){
+				if($bidali->stock>$kantitatea){
 				/*
 				 * salmentak taulara informazioa gehitu, lerro bat
 				 * gehitzen den bakoitzean exekutatuko da, bi 
@@ -226,14 +227,14 @@ class Saskia{
 				         VALUES
 				         ('".Session::get('id')."', '".$ida."', '".$kodea."', '".$kantitatea."', '".$data."');";
 				 $sartu = $this->db->query($sql);
-				$sql1 = "update produktu set stock='".($bidali->stock-$kantitatea)."'
+				$sql1 = "update produktu set stock='".$bidali->stock-$kantitatea."'
 									WHERE id='".$ida."';";
 				 $sartu1 = $this->db->query($sql1);}
 				 else {
 				 if(isset($_SESSION['mezua_stock']))
-				 	$_SESSION['mezua_stock']= $_SESSION['mezua_stock'].','.$bidali->izena;
+				 	$_SESSION['mezua_stock']= $_SESSION['mezua_stock'].'<br>Ez da stocka geratzen'.$bidali->izena.' erosteko';
 				 	else
-				 		$_SESSION['mezua_stock']= $bidali->izena;
+				 		$_SESSION['mezua_stock']= 'Ez da stocka geratzen "'.$bidali->izena.'" erosteko';
 				}
 		}
 		private function formaBalidatu() {
