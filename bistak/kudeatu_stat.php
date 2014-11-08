@@ -3,6 +3,7 @@
 	<thead>
 		<tr>
 			<td>Erabiltzaile ID</td>
+			<td>IP helbidea</td>
 			<td>Nabigatzailea eta sistema eragilea</td>
 			<td>Nondik</td>
 			<td>Non</td>
@@ -15,6 +16,7 @@
 			echo "<tr>";
 		
 			echo "<td>".$lerroa['uid']."</td>";
+			echo "<td>".$lerroa['ip']."</td>";
 			echo "<td>".$lerroa['user_agent']."</td>";
 			echo "<td>".$lerroa['referer']."</td>";
 			echo "<td>".$lerroa['orrialdea']."</td>";
