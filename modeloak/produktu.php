@@ -73,25 +73,15 @@ class Produktu {
 						$this->produktuBatErakutsi($_GET['id']);
 					break;
 				case "kudeatzaile_prod":
-						if(Sartu::adminBarruan())
-						include("bistak/kudeatu.php");
-					else $this->produktuakErakutsi();
-					break;
+					if(Sartu::adminBarruan())
+					include("bistak/kudeatu.php");
+				else $this->produktuakErakutsi();
+				break;
 				case "kudeatzaile_erab":
-						if(Sartu::adminBarruan())
-						include("bistak/kudeatu_erab.php");
-						else $this->produktuakErakutsi();
-					break;
-				case "argazkia_kendu":
-						$this->argazkiaKendu();
-					break;
-				case "aldatu":
-					if($ad) {
-						$this->produktuaAldatu($_POST['id']);
-					} else {
-						$this->erroreak[] = "Ez zara kudeatzailea.";
-					}
-					break;
+					if(Sartu::adminBarruan()) 
+					include("bistak/kudeatu_erab.php");
+					else $this->produktuakErakutsi();
+				break;
 				case null:
 					$this->produktuakErakutsi();
 					break;

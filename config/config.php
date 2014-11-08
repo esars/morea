@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+
 /*
  * DATUBASEAREN KREDENTZIALAK
 */
@@ -26,9 +28,7 @@ if((int)phpversion()[2] < 5) {
 	require_once "config/passlib.php";
 }
 
-/*
- * Erroreak izkutatu edo erakutsi
- */
+// Erroreak izkutatu edo erakutsi
 
 $erroreak_ikusi = true; 
 
@@ -40,5 +40,6 @@ if($erroreak_ikusi) {
 
 // Erosketetan data eta ordua sartzeko
 
-date_default_timezone_set('Europe/Paris')
+date_default_timezone_set('Europe/Paris');
+
 ?>

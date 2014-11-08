@@ -354,3 +354,7 @@ overflow: hidden
 #testu>h3{
 	float: left;
 }
+.zabal {
+	width:87%;
+	font-size: 0.9em;
+}
