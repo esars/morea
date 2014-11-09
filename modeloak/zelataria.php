@@ -45,7 +45,8 @@ class Zelataria {
 		$uag = $_SERVER['HTTP_USER_AGENT']; 	// User agent: nabegadorea, OS...
 		$hel = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; // Orrialdea
 		$ref = $_SERVER['HTTP_REFERER']; 		// Nondik dator erabiltzailea?
-		$uid = Session::get('id');
+		if(Session::existitzenBada('id')) $uid = Session::get('id');
+		else $uid = "Gonbidatua";
 		$data = date('Y-m-d h:i:s');
 		
 		$sql = "INSERT INTO zelatari
@@ -53,7 +54,7 @@ class Zelataria {
 				VALUES
 				('".$ipa."', '".$uag."', '".$ref."', '".$hel."', '".$uid."', '".$data."');";
 		
-		$infoaSartu = $this->db->query($sql);
+		$infoaSartu = $this->db->query($sql) or die(mysqli_error($this->db));
 		
 		if(!$infoaSartu) Session::set('erroreak', 'Errorea zure informazioa jasotzean.');
 	}
