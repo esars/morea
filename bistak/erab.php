@@ -2,7 +2,7 @@
 <h2 class="eizena"><?php echo $erabObj->izena." ".$erabObj->abizena; ?></h2>
 <?php if(Sartu::adminBarruan()) { ?>
 	<h2>Prozesuan</h2>
-	<table class="pure-table hist">
+	<table class="pure-table hist taula">
 		<thead>
 			<td>Erosle ID</td>
 			<td>Erosle izena</td>
@@ -35,7 +35,7 @@
 	</tbody>
 	</table>
 <h2>Eginak</h2>
-<table class="pure-table hist">
+<table class="pure-table hist taula">
 	<thead>
 		<tr>
 			<?php if(Sartu::adminBarruan()) { ?>

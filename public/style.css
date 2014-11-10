@@ -354,3 +354,15 @@ overflow: hidden
 #testu>h3{
 	float: left;
 }
+.taula{
+	margin: auto
+}
+.prezioa{
+	background-color: black;
+	border-radius: 3px;
+	padding: 5px;
+	color: white;
+	float: right;
+	font-size: 1.2em;
+	margin-right: 20px
+}
