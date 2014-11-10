@@ -2,8 +2,6 @@
 class Zelataria {
 
 	private $db = null;	
-	public $erroreak = [];
-	public $mezuak = [];
 	
 	static $gaitua = true;
 	
@@ -44,7 +42,8 @@ class Zelataria {
 		$ipa = $this->ipLortu();
 		$uag = $_SERVER['HTTP_USER_AGENT']; 	// User agent: nabegadorea, OS...
 		$hel = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; // Orrialdea
-		$ref = $_SERVER['HTTP_REFERER']; 		// Nondik dator erabiltzailea?
+		if(isset($_SERVER['HTTP_REFERER'])) $ref = $_SERVER['HTTP_REFERER']; 		// Nondik dator erabiltzailea?
+		else $ref = "Inondik";
 		if(Session::existitzenBada('id')) $uid = Session::get('id');
 		else $uid = "Gonbidatua";
 		$data = date('Y-m-d h:i:s');
@@ -83,4 +82,4 @@ class Zelataria {
 		$bisitak = $this->db->query($sql);
 		include("bistak/kudeatu_stat.php");
 	}
-}	
+}
