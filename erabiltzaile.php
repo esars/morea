@@ -6,9 +6,11 @@ require_once "modeloak/izenaeman.php";
 require_once "modeloak/produktu.php";
 require_once "modeloak/saskia.php";
 require_once "modeloak/kontua.php";
+require_once "modeloak/zelataria.php";
 
 $login = new Sartu();
 $reg = new IzenaEman();
+$zel = new Zelataria();
 
 include("bistak/header.php");
 include("bistak/nagusia.php");

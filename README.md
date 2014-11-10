@@ -9,9 +9,10 @@ Morea Loradenda
 Erabilitako liburutegiak
 ------------------------
 
-* Pure CSS (Yahoo)
-* Featherlight jQuery plugin
-* font-awesome 4.2.0
+* [Pure CSS](http://purecss.io/)
+* [Featherlight jQuery plugin](http://noelboss.github.io/featherlight/)
+* [font-awesome 4.2.0](http://fortawesome.github.io/Font-Awesome/)
+* [Unslider](http://unslider.com/)
 
 Administratzailea
 -----------------

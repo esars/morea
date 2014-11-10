@@ -142,11 +142,14 @@ function argazkia_ezabatu(){
 }
 function jasotakoak_bidali(){
 	jasotakoak_array='';
+	kodigoak_array = '';
 		for (var i = $('.jasoak').length - 1; i >= 0; i--) {
 			if($('.jasoak:eq('+i+')').is(':checked')){
 			jasotakoak_array=jasotakoak_array+','+$('.jasoak:eq('+i+')').val();
+			kodigoak_array=kodigoak_array+','+$('.jasoak:eq('+i+')').attr('id');
+		}
+		$('#arraya').val(jasotakoak_array);
+		$('#arraiaCod').val(kodigoak_array);
+		$('#jasotakoforma').submit();
 		}
 	}
-$('#arraya').val(jasotakoak_array);
-	$('#jasotakoforma').submit();
-}

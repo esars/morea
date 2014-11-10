@@ -12,7 +12,7 @@
 			<td>Kantitatea</td>
 			<td>Data</td>
 			<?php if(Sartu::adminBarruan()) { ?>
-				<td><form id="jasotakoforma" action='' method='post'><input type="hidden" id="arraya" name="arraya"><button onclick="jasotakoak_bidali()" class='pure-button pure-button-primary' name='jasodut'>Jaso dut!</button></form></td>
+				<td><form id="jasotakoforma" action='' method='post'><input type="hidden" id="arraya" name="arraya"><input type="hidden" id="arraiaCod" name="arraiaCod"><button onclick="jasotakoak_bidali()" class='pure-button pure-button-primary' name='jasodut'>Jaso dut!</button></form></td>
 			<?php } ?>
 		</thead>
 		<tbody>
@@ -27,7 +27,7 @@
 				echo "<td>".$lerroa['data']."</td>";
 				
 				if(Sartu::adminBarruan()) {
-					echo "<td><input type='checkbox' value='".$lerroa['id_prod']."' class='jasoak'></td>";
+					echo "<td><input type='checkbox' value='".$lerroa['codigo']."' id='".$lerroa['codigo']."' class='jasoak'></td>";
 				}
 				echo "</tr>";
 			}
@@ -64,6 +64,8 @@
 		echo "<td>".$lerroa['pre']."</td>";
 		echo "<td>".$lerroa['kantitatea']."</td>";
 		echo "<td>".$lerroa['data']."</td>";
+		
+		echo "</tr>";
 	} ?>
 	</tbody>
 </table>

@@ -45,18 +45,6 @@ class Kontua {
 			$this->erorreak[] = "Ez dauzkazu beharrezko baimenak.";
 		}
 	}
-	private function datuakAldatu() {
-		
-	}
-	private function pasahitzaAldatu() {
-		
-	}
-	private function kontuaBorratu() {
-		
-	}
-	private function kontuakKudeatu() {
-		
-	}
 	private function erabInfo() {
 		$erab = $this->db->query("SELECT * from erabiltzaile WHERE id='".Session::get('id')."';");
 		
@@ -74,7 +62,7 @@ class Kontua {
 					  JOIN erabiltzaile e ON s.id_er=e.id
 					  WHERE egoera='0';";
 					  
-			$prozesuan_kontsulta = "SELECT id_prod, id_er,codigo, p.izena iz, p.prezioa pre, kantitatea, data, e.izena eiz
+			$prozesuan_kontsulta = "SELECT distinct codigo, id_prod, id_er, p.izena iz, p.prezioa pre, kantitatea, data, e.izena eiz
 									FROM salmentak s 
 									JOIN produktu p ON s.id_prod=p.id
 									JOIN erabiltzaile e ON s.id_er=e.id
@@ -94,8 +82,18 @@ class Kontua {
 	}
 	private function jaso() {
 		$idak = explode(',', $_POST['arraya']);
-		for($i=0;$i<count($idak);++$i) {
-			
+		$kodigoidak = explode(',', $_POST['arraiaCod']);
+		for($i=1;$i<count($idak);++$i) {
+			$sql = "UPDATE salmentak
+					SET egoera='0'
+					WHERE codigo='".$kodigoidak[$i]."';";
+			echo $sql;
+			$q = $this->db->query($sql);
+			var_dump($q);
+			if(!$q) {
+				$this->erroreak[] = "Erroreak kontsultan";
+			}
+					
 		}
 	}
 }

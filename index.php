@@ -5,6 +5,7 @@ require_once "modeloak/sartu.php";
 require_once "modeloak/izenaeman.php";
 require_once "modeloak/produktu.php";
 require_once "modeloak/saskia.php";
+require_once "modeloak/zelataria.php";
 
 $login = new Sartu();
 $reg = new IzenaEman();
@@ -12,8 +13,10 @@ $reg = new IzenaEman();
 include("bistak/header.php");
 include("bistak/nagusia.php");
 
+$zel = new Zelataria();
 $sask = new Saskia();
 $prod = new Produktu();
+
 if(Sartu::barruan()) {
 	include("bistak/barruan.php");
 	if(Sartu::adminBarruan()) {
