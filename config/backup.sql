@@ -1,6 +1,6 @@
 --
 -- MySQL 5.5.5
--- Tue, 04 Nov 2014 12:50:11 +0000
+-- Mon, 10 Nov 2014 07:49:07 +0000
 --
 
 CREATE TABLE `erabiltzaile` (
@@ -56,12 +56,32 @@ CREATE TABLE `salmentak` (
    `data` datetime not null,
    `egoera` int(1) default '1',
    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=80;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=87;
 
 INSERT INTO `salmentak` (`id`, `id_er`, `id_prod`, `kantitatea`, `codigo`, `data`, `egoera`) VALUES 
-('74', '4', '3', '1', 'EM04hXbOZP', '2014-11-04 12:25:42', '1'),
-('75', '4', '2', '1', 'EM04hXbOZP', '2014-11-04 12:25:42', '1'),
-('76', '4', '1', '1', 'EM04hXbOZP', '2014-11-04 12:25:42', '1'),
-('77', '4', '6', '1', 'EM04hXbOZP', '2014-11-04 12:25:42', '1'),
-('78', '4', '7', '1', 'EM04hXbOZP', '2014-11-04 12:25:42', '1'),
-('79', '4', '8', '1', 'EM04hXbOZP', '2014-11-04 12:25:42', '1');
+('74', '4', '3', '1', 'EM04hXbOZP', '2014-11-04 12:25:42', '0'),
+('75', '4', '2', '1', 'EM04hXbOZP', '2014-11-04 12:25:42', '0'),
+('76', '4', '1', '1', 'EM04hXbOZP', '2014-11-04 12:25:42', '0'),
+('77', '4', '6', '1', 'EM04hXbOZP', '2014-11-04 12:25:42', '0'),
+('78', '4', '7', '1', 'EM04hXbOZP', '2014-11-04 12:25:42', '0'),
+('79', '4', '8', '1', 'EM04hXbOZP', '2014-11-04 12:25:42', '0'),
+('80', '4', '13', '1', '9Yk6JDRNM3', '2014-11-08 09:42:08', '0'),
+('81', '4', '9', '5', '9Yk6JDRNM3', '2014-11-08 09:42:08', '0'),
+('82', '4', '4', '2', '09mUMVQgRn', '2014-11-08 01:09:02', '0'),
+('83', '4', '9', '8', '09mUMVQgRn', '2014-11-08 01:09:02', '0'),
+('84', '4', '13', '4', '09mUMVQgRn', '2014-11-08 01:09:02', '0'),
+('85', '4', '7', '3', '09mUMVQgRn', '2014-11-08 01:09:02', '0'),
+('86', '4', '8', '7', '09mUMVQgRn', '2014-11-08 01:09:03', '0');
+
+CREATE TABLE `zelatari` (
+   `id` int(8) not null auto_increment,
+   `ip` varchar(15) not null,
+   `user_agent` varchar(80) not null,
+   `referer` varchar(40) not null,
+   `orrialdea` varchar(40) not null,
+   `uid` varchar(10) not null,
+   `data` datetime,
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- [Table `zelatari` is empty]
