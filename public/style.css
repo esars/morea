@@ -354,7 +354,6 @@ overflow: hidden
 #testu>h3{
 	float: left;
 }
-<<<<<<< HEAD
 .taula{
 	margin: auto
 }
@@ -367,7 +366,6 @@ overflow: hidden
 	font-size: 1.2em;
 	margin-right: 20px
 }
-=======
 .zabal {
 	width:87%;
 	font-size: 0.75em;
@@ -375,4 +373,3 @@ overflow: hidden
 #kokapena {
 	width: 800px;
 }
->>>>>>> b4eebf0bd1f4b794b81d57cd812a90cf7b9694c3
