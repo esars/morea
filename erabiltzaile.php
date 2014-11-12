@@ -10,13 +10,14 @@ require_once "modeloak/zelataria.php";
 
 $login = new Sartu();
 $reg = new IzenaEman();
-$zel = new Zelataria();
 
-include("bistak/header.php");
+include("bistak/header1.php");
 include("bistak/nagusia.php");
 
 $sask = new Saskia();
-$kontua = new Kontua();
+if(isset($_GET['erabid'])){
+$kontua = new Kontua();}
+$zel = new Zelataria();
 
 if(Sartu::barruan()) {
 	include("bistak/barruan.php");
@@ -29,4 +30,3 @@ if(Sartu::barruan()) {
 
 
 include("bistak/footer.php");
-?>

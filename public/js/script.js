@@ -153,3 +153,8 @@ function jasotakoak_bidali(){
 		$('#jasotakoforma').submit();
 		}
 	}
+$('#bisitenTaula').click(taulaErakutsi);
+function taulaErakutsi(){
+	alert('barruan');
+	$('#taulabisitena').hide();
+}
