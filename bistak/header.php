@@ -4,12 +4,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Morea Lorategia</title>
-	<link rel="stylesheet" type="text/css" href="public/style.css">
+	<link rel="stylesheet" href="public/font-awesome-4.2.0/css/font-awesome.min.css">	
 	<link rel="stylesheet" type="text/css" href="public/pure.css">
+	<link rel="stylesheet" type="text/css" href="public/style.css">
 	<link rel="stylesheet" type="text/css" href="public/featherlight.min.css">
 	<link rel="stylesheet" type="text/css" href="public/tooltipster.css">
 	<link href='http://fonts.googleapis.com/css?family=Lobster|Magra:400,500' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="public/font-awesome-4.2.0/css/font-awesome.min.css">
 	<script src="public/js/jquery.js"></script>
 	<script src="public/js/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="public/js/jquery.tooltipster.min.js" type="text/javascript" charset="utf-8"></script>
@@ -22,7 +22,7 @@
 	<nav>
 		<ul>
 			<a id='my-tooltip' class='tooltip' title='</a>
-																													<ul id="kategoriak">
+																													<ul class="kategoriak">
 																													<li><a href="index.php?kat=Zentroak"><i class="fa fa-support"></i>  Zentroak</a></li>
 																													<li><a href="index.php?kat=Erramuak"><i class="fa fa-gift"></i>  Erramuak</a></li>
 																													<li><a href="index.php?kat=Funeralak"><i class="fa fa-thumbs-down"></i>  Funeralak</a></li>
@@ -36,7 +36,13 @@
 			<a class='tooltip ikono' title='Saskia bistaratu' href="#" data-featherlight="#saskia"><li><img id='saski' src="public/img/shopping.png" alt="Karritoan duzuna ikusi"></li></a>
 			<?php
 			if(isset($_SESSION['izena'])){
-							?>			<a class='tooltip' title='Zure profila' href="profila.php" data-featherlight="#mylightbox"><li><img id='erab' src="public/img/erab.png" alt="Sartu edo erregistratu"></li></a>
+							?>			<a class='tooltip' title='<ul class="kategoriak">
+																	<li><a href="erabiltzaile.php?aldatu=pasahitza"><i class="fa fa-key"></i>Pasahitza aldatu</li>
+																	<li><a href="erabiltzaile.php?aldatu=datuak"><i class="fa fa-male"></i>Kontua aldatu</li>
+
+																	<li></li>
+
+																  </ul>' href="profila.php" data-featherlight="#mylightbox"><li><img id='erab' src="public/img/erab.png" alt="Sartu edo erregistratu"></li></a>
 <?php
 			}
 			else{
@@ -47,7 +53,7 @@
 			<?php
 			if(Sartu::adminBarruan()) {
 							?><a class="tooltip ikono" id='my-tooltip' title='
-																													<ul id="kategoriak">
+																													<ul class="kategoriak">
 																													<li><a href="index.php?ekintza=kudeatzaile_prod"><i class="fa fa-cubes"></i>  Produktuak</a></li>
 																													<li><a href="index.php?ekintza=kudeatzaile_erab"><i class="fa fa-users"></i>  Erabiltzaileak</a></li>
 																													<li><a href="erabiltzaile.php?erabid=2"><i class="fa fa-shopping-cart"></i>  Salmentak</a></li>

@@ -165,7 +165,7 @@ class Saskia{
 					echo '<form action="" method="post"><input type="hidden" name="erosibotoi" value="erosibotoi"><input type="hidden" name="codigo" value="'.md5(uniqid(rand(), true)).'"><input type="hidden" name="erosi" value="bai"><button class="erosibotoi" type="submit" name="ekintzak" value="erosi">Erosketa egin</button></form></th>';
 			}
 			else{
-				echo '<form action="" method="get"><button class="erosibotoi" type="submit" name="ekintzak" value="erosi">Erosketa egin</button></form></th>';}
+				echo '<form action="" method="get"><button class="erosibotoi" type="submit" name="ekintzak" value="erosi">Erosketa egin</button</form></th>';}
 				echo '</tr></thead>';
 				echo '</table>';
 			}

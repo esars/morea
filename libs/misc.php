@@ -43,4 +43,21 @@ class Mugitu {
 			//echo "<script>window.location=('".$u."')</script>";
 		}
 }
+class Auto {
+
+	public static function null($balioa, $metodoa) {
+		switch ($metodoa) {
+			case "post":
+				return isset($_POST['value']) ? $_POST['value'] : '';
+				break;
+			case "get":
+				return isset($_GET['value']) ? $_GET['value'] : '';
+				break;
+			case "server":
+				return isset($_GET['server']) ? $_GET['server'] : '';
+				break;
+		}
+	}
+
+}
 ?>

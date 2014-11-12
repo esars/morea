@@ -62,7 +62,7 @@ class Sartu {
 	}
 	private function atera() {
 		$this->mezuak[] = "Arrakastaz atera zara.";
-		Session::saioa_itxi();
+		session_destroy();
 		Mugitu::nora('index.php');
 	}
 	public static function barruan() {

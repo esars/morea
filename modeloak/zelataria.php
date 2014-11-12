@@ -3,7 +3,7 @@ class Zelataria {
 
 	private $db = null;	
 	
-	static $gaitua = true;
+	public static $gaitua = true;
 	
 	/*
 	 * Zelatariaren modeloa. Adminari orrialdea bisitatzen duten

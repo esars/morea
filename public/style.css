@@ -238,23 +238,28 @@ table tr{
 	background-color: transparent;
 	border: none;
 }
-#kategoriak {
+.kategoriak {
 	font-size:1.1em;
 	margin: 0px 0px;
 	list-style-type: none;
 	padding: 0px 0px;
 }
-#kategoriak > li {
+.kategoriak > li {
 	padding: 10px 0px 5px 5px;
 	padding-left: 0px;
+	text-align: right;
 	width: 100%;
 }
-#kategoriak > li > a {
+.kategoriak i {
+	float: left;
+}
+.kategoriak > li > a {
+	margin-left: 5px;
 	color: white;
 	text-decoration: none;
 	transition: 200ms all ease-in-out;
 }
-#kategoriak > li > a:hover {
+.kategoriak > li > a:hover {
 	color: #2A363B;
 	text-shadow: 0px 1px 0px #bbb;
 }
@@ -320,7 +325,7 @@ table tr{
 	text-align: justify;
 	border: 1px solid white;
 	border-radius: 3px;
-	overflow: hidden
+	overflow: hidden;
 }
 .gureinfo h1 {
 	text-align: center;
@@ -354,17 +359,19 @@ overflow: hidden
 #testu>h3{
 	float: left;
 }
-.taula{
-	margin: auto
-}
-.prezioa{
-	background-color: black;
-	border-radius: 3px;
-	padding: 5px;
+.erosibotoi {
+	font-family: 'Magra', sans-serif;
+	font-weight: bold;
 	color: white;
-	float: right;
-	font-size: 1.2em;
-	margin-right: 20px
+	letter-spacing: 0.25px;
+	text-shadow: 0px 0px 2px black;
+	transition: all 350ms linear;
+}
+.erosibotoi:hover {
+	color: #B6F5FF;
+}
+.taula{
+	margin: auto;
 }
 .zabal {
 	width:87%;
@@ -372,4 +379,13 @@ overflow: hidden
 }
 #kokapena {
 	width: 800px;
+}
+#testu > h1 {
+	color: #E84A5F;
+}
+#testu > p {
+	color: #2A363B;
+}
+.fl .fn {
+	font-family: 'Magra', sans-serif;
 }
