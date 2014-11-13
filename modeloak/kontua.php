@@ -68,7 +68,8 @@ class Kontua {
 		}
 	}
 	private function erabInfo() {
-		
+
+		$erab = $this->db->query("SELECT * from erabiltzaile WHERE id='".Session::get('id')."';");
 		if(Sartu::adminBarruan()) {
 			
 			/*
@@ -76,19 +77,22 @@ class Kontua {
 			 * EGOERA = 1 --> Datubasean erregistratu da eskaera, bidean dago produktua
 			 * EGOERA = 0 --> Produktua iritsi da
 			*/
-			
+			//$helbidea='localhost:8888/morea/index.php?id=2&ekintza=erakutsi';
+			//$datuak=explode("?",$helbidea);
+			//$id_ekintza=explode("&",$datuak[1]);
+			//echo "<script>alert('id = ".$id_ekintza[0]." ekintza=".$id_ekintza[1]."')</script>";
 			$konts = "SELECT id_er,codigo, p.izena iz, p.prezioa pre, kantitatea, data, e.izena eiz
 					  FROM salmentak s 
 					  JOIN produktu p ON s.id_prod=p.id
 					  JOIN erabiltzaile e ON s.id_er=e.id
 					  WHERE egoera='0';";
 					  
-			$prozesuan_kontsulta = "SELECT distinct codigo, id_prod, id_er, p.izena iz, p.prezioa pre, kantitatea, data, e.izena eiz
+			$prozesuan_kontsulta = "SELECT id_er,codigo, id_prod, id_er, p.izena iz, p.prezioa pre, kantitatea, data, e.izena eiz
 									FROM salmentak s 
 									JOIN produktu p ON s.id_prod=p.id
 									JOIN erabiltzaile e ON s.id_er=e.id
 									WHERE egoera='1';";
-			$proz = $this->db->query($prozesuan_kontsulta);						
+			$proz = $this->db->query($prozesuan_kontsulta);					
 		} else {
 			$konts = "SELECT p.izena iz, p.prezioa pre, codigo, kantitatea, data
 					  FROM salmentak s JOIN produktu p
@@ -107,9 +111,9 @@ class Kontua {
 			$sql = "UPDATE salmentak
 					SET egoera='0'
 					WHERE codigo='".$kodigoidak[$i]."';";
-			echo $sql;
+			//echo $sql;
 			$q = $this->db->query($sql);
-			var_dump($q);
+			//var_dump($q);
 			if(!$q) {
 				$this->erroreak[] = "Erroreak kontsultan";
 			}

@@ -69,6 +69,13 @@ class Produktu {
 						$this->erroreak[] = "Ez zara kudeatzailea.";
 					}
 					break;
+				case "aldatu":
+					if($ad) {
+						$this->produktuaAldatu($_POST['id']);
+					} else {
+						$this->erroreak[] = "Ez zara kudeatzailea.";
+					}
+					break;
 				case "erakutsi":
 						$this->produktuBatErakutsi($_GET['id']);
 					break;
@@ -221,7 +228,6 @@ class Produktu {
 		echo '<script>alert(document.location.href);window.location="index.php"</script>';}
        else if($this->formaBalidatu()){
 			if(isset($id)&&isset($_FILES['imga_berria'])) {
-				//echo '<script>alert("'.$_FILES['imga_berria']['name'].'")</script>';
 				$arraya=explode('.',$_FILES['imga_berria']['name']);
 				$formatua=$arraya[sizeof($arraya)-1];
 				if($_FILES['imga_berria']['name']!=null&&$formatua!='png'&&$formatua!='jpg'&&$formatua!='jpeg'&&$formatua!='tif'&&$formatua!='JPG'&&$formatua!='JPEG'){

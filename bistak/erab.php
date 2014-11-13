@@ -1,4 +1,5 @@
 <div class="gureinfo">
+
 <h2 class="eizena"><?php echo $erabObj->izena." ".$erabObj->abizena; ?></h2>
 <?php if(Sartu::adminBarruan()) { ?>
 	<h2>Prozesuan</h2>
@@ -31,9 +32,11 @@
 				}
 				echo "</tr>";
 			}
-} ?>
+}
+ ?>
 	</tbody>
 	</table>
+
 <h2>Eginak</h2>
 <table class="pure-table hist taula">
 	<thead>
@@ -69,4 +72,3 @@
 	} ?>
 	</tbody>
 </table>
-</div>

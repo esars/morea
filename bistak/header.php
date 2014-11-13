@@ -30,12 +30,15 @@
 																													<li><a href="index.php?kat=Matujak"><i class="fa fa-leaf"></i>  Matujak</a></li>
 																													<li><a href="index.php?kat=Zuhaitzak"><i class="fa fa-tree"></i>  Zuhaitzak</a></li>
 																												</ul>' href="index.php"><li>Produktuak</li></a>
+
 			<a class='tooltip' title='Jakin ezazu gehiago guri buruz' href="gu.php"><li>Gu</li></a>
 			<a class='tooltip' title='Aurkitu gaitzazu' href="kokapena.php"><li>Kokapena</li></a>
-			<a class='tooltip ikono' title='<span>Bilatu: </span><form id="bilatuform" action="index.php" method="get"><input id="bilatu-input" type="text" name="bilaketa"><button type="submit"><i class="fa fa-search"></i></button></form>'><li><img id='bilatu' src="public/img/bilatu.png" alt="Bilatu"></li></a>
+			<a class='tooltip ikono' title='<span>Bilatu: </span><form id="bilatuform" action="index.php" method="get"><input id="bilatu-input" type="text" name="bilaketa">
+				<button type="submit"><i class="fa fa-search"></i></button></form>'><li><img id='bilatu' src="public/img/bilatu.png" alt="Bilatu"></li></a>
 			<a class='tooltip ikono' title='Saskia bistaratu' href="#" data-featherlight="#saskia"><li><img id='saski' src="public/img/shopping.png" alt="Karritoan duzuna ikusi"></li></a>
 			<?php
 			if(isset($_SESSION['izena'])){
+
 							?>			<a class='tooltip' title='<ul class="kategoriak">
 																	<li><a href="erabiltzaile.php?aldatu=pasahitza"><i class="fa fa-key"></i>Pasahitza aldatu</li>
 																	<li><a href="erabiltzaile.php?aldatu=datuak"><i class="fa fa-male"></i>Kontua aldatu</li>
@@ -43,22 +46,26 @@
 																	<li></li>
 
 																  </ul>' href="profila.php" data-featherlight="#mylightbox"><li><img id='erab' src="public/img/erab.png" alt="Sartu edo erregistratu"></li></a>
+
 <?php
 			}
 			else{
-							?><a class='tooltip' title='Login / Izena eman' href="#" data-featherlight="#mylightbox"><li><img id='erab' src="public/img/erab.png" alt="Sartu edo erregistratu"></li></a>
+							?><a class='tooltip' title='Login / Izena eman' href="#" data-featherlight="#mylightbox">
+							<li><img id='erab' src="public/img/erab.png" alt="Sartu edo erregistratu"></li></a>
 <?php
 			}
 			?>
 			<?php
 			if(Sartu::adminBarruan()) {
+
 							?><a class="tooltip ikono" id='my-tooltip' title='
-																													<ul class="kategoriak">
-																													<li><a href="index.php?ekintza=kudeatzaile_prod"><i class="fa fa-cubes"></i>  Produktuak</a></li>
-																													<li><a href="index.php?ekintza=kudeatzaile_erab"><i class="fa fa-users"></i>  Erabiltzaileak</a></li>
-																													<li><a href="erabiltzaile.php?erabid=2"><i class="fa fa-shopping-cart"></i>  Salmentak</a></li>
-																													<li><a href="index.php?ekintza=kudeatzaile_stat"><i class="fa fa-bar-chart"></i>  Estatistikak</a></li>
-																												</ul>' href="index.php?ekintza=kudeatzaile_prod"><li><img id='adminarg' src="public/img/admin.png" alt="Karritoan duzuna ikusi"></li></a>
+									<ul class="kategoriak">
+									<li><a href="index.php?ekintza=kudeatzaile_prod"><i class="fa fa-cubes"></i>  Produktuak</a></li>
+									<li><a href="index.php?ekintza=kudeatzaile_erab"><i class="fa fa-users"></i>  Erabiltzaileak</a></li>
+									<li><a href="index.php?erabid=2"><i class="fa fa-shopping-cart"></i>  Salmentak</a></li>
+									<li><a href="erabiltzaile.php?ekintza=kudeatzaile_stat"><i class="fa fa-bar-chart"></i>  Estatistikak</a></li>
+									</ul>' href="index.php?ekintza=kudeatzaile_prod"><li><img id='adminarg' src="public/img/admin.png" alt="Karritoan duzuna ikusi"></li></a>
+
 <?php
 			}
 			?>

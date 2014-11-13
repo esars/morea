@@ -1,5 +1,16 @@
 <div class="gureinfo zabal">
-	<table class="pure-table">
+	<input type="button" class='pure-button' value='Bisiten taula osoa ikusi' onclick='bisitak_erakutsi()' id='bisitenTaula'>
+	<script>
+function bisitak_erakutsi () {
+	if(document.getElementById('taulabisitena').style.display!='none'){
+	document.getElementById('taulabisitena').style.display='none';
+	document.getElementById('bisitenTaula').value='Bisiten taula osoa ikusi';}
+else{
+ document.getElementById('taulabisitena').style.display='block';
+ document.getElementById('bisitenTaula').value='Bisiten taula ezkutatu';}
+}
+	</script>
+	<table id='taulabisitena' style='display:none' class="pure-table">
 	<thead>
 		<tr>
 			<td>Erabiltzaile ID</td>
@@ -24,6 +35,85 @@
 		
 			echo "</tr>";
 		} ?>
+
 	</tbody>
 	</table>
+	<div id='grafikoak'>
+			<table class="tabla1" style='display:none'>
+	<caption>Top 8 Produktu erosienak</caption>
+	<thead>
+		<tr>
+			<?php if(Sartu::adminBarruan()) { ?>
+				<td></td>
+			<?php 
+			while($lerroa = $proze->fetch_assoc()) {
+				echo "<th>".$lerroa['izena']."</th>";
+			}
+		} ?>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
+		
+		echo "<tr>";
+			echo "<th>Erosketak</th>";
+			 while($lerroak = $prozea->fetch_assoc()) {
+			 	echo "<td>".$lerroak['kant']."</td>";
+			 }
+		echo "</tr>";
+		echo "<tr>";
+			echo "<th>Bisitak</th>";
+			 while($lerroak = $prozeak->fetch_assoc()) {
+			 	if(isset($bisiten_arraya[$lerroak['iz']])){
+			 	echo "<td>".$bisiten_arraya[$lerroak['iz']]."</td>";}
+			 	else{
+			 		echo "<td>0</td>";
+			 	}
+			 }
+		echo "</tr>";
+	 ?>
+	</tbody>
+</table>
+<table class="tabla1" style='display:none'>
+	<caption>8 Produktu bisitatuenak</caption>
+	<thead>
+		<tr>
+			<?php if(Sartu::adminBarruan()) { ?>
+				<td></td>
+			<?php 
+			
+			$i=0;
+			foreach($bisiten_arraya as $id=>$bisitak){
+				$kontsulta = "SELECT * FROM produktu WHERE id='".$id."';";
+				$proz = $this->db->query($kontsulta)->fetch_object();
+				echo "<th>".$proz->izena."</th>";
+				$i++;
+				if ($i == 8) break;
+				
+			}
+			
+		} ?>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
+		
+		echo "<tr>";
+			echo "<th>bisitak</th>";
+		
+			$i=0;
+			 foreach($bisiten_arraya as $id=>$bisitak){
+			 	
+			 	echo "<td>".$bisitak."</td>";
+			 	$i++;
+			 	if ($i == 8) break;
+			 }
+			
+		echo "</tr>";
+	 ?>
+	</tbody>
+</table>
+</div>
+</div>
+
 </div>

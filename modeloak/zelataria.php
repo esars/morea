@@ -77,9 +77,39 @@ class Zelataria {
 	}
 	
 	private function estatIkusi() {
+		//perlada hasiera
+			$prozesuan_kontsultak = "SELECT s.id_prod id,p.id iz,sum(kantitatea) kant,p.izena izena
+									FROM salmentak s JOIN produktu p ON s.id_prod=p.id
+									group by id order by kant desc limit 8";
+			$proze = $this->db->query($prozesuan_kontsultak);	
+			$prozea = $this->db->query($prozesuan_kontsultak);	
+			$prozeak = $this->db->query($prozesuan_kontsultak);	
+			$sql1 = "SELECT ip, user_agent, referer, orrialdea, uid, data FROM zelatari";
+			$bisitak1 = $this->db->query($sql1);
+			$contador=0;
+			while($lerro = $bisitak1->fetch_assoc()) {
+		
+		
+			$datuak=explode("?",$lerro['orrialdea']);
+			if(isset($datuak[1])){
+			$datuak1=explode("&",$datuak[1]);
+			if(isset($datuak1[1])){
+			if($datuak1[1]=='ekintza=erakutsi'){
+			$datuak2=explode("=",$datuak1[0]);
+			$arraya[$contador]=$datuak2[1];
+			$contador++;
+			$bisiten_arraya1=array_count_values($arraya);
+			asort($bisiten_arraya1);
+			$bisiten_arraya = array_reverse($bisiten_arraya1,true);
+			}}
+		}
 
+	}
+			//perlada bukaera
+		
 		$sql = "SELECT ip, user_agent, referer, orrialdea, uid, data FROM zelatari";
 		$bisitak = $this->db->query($sql);
+		
 		include("bistak/kudeatu_stat.php");
 	}
 }
