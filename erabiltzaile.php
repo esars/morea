@@ -27,10 +27,9 @@ if(Sartu::barruan()) {
 } else {
 	include("bistak/login_registro.php");
 }
-<<<<<<< HEAD
-include("bistak/footer.php");
-=======
-
 
 include("bistak/footer.php");
->>>>>>> a8fa71818a27d8817ab2b977e449e90e8679e543
+
+
+
+include("bistak/footer.php");

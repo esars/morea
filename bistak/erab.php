@@ -1,6 +1,9 @@
 <div class="gureinfo">
 
-<h2 class="eizena"><?php echo $erabObj->izena." ".$erabObj->abizena; ?></h2>
+<h2 class="eizena"><?php
+global $erabObj;
+//var_dump($erabObj);
+echo $erabObj->izena." ".$erabObj->abizena; ?></h2>
 <?php if(Sartu::adminBarruan()) { ?>
 	<h2>Prozesuan</h2>
 	<table class="pure-table hist taula">

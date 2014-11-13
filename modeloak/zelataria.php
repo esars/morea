@@ -1,6 +1,5 @@
 <?php
 class Zelataria {
-
 	private $db = null;	
 	
 	public static $gaitua = true;
@@ -78,6 +77,7 @@ class Zelataria {
 	
 	private function estatIkusi() {
 		//perlada hasiera
+
 			$prozesuan_kontsultak = "SELECT s.id_prod id,p.id iz,sum(kantitatea) kant,p.izena izena
 									FROM salmentak s JOIN produktu p ON s.id_prod=p.id
 									group by id order by kant desc limit 8";

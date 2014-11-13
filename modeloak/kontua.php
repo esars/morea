@@ -14,7 +14,7 @@ class Kontua {
 	public $mezuak = array();
 	
 	public function __construct() {
-
+		//echo '<script>alert("'.Session::get('id').'")</script>';
 		$eid = Session::get('id');
 		global $eid;
 
@@ -26,8 +26,12 @@ class Kontua {
 									   	$config["pass"],
 										$config["izen"])
 										or die("Error " . mysqli_error($this->db));
-			$param = $_GET['erabid'] ?: 0;
-			$aldatu = $_GET['aldatu'] ?: 0;
+			if(isset($_GET['erabid']))
+			$param = $_GET['erabid'];
+		else $param = 0;
+			if(isset($_GET['aldatu']))
+			$aldatu = $_GET['aldatu'];
+		else $aldatu = 0;
 
 			if(isset($_POST['jasodut'])) {
 					$this->jaso();
@@ -38,12 +42,14 @@ class Kontua {
 			$this->erroreak[] = "Ezin izan gara zure kontura sartu.";
 		}
 	}
-	private function handle($uid = null, $aldatu = null) {
+	public function handle($uid = null, $aldatu = null) {
 		
 		//~ KONTROLATZAILEA
-
+		$eid = Session::get('id');
+		echo '<script>alert("'.$eid.'")</script>';
 		$erab = $this->db->query("SELECT * from erabiltzaile WHERE id='".$eid."';");
 		$erabObj = $erab->fetch_object();
+		//echo '<script>alert("'.var_dump($erabObj).'")</script>';
 
 		if(isset($_POST['paaldatu']) || isset($_POST['daaldatu'])) {
 			if(isset($_POST['paaldatu'])) $this->pasahitzaAldatu(true);
@@ -69,7 +75,6 @@ class Kontua {
 	}
 	private function erabInfo() {
 
-		$erab = $this->db->query("SELECT * from erabiltzaile WHERE id='".Session::get('id')."';");
 		if(Sartu::adminBarruan()) {
 			
 			/*

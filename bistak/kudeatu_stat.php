@@ -23,7 +23,6 @@ else{
 	</thead>
 	<tbody>
 		<?php while($lerroa = $bisitak->fetch_assoc()) {
-		
 			echo "<tr>";
 		
 			echo "<td>".$lerroa['uid']."</td>";
