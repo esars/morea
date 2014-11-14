@@ -5,9 +5,10 @@ require_once "modeloak/sartu.php";
 require_once "modeloak/izenaeman.php";
 require_once "modeloak/produktu.php";
 require_once "modeloak/saskia.php";
-require_once "modeloak/kontua.php";
+require_once "modeloak/kontua_refactor.php";
 require_once "modeloak/zelataria.php";
-
+require_once "modeloak/browser_class.php";
+$br= new browser();
 $login = new Sartu();
 $reg = new IzenaEman();
 

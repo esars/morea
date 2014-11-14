@@ -107,7 +107,7 @@ class Saskia{
 
 					if(isset($_POST['erosibotoi'])) {
 						Session::saskia_ustu();
-						Mugitu::nora('index.php');
+						Mugitu::norantz('index.php');
 					}
 				}
 		}

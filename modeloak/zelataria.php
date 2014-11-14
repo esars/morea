@@ -28,6 +28,7 @@ class Zelataria {
 		if( Sartu::adminBarruan() && 
 			isset($_GET['ekintza']) &&
 			$_GET['ekintza'] == "kudeatzaile_stat") $this->estatIkusi();
+		//if(isset($_GET['erabiltzailea'])) $this->infoaJaso();
 	}
 	private function infoaJaso() {
 		
@@ -81,6 +82,16 @@ class Zelataria {
 			$prozesuan_kontsultak = "SELECT s.id_prod id,p.id iz,sum(kantitatea) kant,p.izena izena
 									FROM salmentak s JOIN produktu p ON s.id_prod=p.id
 									group by id order by kant desc limit 8";
+			$erabiltzaile_erosleak = "SELECT distinct id_er as er from salmentak";
+			$erosleak = $this->db->query($erabiltzaile_erosleak);
+			while($lerroak = $erosleak->fetch_assoc()) {
+				$erabiltzaileen_erosketak = "SELECT sum(kantitatea) kant from salmentak where id_er='".$lerroak['er']."'";
+				$erosketak = $this->db->query($erabiltzaileen_erosketak)->fetch_object();
+				//echo '<script>alert("'.$erosketak->kant.'")</script>';
+				$array_erosketak1[$lerroak['er']]=$erosketak->kant;
+				asort($array_erosketak1);
+				$array_erosketak = array_reverse($array_erosketak1,true);
+			}
 			$proze = $this->db->query($prozesuan_kontsultak);	
 			$prozea = $this->db->query($prozesuan_kontsultak);	
 			$prozeak = $this->db->query($prozesuan_kontsultak);	
@@ -105,10 +116,26 @@ class Zelataria {
 		}
 
 	}
+	//nabigatzailea asmatzen
+	$zelatari_nav = "SELECT user_agent as us from zelatari;";
+	$nav = $this->db->query($zelatari_nav);
+	$i=0;
+	while($lerroa = $nav->fetch_assoc()) {
+	$browser = new Browser($lerroa['us']);
+	$pattern = "/(\d+)/";
+	$navigatzailea=preg_split($pattern,$browser->getBrowser(), -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+	$sistema=preg_split($pattern,$browser->getOs(), -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+	$nabigatzaileak[$i]=$navigatzailea[0];
+	$sistemak[$i]=$sistema[0];
+	$i++;
+}
+$sis=array_count_values($sistemak);
+$nab=array_count_values($nabigatzaileak);
 			//perlada bukaera
 		
 		$sql = "SELECT ip, user_agent, referer, orrialdea, uid, data FROM zelatari";
 		$bisitak = $this->db->query($sql);
+
 		
 		include("bistak/kudeatu_stat.php");
 	}
