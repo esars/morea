@@ -39,8 +39,12 @@ class Mugitu {
 		//	REDIRECT BAT EGIN	//
 
 		public static function nora($u) {
-			//header("Location: ".$u);
+			header("Location: ".$u);
 			//echo "<script>window.location=('".$u."')</script>";
+		}
+		public static function norantz($u) {
+			//header("Location: ".$u);
+			echo "<script>window.location=('".$u."')</script>";
 		}
 }
 class Auto {

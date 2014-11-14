@@ -46,9 +46,10 @@ class Kontua {
 		
 		//~ KONTROLATZAILEA
 		$eid = Session::get('id');
-		echo '<script>alert("'.$eid.'")</script>';
+		//echo '<script>alert("'.Session::get('izena').'")</script>';
 		$erab = $this->db->query("SELECT * from erabiltzaile WHERE id='".$eid."';");
 		$erabObj = $erab->fetch_object();
+		$_SESSION['abizena']=$erabObj->abizena;
 		//echo '<script>alert("'.var_dump($erabObj).'")</script>';
 
 		if(isset($_POST['paaldatu']) || isset($_POST['daaldatu'])) {
@@ -122,6 +123,8 @@ class Kontua {
 			if(!$q) {
 				$this->erroreak[] = "Erroreak kontsultan";
 			}
+			else
+				echo '<script>window.location="http://localhost:8888/morea/index.php?erabid=2"</script>';
 					
 		}
 	}

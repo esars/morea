@@ -3,7 +3,7 @@
 <h2 class="eizena"><?php
 global $erabObj;
 //var_dump($erabObj);
-echo $erabObj->izena." ".$erabObj->abizena; ?></h2>
+echo Session::get('izena')." ".Session::get('abizena'); ?></h2>
 <?php if(Sartu::adminBarruan()) { ?>
 	<h2>Prozesuan</h2>
 	<table class="pure-table hist taula">
