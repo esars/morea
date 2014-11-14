@@ -158,3 +158,7 @@ function taulaErakutsi(){
 	alert('barruan');
 	$('#taulabisitena').hide();
 }
+function ateraFunc() {
+	$("#logout").val('zeoze');
+	$("#ateraform").submit();
+}

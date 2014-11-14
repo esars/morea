@@ -14,7 +14,6 @@ $login = new Sartu();
 $reg = new IzenaEman();
 $prod = new Produktu();
 $sask = new Saskia();
-//$sask = new Saskia();
 
 if(Sartu::barruan()) {
 	include("bistak/barruan.php");

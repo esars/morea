@@ -386,3 +386,6 @@ overflow: hidden
 #testu > p {
 	color: #2A363B;
 }
+.ikusezin {
+	display:none;
+}

@@ -11,7 +11,11 @@ require_once "modeloak/zelataria.php";
 $login = new Sartu();
 $reg = new IzenaEman();
 
-include("bistak/header1.php");
+if(Sartu::adminBarruan()) {
+	include("bistak/header1.php");
+} else {
+	include("bistak/header.php");
+}
 include("bistak/nagusia.php");
 
 $sask = new Saskia();
@@ -27,9 +31,5 @@ if(Sartu::barruan()) {
 } else {
 	include("bistak/login_registro.php");
 }
-
-include("bistak/footer.php");
-
-
 
 include("bistak/footer.php");
