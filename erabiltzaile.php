@@ -5,19 +5,20 @@ require_once "modeloak/sartu.php";
 require_once "modeloak/izenaeman.php";
 require_once "modeloak/produktu.php";
 require_once "modeloak/saskia.php";
-require_once "modeloak/kontua.php";
+require_once "modeloak/kontua_refactor.php";
 require_once "modeloak/zelataria.php";
 require_once "modeloak/browser_class.php";
 $br= new browser();
 $login = new Sartu();
 $reg = new IzenaEman();
 
-include("bistak/header1.php");
+if(Sartu::adminBarruan()) include("bistak/header1.php");
+else include("bistak/header.php");
+
 include("bistak/nagusia.php");
 
 $sask = new Saskia();
-if(isset($_GET['erabid'])){
-$kontua = new Kontua();}
+$kontua = new Kontua();
 $zel = new Zelataria();
 
 if(Sartu::barruan()) {

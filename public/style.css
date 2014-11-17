@@ -390,6 +390,11 @@ overflow: hidden
 #testu > p {
 	color: #2A363B;
 }
+
+.ikusezin {
+	display:none;
+}
+
 #menu_estadistikak,#listaBerezia{
 	text-decoration:none;
 	list-style:none;
@@ -415,6 +420,7 @@ overflow: hidden
 	box-shadow:0px -7px 10px grey
 }
 .visualize.visualize-bar{margin:auto;margin-top:20px;}
+
 #kargatzen_irudia{
 	 -webkit-animation-iteration-count: infinite;
 }
@@ -424,3 +430,4 @@ overflow: hidden
 	margin-right:auto;
 	clear:both
 }
+

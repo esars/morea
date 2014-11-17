@@ -9,29 +9,24 @@ class Kontua {
 	*/
 	
 	private $db = null;
-	
 	public $erroreak = array();
 	public $mezuak = array();
 	
 	public function __construct() {
-		//echo '<script>alert("'.Session::get('id').'")</script>';
 		$eid = Session::get('id');
 		global $eid;
+		echo '<script>alert("'.$eid.'")</script>';
 
 		if(Sartu::barruan()) {
 			global $config;
 
 			$this->db = mysqli_connect(	$config["host"],
-									   	$config["user"],
-									   	$config["pass"],
-										$config["izen"])
-										or die("Error " . mysqli_error($this->db));
-			if(isset($_GET['erabid']))
-			$param = $_GET['erabid'];
-		else $param = 0;
-			if(isset($_GET['aldatu']))
-			$aldatu = $_GET['aldatu'];
-		else $aldatu = 0;
+							$config["user"],
+							$config["pass"],
+							$config["izen"])
+							or die("Error " . mysqli_error($this->db));
+			if(isset($_GET['erabid'])) $param = $_GET['erabid']; else $param = 0;
+			if(isset($_GET['aldatu'])) $aldatu = $_GET['aldatu']; else $aldatu = 0;
 
 			if(isset($_POST['jasodut'])) {
 					$this->jaso();
@@ -105,7 +100,7 @@ class Kontua {
 					  ON s.id_prod=p.id
 					  WHERE id_er=".$eid.";";
 		}
-		
+			
 		$hist = $this->db->query($konts);
 		
 		include("bistak/erab.php");
@@ -129,7 +124,8 @@ class Kontua {
 		}
 	}
 	private function pasahitzaAldatu($eginda = false) {
-		if($eginda) {
+		iiiinclude("bistak/pasahitza_aldatu.php");
+        if($eginda) {
 
 			$p1 = $_POST['pasahitzaharra'];
 			$pb1 = $_POST['pasahitzberri1'];
@@ -155,11 +151,11 @@ class Kontua {
 				}
 			}
 		
-		} else {
-			include('bistak/pasahitza_aldatu.php');
-		}
-	}
+        }
+        }
 	private function kontuaAldatu($eginda = false) {
+		
+		include("bistak/kontua_aldatu.php");
 
 		if($eginda) {
 			$izen = $this->db->real_escape_string(strip_tags($_POST['izena'], ENT_QUOTES));
@@ -189,8 +185,7 @@ class Kontua {
 			} else if(strlen($helb) < 5 || strlen($helb) > 50) {
 				$this->erroreak[] = "Helbidea luzeegia edo motzegia zen.";
 			} else {
-				$sql = "UPDATE erabiltzaile SET izena='".$izen."',email='".$mail."',abizena='".$abiz."',helbidea='".$helb."',telefonoa='".$telf."'
-						WHERE id='".$eid."';";
+				$sql = "UPDATE erabiltzaile SET izena='".$izen."',email='".$mail."',abizena='".$abiz."',helbidea='".$helb."',telefonoa='".$telf."' WHERE id='".$eid."';";
 				$aldatu = $this->db->query($sql);
 
 				if ($aldatu) {
@@ -202,9 +197,6 @@ class Kontua {
 					$this->erroreak[] = "Errorea zure datuak aldatzean";
 				}
 			}
-
-		} else {
-			include("bistak/kontua_aldatu.php");
 		}
 	}
 }

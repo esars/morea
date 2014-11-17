@@ -115,7 +115,7 @@ class Browser
         
         //windows server 2008 & 2008R2 & 2012?
         //check for the most popular OS first
-        if (strpos($this->agent, 'windows nt 6.1') !== false)        { $this->OS='Microsoft Windows 7'; }
+	if (strpos($this->agent, 'windows nt 6.1') !== false)        { $this->OS='Microsoft Windows 7'; }
         elseif (strpos($this->agent, 'windows nt 6.2') !== false)    { $this->OS='Microsoft Windows 8'; }
         elseif (strpos($this->agent, 'windows nt 5.1') !== false)    { $this->OS='Microsoft Windows XP'; }
         elseif (strpos($this->agent, 'windows nt 6.0') !== false)    { $this->OS='Microsoft Windows Vista'; }
