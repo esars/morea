@@ -20,7 +20,7 @@ class Kontua {
 					$this->kontuaAldatu(true);
 				}
 			} else if(isset($_GET['aldatu'])) {
-				if($_GET['aldatu' == "datuak"]) {
+				if($_GET['aldatu'] == "datuak") {
 					$this->kontuaAldatu(false);					
 				} else {
 					$this->pasahitzaAldatu(false);
@@ -32,7 +32,7 @@ class Kontua {
 			$this->erroreak[] = "Ez zaude erabiltzaile bezala sartuta.";
 		}	
 	}	
-	private function pasahitzaAldatu($pasata = false) {
+	public function pasahitzaAldatu($pasata = false) {
 
 		include("bistak/pasahitza_aldatu.php");
 		if($eginda) {
@@ -63,7 +63,7 @@ class Kontua {
 	
 		}
 	}
-	private function kontuaAldatu($pasata = false) {
+	public function kontuaAldatu($pasata = false) {
 		
 		include("bistak/kontua_aldatu.php");
 
@@ -110,7 +110,7 @@ class Kontua {
 		}
 
 	}
-	private function erabInfo() {
+	public function erabInfo() {
 		
 		/*
 		 * Egoera kanpoa erabiltzen dugu salmenta bat iritsi den ala ez determinatzeko.
