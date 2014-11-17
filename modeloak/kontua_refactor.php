@@ -5,13 +5,18 @@ class Kontua {
 	public $erroreak = array();
 
 	public function __construct() {
-		$erabid = Session::get('id');
 		if(Sartu::barruan()) {
+			global $config;
 			$this->db = mysqli_connect(	$config["host"],
 							$config["user"],
 							$config["pass"],
 							$config["izen"])
 							or die("Error " . mysqli_error($this->db));
+			
+			$erabid = Session::get('id');
+
+			$erab = $this->db->query("SELECT * from erabiltzaile WHERE id='".$erabid."';");
+			$erabObj = $erab->fetch_object();
 			
 			if(isset($_POST['kontualdatu'])) {
 				if(isset($_POST['pasahitzaharra'])) {
@@ -32,7 +37,7 @@ class Kontua {
 			$this->erroreak[] = "Ez zaude erabiltzaile bezala sartuta.";
 		}	
 	}	
-	public function pasahitzaAldatu($pasata = false) {
+	public function pasahitzaAldatu($eginda = false) {
 
 		include("bistak/pasahitza_aldatu.php");
 		if($eginda) {
@@ -63,7 +68,7 @@ class Kontua {
 	
 		}
 	}
-	public function kontuaAldatu($pasata = false) {
+	public function kontuaAldatu($eginda = false) {
 		
 		include("bistak/kontua_aldatu.php");
 

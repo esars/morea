@@ -16,7 +16,7 @@ include("bistak/nagusia.php");
 
 $zel = new Zelataria();
 
-if(isset($_GET['erabid'])) $kontua = new Kontua();
+$kontua = new Kontua();
 
 $sask = new Saskia();
 

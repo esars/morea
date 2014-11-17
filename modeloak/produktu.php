@@ -183,9 +183,9 @@ class Produktu {
 		}
 		private function produktuaKendu($id) {
 			//formulariotik datorrela validatu
-		if(!Sartu::adminBarruan()) {
-		echo '<script>alert(document.location.href);window.location="index.php"</script>';}
-        else if($this->formaBalidatu()){
+		if(!Sartu::adminBarruan()) echo '<script>alert(document.location.href);window.location="index.php"</script>';
+        	else if($this->formaBalidatu()){
+
 			// KONFIRMAZIOA PASA ONDOREN
 
 			if(isset($_POST['pborratu'])) {

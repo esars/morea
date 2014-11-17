@@ -18,8 +18,7 @@ else include("bistak/header.php");
 include("bistak/nagusia.php");
 
 $sask = new Saskia();
-if(isset($_GET['erabid'])){
-$kontua = new Kontua();}
+$kontua = new Kontua();
 $zel = new Zelataria();
 
 if(Sartu::barruan()) {
