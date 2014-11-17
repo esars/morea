@@ -1,4 +1,6 @@
 <div class="gureinfo zabal">
+	<div id="kargatzen" style='width:100%'><img src='public/img/kargatzen.png' id='kargatzen_irudia' width='50px' class="animated rotateIn"></div>
+	<div id="biltzailea" style='display:none'>
 	<ul id='menu_estadistikak'>
 		<li id='lehena' onclick='bisitak_erakutsi("lehena")'>Bisiten taula</li>
 		<li id='bigarrena'  onclick='bisitak_erakutsi("bigarrena")'>Produktuen estadistikak</li>
@@ -28,8 +30,6 @@ function bisitak_erakutsi (n) {
  document.getElementById('estiloak').innerHTML='#menu_estadistikak #bigarrena{background-color:#E84A5F;box-shadow:none;}#menu_estadistikak #'+n+'{display:inline-block;background-color:transparent;border-bottom:solid thin #F4F4E8;margin-bottom:-1px;box-shadow:0px -7px 10px grey}';
 }
 	</script>
-	<div id="kargatzen" style='width:100%'><h1>Estadistikak Kalkulatzen...</h1><img src="public/img/pentsakor.jpg" style='display:block;width:400px;margin-left:auto;margin-right:auto' alt=""></div>
-	<div id="biltzailea" style='display:none'>
 	<table id='taulabisitena' style='display:none' class="pure-table">
 	<thead>
 		<tr>
@@ -82,12 +82,15 @@ function bisitak_erakutsi (n) {
 		<div style="width: 50%;float:left">
 			<h1 style="text-align:center;clear:both">Erabiltzaile erosleenak</h1>
 		<div id="canvas-holder" style='clear:both;float:left'>
-		<canvas id="canvas2" width="400" height="400" style='float:left'/>
+		<canvas id="canvas2" width="390" height="390" style='float:left'/>
 	</div>
 			<ul style='list-style:none'>
 		<?php 
+		$lim_erosleenak=1;
+		$lim_nab=1;
+		$lim_so=1;
 			$arrayKolor = [
-    0 => "#641143",
+    0 => "#6498C1",
     1 => "#D4986A",
     2 => "#196811",
     3 => "#808015",
@@ -103,19 +106,32 @@ $arrayKolor2 = [
     3 => "#CB1009",
     4 => "#64B832",
     5 => "#F9F966",
-    6 => "F79910",
-    7 => "F397CA",
+    6 => "#F79910",
+    7 => "#F397CA",
 ];
+			$tota=0;
+			$suma=0;
+			foreach($array_erosketak as $id=>$zenb){
+				$tota=$tota+$zenb;
+			}
 			
 			$i=0;
-			
 			foreach($array_erosketak as $id=>$erosketak){
+				$suma=$suma+$erosketak;
 				echo '<li style="margin-top:20px">';
+				$portzentaiak_er[$i]=round(($erosketak*100)/$tota,1);
 				$kontsultak = "SELECT * FROM erabiltzaile WHERE id='".$id."';";
 				$prozk = $this->db->query($kontsultak)->fetch_object();
-				echo '<span style="background-color:'.$arrayKolor[$i].';padding:5px;border-radius:5px">'.$prozk->izena.'('.$erosketak.')</span>';
+				echo '<span style="background-color:'.$arrayKolor[$i].';padding:5px;border-radius:5px">'.$prozk->izena.'('.$portzentaiak_er[$i].'%)</span>';
 				$i++;
-				if ($i == 8) break;
+				if ($i == $lim_erosleenak && $tota!=$suma){
+				echo '</li>';
+				echo '<li style="margin-top:20px">';
+				$portzentaiak_er[$i]=round((($tota-$suma)*100)/$tota,1);
+				echo '<span style="background-color:'.$arrayKolor[$i].';padding:5px;border-radius:5px">Besteak('.$portzentaiak_er[$i].'%)</span>';
+				
+				echo '</li>';
+				 break;}
 				echo '</li>';
 				
 			}
@@ -126,17 +142,30 @@ $arrayKolor2 = [
 <div style='width:50%;float:left'>
 	<h1 style="text-align:center;clear:both">Nabigatzaile erabiliak</h1>
 <div id="canvas-holder" style='float:left'>
-		<canvas id="canvas3" width="400" height="400" style='float:left'/>
+		<canvas id="canvas3" width="390" height="390" style='float:left'/>
 	</div>
-			<ul style='list-style:none'>
+			<ul style='list-style:none;margin-left:10px'>
 		<?php 
-			
+		$tot=0;
+		$sum=0;
+			foreach($nab as $nabe=>$zenb){
+				$tot=$tot+$zenb;
+			}
 			$i=0;
 			foreach($nab as $nabe=>$zenb){
+				$sum=$sum+$zenb;
 				echo '<li style="margin-top:20px">';
-				echo '<span style="background-color:'.$arrayKolor2[$i].';padding:5px;border-radius:5px">'.$nabe.'('.$zenb.')</span>';
+				$portzentaiak_nav[$i]=round(($zenb*100)/$tot,1);
+				echo '<span style="background-color:'.$arrayKolor2[$i].';padding:5px;border-radius:5px;">'.$nabe.'('.$portzentaiak_nav[$i].'%)</span>';
 				$i++;
-				if ($i == 8) break;
+				if ($i == $lim_nab && $tot!=$sum){
+				echo '</li>';
+				echo '<li style="margin-top:20px">';
+				$portzentaiak_nav[$i]=round((($tot-$sum)*100)/$tot,1);
+				echo '<span style="background-color:'.$arrayKolor2[$i].';padding:5px;border-radius:5px;">Besteak('.$portzentaiak_nav[$i].'%)</span>';
+				
+				echo '</li>';
+				 break;}
 				echo '</li>';
 				
 			}
@@ -148,17 +177,23 @@ $arrayKolor2 = [
 		<div style='width:50%;float:left'>
 	<h1 style="text-align:center;clear:both">S.O erabiliak</h1>
 <div id="canvas-holder" style='float:left'>
-		<canvas id="canvas4" width="400" height="400" style='float:left'/>
+		<canvas id="canvas4" width="390" height="390" style='float:left'/>
 	</div>
 			<ul style='list-style:none'>
 		<?php 
-			
+		$total=0;
+		$sumak=0;
+			foreach($sis as $sistema=>$zenb){
+				$total=$total+$zenb;
+			}
 			$i=0;
 			foreach($sis as $sistema=>$zenb){
+				$sumak=$sumak+$zenb;
 				echo '<li style="margin-top:20px">';
-				echo '<span style="background-color:'.$arrayKolor[$i].';padding:5px;border-radius:5px">'.$sistema.'('.$zenb.')</span>';
+				$portzentaiak_so[$i]=round(($zenb*100)/$total,1);
+				echo '<span style="background-color:'.$arrayKolor[$i].';padding:5px;border-radius:5px">'.$sistema.'('.$portzentaiak_so[$i].'%)</span>';
 				$i++;
-				if ($i == 8) break;
+				if ($i == $lim_so && $total!=$sumak) break;
 				echo '</li>';
 				
 			}
@@ -167,6 +202,14 @@ $arrayKolor2 = [
 		 ?></ul>
 		</div>
 	<script>
+	function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 		$(window).load(function() {
     
     	$('#biltzailea').show();
@@ -270,11 +313,19 @@ $arrayKolor2 = [
 				$kontsultak = "SELECT * FROM erabiltzaile WHERE id='".$id."';";
 				$prozk = $this->db->query($kontsultak)->fetch_object();
 				echo 'value:'.$erosketak.',';
-				echo 'highlight:"'.$arrayKolor2[1].'",';
+				echo 'highlight:"#641143",';
 				echo 'color:"'.$arrayKolor[$i].'",';
-				echo 'label:"'.$prozk->izena.'"';
+				echo 'label:"'.$prozk->izena.'('.$portzentaiak_er[$i].'%)"';
 				$i++;
-				if ($i == 8) break;
+				if ($i == $lim_erosleenak && $tota!=$suma){
+				echo '},{';
+				echo 'value:'.($tota-$suma).',';
+				echo 'highlight:"#641143",';
+				echo 'color:"'.$arrayKolor[$i].'",';
+				$portzentaiak_nav[$i]=round((($tota-$suma)*100)/$tota,1);
+				echo 'label:"Besteak('.$portzentaiak_er[$i].'%)"';
+				echo '}';
+				 break;}
 				echo '},';
 				
 			}
@@ -286,14 +337,22 @@ $arrayKolor2 = [
 			var pieData2 = [
 				<?php 
 			$i=0;
-			foreach($nab as $nabe=>$zenb){
+			foreach($nab as $nabea=>$zenb){
 				echo '{';
 				echo 'value:'.$zenb.',';
-				echo 'highlight:"'.$arrayKolor[0].'",';
+				echo 'highlight:"#641143",';
 				echo 'color:"'.$arrayKolor2[$i].'",';
-				echo 'label:"'.$nabe.'"';
+				echo 'label:"'.$nabea.'('.$portzentaiak_nav[$i].'%)"';
 				$i++;
-				if ($i == 8) break;
+				if ($i == $lim_nab){
+				echo '},{';
+				echo 'value:'.($tot-$sum).',';
+				echo 'highlight:"#641143",';
+				echo 'color:"'.$arrayKolor2[$i].'",';
+				$portzentaiak_nav[$i]=round((($tot-$sum)*100)/$tot,1);
+				echo 'label:"Besteak('.$portzentaiak_nav[$i].'%)"';
+				echo '}';
+				 break;}
 				echo '},';
 				
 			}
@@ -308,11 +367,13 @@ $arrayKolor2 = [
 			foreach($sis as $sistem=>$zenb){
 				echo '{';
 				echo 'value:'.$zenb.',';
-				echo 'highlight:"'.$arrayKolor2[1].'",';
+				echo 'highlight:"#641143",';
 				echo 'color:"'.$arrayKolor[$i].'",';
-				echo 'label:"'.$sistem.'"';
+				echo 'label:"'.$sistem.'('.$portzentaiak_so[$i].'%)"';
 				$i++;
-				if ($i == 8) break;
+				if ($i == $lim_so){
+				echo '},';
+				break;}
 				echo '},';
 				
 			}

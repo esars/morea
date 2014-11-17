@@ -10,7 +10,7 @@
 	<link href="public/css/visualize-light.css" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" href="public/pure.css">
 	<link rel="stylesheet" type="text/css" href="public/featherlight.min.css">
-	
+	<link rel="stylesheet" href="public/animate.css">
 	<link href='http://fonts.googleapis.com/css?family=Lobster|Magra:400,500' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="public/font-awesome-4.2.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="public/js/enhance.js"></script>

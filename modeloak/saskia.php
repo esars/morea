@@ -178,15 +178,19 @@ class Saskia{
 		}
 		private function erosi() {
 			if(Sartu::barruan()&&isset($_SESSION['karritoa'])) {
-				if($this->formaBalidatu()){
+				
 					if(!isset($_POST['erosi'])&&isset($_SESSION['karritoa'])){
 					$this->saskiaErakutsi(false);
 					$erostear = $_SESSION['karritoa'];}
 					//print_r ($erostear);
 					//echo Session::get('id');
-					else if(isset($_POST['erosi'])&&isset($_SESSION['karritoa'])) {
+					else if(isset($_POST['erosi'])&&isset($_SESSION['karritoa'])&&$this->formaBalidatu()) {
 						$erostear = $_SESSION['karritoa'];
+						
 						$karritoaren_array=array_count_values($_SESSION['karritoa']);
+						//ArrayaDesglosatu($saskia);
+						//echo var_dump($this->ArrayaDesglosatu($karritoaren_array));
+						
 						$kodea=$this->kodigoaSortu();
 					foreach($karritoaren_array as $ida=>$kantitatea){
 					$this->erosketaInsertatu($ida,$kodea,$kantitatea);
@@ -197,10 +201,10 @@ class Saskia{
 					unset($_GET['ekintzak']);
 					}
 					else {$this->erroreak[] = $_SESSION['mezua_stock'];
-					unset($_GET['ekintzak']);
+					$this->saskiaErakutsi(false);
 				}
 				}
-			}
+			
 		}
 		else if(!Sartu::barruan()){
 			unset($_GET['ekintzak']);
@@ -215,7 +219,7 @@ class Saskia{
 				$sql="select * from produktu where id=".$ida."";
 				$bidali = $this->db->query($sql)->fetch_object();
 				//echo '<script>alert("'.$bidali->stock.'")</script>';
-				if($bidali->stock>$kantitatea){
+				if($bidali->stock>$kantitatea||$bidali->stock==$kantitatea){
 				/*
 				 * salmentak taulara informazioa gehitu, lerro bat
 				 * gehitzen den bakoitzean exekutatuko da, bi 
@@ -227,14 +231,14 @@ class Saskia{
 				         VALUES
 				         ('".Session::get('id')."', '".$ida."', '".$kodea."', '".$kantitatea."', '".$data."');";
 				 $sartu = $this->db->query($sql);
-				$sql1 = "update produktu set stock='".$bidali->stock-$kantitatea."'
+				$sql1 = "update produktu set stock='".($bidali->stock-$kantitatea)."'
 									WHERE id='".$ida."';";
 				 $sartu1 = $this->db->query($sql1);}
 				 else {
 				 if(isset($_SESSION['mezua_stock']))
 				 	$_SESSION['mezua_stock']= $_SESSION['mezua_stock'].'<br>Ez da stocka geratzen'.$bidali->izena.' erosteko';
 				 	else
-				 		$_SESSION['mezua_stock']= 'Ez da stocka geratzen "'.$bidali->izena.'" erosteko';
+				 		$_SESSION['mezua_stock']= 'Bakarrik '.$bidali->stock.' "'.$bidali->izena.'" eros ditzazkezu';
 				}
 		}
 		private function formaBalidatu() {
@@ -253,6 +257,22 @@ class Saskia{
            		return true;
         }
 		}
+
+		//array_count_values desegin
+		private function ArrayaDesglosatu($saskia) {
+			$f=0;
+			foreach($saskia as $prod=>$num){
+				if($num!=0){
+				for($i=0;$i<$num;$i++){
+					$karritoan[$f]=(string)$prod;
+					$f++;
+				}
+			}
+			}
+			return $karritoan;
+		}
+
+
 			public function kodigoaSortu() {
 			$length = 10;
  $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

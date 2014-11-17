@@ -22,6 +22,10 @@ nav>ul>*{
 	font-size: 2em;
 	margin-top: 5%;
 }
+#menu_estadistikak>*{
+	font-family:sans-serif;
+	font-size: 1.5em;
+}
 nav>ul>a>li {
 	transition: all 200ms linear;
 }
@@ -411,3 +415,12 @@ overflow: hidden
 	box-shadow:0px -7px 10px grey
 }
 .visualize.visualize-bar{margin:auto;margin-top:20px;}
+#kargatzen_irudia{
+	 -webkit-animation-iteration-count: infinite;
+}
+#kargatzen img{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	clear:both
+}
