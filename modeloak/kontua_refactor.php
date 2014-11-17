@@ -69,7 +69,7 @@ class Kontua {
 		}
 	}
 	public function kontuaAldatu($eginda = false) {
-		
+	
 		include("bistak/kontua_aldatu.php");
 
 		if($eginda) {
