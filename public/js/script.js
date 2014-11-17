@@ -16,14 +16,12 @@ $('#admin').load('bistak/admin.php');
 $('.borratzekoa').click(argazkia_ezabatu);
 $("button[name='erakutsi']").click(erakutsi_info);
 function aldatu_erab () {
-	//$('#erab').fadeToggle(2000,0.5);
 	$('#erab').attr('src','public/img/erab_koloreztatua.png');
 }
 function ber_aldatu_erab () {
 	$('#erab').attr('src','public/img/erab.png');
 }
 function aldatu_bilatu () {
-	//$('#erab').fadeToggle(2000,0.5);
 	$('#bilatu').attr('src','public/img/bilatu_koloreztatua.png');
 	$('#bilatu-input').focus();
 }
@@ -31,14 +29,12 @@ function ber_aldatu_bilatu () {
 	$('#bilatu').attr('src','public/img/bilatu.png');
 }
 function aldatu_admin () {
-	//$('#erab').fadeToggle(2000,0.5);
 	$('#adminarg').attr('src','public/img/admin_koloreztatua.png');
 }
 function ber_aldatu_admin () {
 	$('#adminarg').attr('src','public/img/admin.png');
 }
 function aldatu_saski () {
-	//$('#erab').fadeToggle(2000,0.5);
 	$('#saski').attr('src','public/img/shopping_koloreztatua.png');
 }
 function ber_aldatu_saski () {

@@ -29,4 +29,3 @@ if(Sartu::barruan()) {
 } else include("bistak/login_registro.php");
 
 include("bistak/footer.php");
-?>

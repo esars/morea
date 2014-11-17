@@ -12,11 +12,9 @@ $br= new browser();
 $login = new Sartu();
 $reg = new IzenaEman();
 
-if(Sartu::adminBarruan()) {
-	include("bistak/header1.php");
-} else {
-	include("bistak/header.php");
-}
+if(Sartu::adminBarruan()) include("bistak/header1.php");
+else include("bistak/header.php");
+
 include("bistak/nagusia.php");
 
 $sask = new Saskia();
