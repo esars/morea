@@ -5,7 +5,7 @@ require_once "modeloak/sartu.php";
 require_once "modeloak/izenaeman.php";
 require_once "modeloak/produktu.php";
 require_once "modeloak/saskia.php";
-require_once "modeloak/kontua_refactor.php";
+require_once "modeloak/kontua.php";
 require_once "modeloak/zelataria.php";
 
 $login = new Sartu();
@@ -16,11 +16,9 @@ include("bistak/nagusia.php");
 
 $zel = new Zelataria();
 
-$kontua = new Kontua();
-
+if(isset($_GET['erabid']))$kontua = new Kontua();
+else $prod=new Produktu();
 $sask = new Saskia();
-
-if(!isset($_GET['erabid'])) $prod = new Produktu();
 
 if(Sartu::barruan()) {
 	include("bistak/barruan.php");

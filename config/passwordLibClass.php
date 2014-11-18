@@ -318,13 +318,13 @@ class PhpPasswordLib{
         
         $cost = preg_replace("/[^0-9,.]/", "", $params['2']);
         
-        return (
+        /*return (
             'algo' => $algo,
             'algoName' => $algoName,
             'options' => array(
                 'cost' => $cost
             ),
-        );
+	);*/
     }
     
     

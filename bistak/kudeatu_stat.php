@@ -86,9 +86,9 @@ function bisitak_erakutsi (n) {
 	</div>
 			<ul style='list-style:none'>
 		<?php 
-		$lim_erosleenak=1;
-		$lim_nab=1;
-		$lim_so=1;
+		$lim_erosleenak=4;
+		$lim_nab=4;
+		$lim_so=4;
 			$arrayKolor = [
     0 => "#6498C1",
     1 => "#D4986A",
@@ -191,6 +191,7 @@ $arrayKolor2 = [
 				$sumak=$sumak+$zenb;
 				echo '<li style="margin-top:20px">';
 				$portzentaiak_so[$i]=round(($zenb*100)/$total,1);
+if($sistema=='Microsoft Windows ')$sistema='Windows';
 				echo '<span style="background-color:'.$arrayKolor[$i].';padding:5px;border-radius:5px">'.$sistema.'('.$portzentaiak_so[$i].'%)</span>';
 				$i++;
 				if ($i == $lim_so && $total!=$sumak) break;

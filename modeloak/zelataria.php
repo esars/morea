@@ -28,7 +28,6 @@ class Zelataria {
 		if( Sartu::adminBarruan() && 
 			isset($_GET['ekintza']) &&
 			$_GET['ekintza'] == "kudeatzaile_stat") $this->estatIkusi();
-		//if(isset($_GET['erabiltzailea'])) $this->infoaJaso();
 	}
 	private function infoaJaso() {
 		

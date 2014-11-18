@@ -25,7 +25,7 @@ $kategoriak = [
 global $kategoriak;
 
 if((int)phpversion()[2] < 5) {
-	require_once "config/passlib.php";
+	require_once "passlib.php";
 }
 
 // Erroreak izkutatu edo erakutsi

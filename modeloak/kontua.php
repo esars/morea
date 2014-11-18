@@ -15,7 +15,6 @@ class Kontua {
 	public function __construct() {
 		$eid = Session::get('id');
 		global $eid;
-		echo '<script>alert("'.$eid.'")</script>';
 
 		if(Sartu::barruan()) {
 			global $config;
@@ -41,11 +40,9 @@ class Kontua {
 		
 		//~ KONTROLATZAILEA
 		$eid = Session::get('id');
-		//echo '<script>alert("'.Session::get('izena').'")</script>';
 		$erab = $this->db->query("SELECT * from erabiltzaile WHERE id='".$eid."';");
 		$erabObj = $erab->fetch_object();
 		$_SESSION['abizena']=$erabObj->abizena;
-		//echo '<script>alert("'.var_dump($erabObj).'")</script>';
 
 		if(isset($_POST['paaldatu']) || isset($_POST['daaldatu'])) {
 			if(isset($_POST['paaldatu'])) $this->pasahitzaAldatu(true);
@@ -63,7 +60,7 @@ class Kontua {
 					break;
 			}
 		}
-		else if($eid == $uid || Sartu::adminBarruan()) {
+		else if((isset($_GET['erabid']) && $eid == $uid) || Sartu::adminBarruan()) {
 			$this->erabInfo();
 		} else {
 			$this->erorreak[] = "Ez dauzkazu beharrezko baimenak.";
@@ -124,7 +121,7 @@ class Kontua {
 		}
 	}
 	private function pasahitzaAldatu($eginda = false) {
-		iiiinclude("bistak/pasahitza_aldatu.php");
+		include("bistak/pasahitza_aldatu.php");
         if($eginda) {
 
 			$p1 = $_POST['pasahitzaharra'];

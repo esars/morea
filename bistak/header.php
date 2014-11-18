@@ -38,10 +38,10 @@
 			<a class='tooltip ikono' title='Saskia bistaratu' href="#" data-featherlight="#saskia"><li><img id='saski' src="public/img/shopping.png" alt="Karritoan duzuna ikusi"></li></a>
 <?php
 	if(isset($_SESSION['izena'])) {
-?>			<a class='tooltip' title='<ul class="kategoriak">
+?>			<a class='tooltip' id='my-tooltip' title='<ul class="kategoriak">
 										<li><a href="erabiltzaile.php?aldatu=pasahitza"><i class="fa fa-key"></i>Pasahitza aldatu</a></li>
 										<li><a href="erabiltzaile.php?aldatu=datuak"><i class="fa fa-male"></i>Kontua aldatu</a></li>
-										<li><a href="index.php" onclick="ateraFunc()"><i class="fa fa-sign-out"></i>Kontutik atera</a></li>
+										<li onclick="ateraFunc()"><i class="fa fa-sign-out"></i>Kontutik atera</li>
 
 									  </ul>'><li><img id='erab' src="public/img/erab.png" alt="Sartu edo erregistratu"></li></a>
 
