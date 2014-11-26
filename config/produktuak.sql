@@ -1,55 +1,19 @@
--- MySQL dump 10.15  Distrib 10.0.14-MariaDB, for Linux (x86_64)
---
--- Host: localhost    Database: landare
--- ------------------------------------------------------
--- Server version	10.0.14-MariaDB-log
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `produktu`
---
-
-DROP TABLE IF EXISTS `produktu`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `produktu` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
-  `izena` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `deskripzioa` text COLLATE utf8_spanish_ci NOT NULL,
-  `prezioa` float(7,2) NOT NULL,
-  `stock` int(5) NOT NULL,
-  `kategoria` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+   `id` int(5) not null auto_increment,
+   `izena` varchar(30) not null,
+   `deskripzioa` text not null,
+   `prezioa` float(7,2) not null,
+   `stock` int(5) not null,
+   `kategoria` varchar(15),
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=24;
 
---
--- Dumping data for table `produktu`
---
-
-LOCK TABLES `produktu` WRITE;
-/*!40000 ALTER TABLE `produktu` DISABLE KEYS */;
-INSERT INTO `produktu` VALUES (1,'Alkatxofa','Alkatxifa haziak. 2tik 3 urtera artako hazkuntza',2.00,100,NULL),(2,'Baratxuria','Baratxuri haziak, zure errezetei zapore bizi bat emateko',4.00,200,NULL),(3,'Kiwia','Kiwi zuhaitzaren haziak, fruitu tropikal',20.00,50,NULL),(4,'Kalabazina','Kalabazina Euskal Herrian oso oparoa den barazkia da.',3.00,300,NULL),(5,'Estragoia','El estragón tiene propiedades medicinales: en cataplasma, se ponen hojas y flores frescas y trituradas dentro de una gasa para aliviar el dolor de muelas; en infusión, ayuda a mejorar la digestión; tomar baños de pies y manos de agua con un puñado de hojas frescas de estragón alivia la artrosis.',5.00,700,NULL),(6,'Albahaka','Gozotzaile naturala, entsaladari botatzeko oso aproposa.',1.00,30,NULL),(7,'Kamelia','Etxe barruko landare polita eta bizia.',40.00,50,NULL),(8,'Geranioa','Al final de invierno o principios de primavera haz una poda severa cerca del suelo. Aprovecha el material cortado para hacer esquejes. También se debe despuntar con frecuencia para que emita brotes laterales; cuantos más tallos, más flores.\r\n',3.50,400,NULL),(9,'Sativa Jack Herer','Jack Herer is a sativa-dominant cannabis strain that has gained as much renown as its namesake, the marijuana activist and author of The Emperor Wears No Clothes. Combining a Haze hybrid with a Northern Lights #5 and Shiva Skunk cross, Sensi Seeds created Jack Herer hoping to capture both the cerebral elevation associated with sativas and the heavy resin production of indicas. Its rich genetic background gives rise to several different variations of Jack Herer, each phenotype bearing its own unique features and effects. However, consumers typically describe this 55% sativa hybrid as blissful, clear-headed, and creative.',10.50,420,NULL),(10,'Indica White Rhino','White Rhino is a hybrid of White Widow and an unknown North American indica strain, creating a bushy and stout plant. The buds give off a strong and heady high. The plant\'s parentage hails from Afghanistan, Brazil, and India. White Rhino is one of the best types of marijuana for medicinal use since it has such a high THC content.',16.50,300,NULL),(11,'Peyote','Xamanek aintzinatik erabili izan duten kaktus haluzinogenoa',25.75,300,NULL),(13,'Orkidea','La palabra orquídea deriva del griego ορχις (orchis = testículo), vocablo que se encontró por primera vez en los manuscritos de la obra De causis plantarum del filósofo griego Teofrasto y que datan aproximadamente del año 375 antes de Cristo.10 Tal vocablo hace referencia a la forma de los tubérculos de las especies del género Orchis, orquídeas de hábito terrestre cuyos tubérculos dobles parecen testículos,20 como puede apreciarse en la imagen de la derecha.',20.65,350,'Erramuak');
-/*!40000 ALTER TABLE `produktu` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2014-10-30  9:45:56
+INSERT INTO `produktu` (`id`, `izena`, `deskripzioa`, `prezioa`, `stock`, `kategoria`) VALUES 
+('16', 'Peonia', 'Las peoniáceas (Paeoniaceae) constituyen una familia monogenérica de plantas dicotoledóneas rizomatosas originarias de diversas regiones de Europa, Extremo Oriente (especialmente de China) y de América del Norte, usualmente referidas como peonías.', '12.50', '200', 'Erramuak'),
+('17', 'Lilium', 'Las especies de Lilium, comúnmente llamadas azucenas o lirios, constituyen un género con alrededor de 110 integrantes que se incluye dentro de la familia de las liliáceas.', '4.50', '123', 'Zentroak'),
+('18', 'Laranjondoa', 'Laranjondoa (Citrus × sinensis) laranjak ekoizten dituen fruta-arbola da. Laranjondoa antzinatik landatzen den espezie hibridoa da, seguru asko arabisagar arbolaren (Citrus maxima) eta mandarinondoaren (Citrus reticulata) arteko nahastea. Zuhaitz loredun txikia da, 10 metro baino gutxiago hazten dena. Arrautza-formako hosto betiberde iraunkorrak ditu, 4 eta 10 cm artekoak, modu txandakatuan kokatuak eta ertz krenulatudunak. Bere fruitua den laranja hesperidio bat da, hau da, baia mota bat.', '6.30', '400', 'Zuhaitzak'),
+('19', 'Pistatxondoa', 'Jatorriz, Iran eta Irakeko lurralde menditsuetakoa da, baina, gaur egun, Grezia, Siria, Iran, Kirgistan, Turkmenistan, Turkia, Pakistan, Afganistan, Egipto eta AEBetako Kalifornian ere landatzen da.\r\n\r\nPistatxondoak 10 m inguruko garaiera izaten du. Hosto pinatuak ditu, 10-20 cm-koak, zeinak askatu egiten baitira adarretatik ondu ondoren. Basamortuko landarea denez, ongi jasaten ditu lurzoru gaziak, eta gauza da muturreko tenperaturetan bizitzeko —neguan, 10 °C zero azpitik, eta, udan, 40 °C—. Eguzkira begira egon behar du, eta lurzoru drainatuan. Izan ere, ez da ongi garatzen hezetasun handiko lekuetan, eta sustraiak usteldu egin daitezke, ur gehiegi izanez gero. Uda luzeak komeni zaizkio, fruituak behar bezala ondu daitezen.', '30.00', '40', 'Zuhaitzak'),
+('20', 'Geranioa', 'El género Geranium, comúnmente llamado geranio, agrupa 422 especies de plantas anuales, bienales y perennes frecuentemente utilizadas en jardinería por sus atractivas flores y su aroma característico. Su hábitat comprende todas las regiones templadas del mundo incluidas las zonas montañosas de los trópicos, aunque se encuentran mayoritariamente en la región oriental del Mediterráneo. Comprende 1216 especies descritas y de estas, solo 411 aceptadas.', '2.50', '500', 'Matujak'),
+('21', 'Sagarrondoa', 'Orain dela 15.000 urte inguru sortu zela uste da, Kaukaso aldean. Europara erromatarrek ekarri zuten. Jatorri amerikarreko barietateak badaude ere, kontinente hartan kolonizatzaileen bitartez nagusiki zabaldu zen sagarrondoa. Gaur egun 1.000 barietate baino gehiago daude, espezie artean egin diren nahasteen ondorioz.\r\n\r\nErabileraren arabera, lau sagarrondo-mota bereizten dira: jateko sagarrak ematen dituztenak, sagardotarakoak, makatz edo basatiak (mentu-oin gisa erabiliak) eta apaingarriak. Sagarrondo kultibatuak (jateko eta sagardotarako sagarrak ematen dituztenak eta apaingarriak), oro har, txertatu egin ohi dira, eta sagarrondo-barietate desberdinak nahiz mentu-oinak hibridazioz lortzen dira.', '50.75', '45', 'Zuhaitzak'),
+('22', 'Korona bariatuak', 'Koronak egiten ditugu edozein motako gertakizunentzako.', '120.50', '50', 'Funeralak'),
+('23', 'Masusta', 'Masusta basa fruitu baten izena da, bi genero desberdinetako landareek ematen dutena: Morus (masustondoak) et Rubus (lahar edo sasiak). Bi generotako fruituek itxura eta zapore oso antzekoa dituzte. Ohikoena sasi edo laharretan hazten den masusta da. Fruitua heldu baino lehen, lore zuri edo arrosakarak dituzte, 2-3 cm zabalekoak. Masustak, heldu baino lehen, gorriak dira eta heltzean beltz urdinkarak.', '4.90', '500', 'Matujak');
